@@ -65,9 +65,6 @@
 
     <?php wp_head(); ?>
 
-    <!-- Affiliate / CJ Script (async for performance) -->
-    <script async src="https://www.anrdoezrs.net/am/100743026/include/allCj/generate/onLoad/impressions/page/am.js"></script>
-
     <!-- Schema.org Organization -->
     <script type="application/ld+json">
     {
@@ -95,7 +92,7 @@
                 
                 <div class="kreativ-hdr-left">
                     <h1 class="kreativ-logo">
-						<a href="<?php echo esc_url( home_url('/') ); ?>" title="<?php bloginfo('description'); ?>">
+						<a href="<?php echo esc_url( home_url('/') ); ?>" title="<?php echo esc_attr( get_bloginfo( 'description' ) ); ?>">
 							<img src="<?php echo esc_url( kreativ_get_theme_asset_url( 'img/logo-96.png' ) ); ?>"
 								 alt="KREATIV Logo"
 								 class="kreativ-logo-icon">
@@ -128,7 +125,7 @@
 
 
 			<h2 class="kreativ-logo offcanvas-show">
-				<a href="<?php echo esc_url( home_url('/') ); ?>" title="<?php bloginfo('description'); ?>">
+				<a href="<?php echo esc_url( home_url('/') ); ?>" title="<?php echo esc_attr( get_bloginfo( 'description' ) ); ?>">
 						<img src="<?php echo esc_url( kreativ_get_theme_asset_url( 'img/logo-96.png' ) ); ?>"
 						 alt="KREATIV Logo"
 						 class="kreativ-logo-icon">

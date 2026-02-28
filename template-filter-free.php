@@ -52,13 +52,18 @@ Template Name: Filter Free
 
 		<div class="col-md-4 col-lg-3 col-sm-6">
 			<div class="kreativ-font-card">
-				<a href="<?php the_permalink() ?>" class="kreativ-card-title" title="<?php the_title(); ?> font">
+				<a href="<?php the_permalink() ?>" class="kreativ-card-title" title="<?php the_title_attribute(); ?>">
 					<strong><?php the_title(); ?></strong>
-					<img  class="card-img-top" src="//www.kreativfont.com/wp-content/themes/oceania/img/loading.gif" data-original="<?php echo $image_medium[0]; ?>" alt="<?php the_title(); ?> font"/>
+					<img class="card-img-top"
+						src="<?php echo esc_url( get_template_directory_uri() . '/img/loading.gif' ); ?>"
+						data-original="<?php echo esc_url( $image_medium[0] ?? kreativ_get_fallback_image_url() ); ?>"
+						alt="<?php the_title_attribute(); ?>"
+						loading="lazy" />
 				</a>
-				<a href="//www.kreativfont.com/checkout?edd_action=add_to_cart&download_id=<?php echo $post_id; ?>" title="Download <?php the_title(); ?> font" class="card">
+				<a href="<?php echo esc_url( kreativ_get_checkout_url( $post_id ) ); ?>" title="<?php echo esc_attr( sprintf( 'Download %s font', get_the_title() ) ); ?>" class="card">
 					<span class="btn btn-primary">Download free font</span>
-				</div>
+				</a>
+			</div>
 			</div>
 			<?php
             }

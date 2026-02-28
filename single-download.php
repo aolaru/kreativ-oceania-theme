@@ -21,10 +21,13 @@
 	<?php
 		$basename = basename(get_permalink());
 		$search_creativemarket = str_replace('-', '/', $basename);
-		$search_myfonts = str_replace('-', ' ', $basename);?>
+		$search_myfonts = str_replace('-', ' ', $basename);
+		$creative_market_url = kreativ_get_internal_url( 'creativemarket/' . $search_creativemarket );
+		$myfonts_url = kreativ_get_internal_url( 'myfonts/' . rawurlencode( $search_myfonts ) );
+	?>
 	<span>You might find a better price for this font on </span>
-	<a rel="nofollow" href="//www.kreativfont.com/creativemarket/<?php echo $search_creativemarket; ?>" target="_blank">CreativeMarket</a>,
-	<a rel="nofollow" href="//www.kreativfont.com/myfonts/<?php echo $search_myfonts; ?>" target="_blank">MyFonts</a>,
+	<a rel="nofollow" href="<?php echo esc_url( $creative_market_url ); ?>" target="_blank">CreativeMarket</a>,
+	<a rel="nofollow" href="<?php echo esc_url( $myfonts_url ); ?>" target="_blank">MyFonts</a>,
 	<a rel="nofollow" href="//fontbundles.net/search/<?php echo $search_myfonts; ?>/rel=tgD63I">FontBundles</a>,
 	<a rel="nofollow" href="//www.fontspring.com/search?q=<?php echo $search_myfonts; ?>&refby=kreativ">FontSpring</a> or
 	<a rel="nofollow" href="//www.creativefabrica.com/ref/73113/?s=<?php echo $search_myfonts; ?>&post_type=product&campaign=Search">CreativeFabrica</a>

@@ -44,7 +44,7 @@
 
         </div>
 
-		<p class="text-center"> We couldn’t find any matching fonts. Try another keyword or explore our <a href="https://kreativfont.com/fonts">Popular Fonts</a> collection.</p>
+		<p class="text-center"> We couldn’t find any matching fonts. Try another keyword or explore our <a href="<?php echo esc_url( kreativ_get_popular_fonts_url() ); ?>">Popular Fonts</a> collection.</p>
 
 		<?php endif; ?>
 

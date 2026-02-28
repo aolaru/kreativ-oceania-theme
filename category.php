@@ -13,17 +13,7 @@ $cat_slug = $category->slug;
 $cat_name = $category->name;
 $cat_desc = category_description();
 
-/* Homepage-style icons */
-$kreativ_fa_icons = [
-    'fonts'            => 'fa-solid fa-font',
-    'templates-themes' => 'fa-solid fa-layer-group',
-    'graphics'         => 'fa-solid fa-pen-nib',
-    'photos'           => 'fa-solid fa-camera',
-    'videos'           => 'fa-solid fa-film',
-    'sounds'           => 'fa-solid fa-music',
-    'free'             => 'fa-solid fa-gift',
-];
-$cat_icon = $kreativ_fa_icons[$cat_slug] ?? 'fa-solid fa-folder-open';
+$cat_icon = in_array( $cat_slug, array( 'fonts', 'templates-themes', 'graphics', 'photos', 'videos', 'sounds', 'free' ), true ) ? $cat_slug : 'folder';
 
 /* --------------------------------------------
    SORTING LOGIC
@@ -100,7 +90,7 @@ $query = new WP_Query($args);
 <div class="container kreativ-category-bg">
     <div class="kreativ-category-header">
         <h1>
-            <i class="<?php echo esc_attr($cat_icon); ?>"></i>
+            <?php echo kreativ_render_icon( $cat_icon ); ?>
             Browse <?php echo esc_html($cat_name); ?>
         </h1>
 

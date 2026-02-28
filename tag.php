@@ -87,7 +87,7 @@ $query = new WP_Query($args);
 <div class="container kreativ-category-bg">
     <div class="kreativ-category-header">
         <h1>
-            <i class="fa-solid fa-tag"></i>
+            <?php echo kreativ_render_icon( 'tag' ); ?>
             Tag: <?php echo esc_html($tag_name); ?>
         </h1>
 

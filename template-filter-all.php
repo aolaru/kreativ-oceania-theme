@@ -16,322 +16,7 @@ $kreativ_category_labels = [
     'sounds'           => 'Sounds',
     'free'             => 'Freebies',
 ];
-
-$kreativ_fa_icons = [
-    'fonts'            => 'fa-solid fa-font',
-    'templates-themes' => 'fa-solid fa-layer-group',
-    'graphics'         => 'fa-solid fa-pen-nib',
-    'photos'           => 'fa-solid fa-camera',
-    'videos'           => 'fa-solid fa-film',
-    'sounds'           => 'fa-solid fa-music',
-    'free'             => 'fa-solid fa-gift',
-];
-
 ?>
-
-<!-- Load Font Awesome 6 -->
-<link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer" />
-
-<style>
-/* ---------------------------------------------------------
-   GENERAL STYLES
---------------------------------------------------------- */
-:root {
-    --kf-gradient: linear-gradient(180deg, #fafbff 0%, #f4f6ff 100%);
-}
-
-.kreativ-hero {
-    padding: 3rem 1rem;
-    text-align: center;
-    background: linear-gradient(135deg, #eef1ff 0%, #fafbff 100%);
-    border-radius: 22px;
-    margin-bottom: 2.5rem;
-}
-
-/* Hero subtitle */
-.kreativ-hero-subtitle {
-    font-size: 1.25rem;
-    margin-bottom: 2.2rem;
-    color: #444;
-    max-width: 650px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.5;
-}
-
-/* ---------------------------------------------------------
-   HERO TOOL SHORTCUTS
---------------------------------------------------------- */
-.kreativ-hero-tools {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-    margin-bottom: 1.5rem;
-}
-
-.kreativ-hero-tools-label {
-    font-weight: 700;
-    font-size: 1rem;
-    padding: 0.75rem 0.3rem;
-    color: #4A4AFF;
-}
-
-.kreativ-hero-tool-card {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    padding: 0.75rem 1.3rem;
-    background: #ffffff;
-    border-radius: 12px;
-    border: 1px solid #e2e4ea;
-    text-decoration: none;
-    color: #1a1a1a;
-    transition: 0.25s ease;
-    font-weight: 600;
-}
-
-.kreativ-hero-tool-card i {
-    font-size: 1.2rem;
-    color: #4A4AFF;
-}
-
-.kreativ-hero-tool-card:hover {
-    box-shadow: 0px 5px 18px rgba(0,0,0,0.12);
-    transform: translateY(-3px);
-    border-color: #4A4AFF;
-}
-
-.kreativ-tool-new {
-    background: #ff3366;
-    color: #fff;
-    padding: 2px 8px;
-    border-radius: 8px;
-    font-size: 0.65rem;
-    margin-left: 4px;
-    font-weight: 700;
-    letter-spacing: 0.03em;
-    text-transform: uppercase;
-}
-
-@media (max-width: 767px) {
-    .kreativ-hero-tool-card {
-        width: 100%;
-        justify-content: center;
-    }
-}
-
-/* ---------------------------------------------------------
-   SECTION WRAPPER
---------------------------------------------------------- */
-.kreativ-section {
-    padding: 1rem 0;
-    background: var(--kf-gradient);
-    border-radius: 22px;
-    margin-bottom: 3rem;
-}
-
-/* ---------------------------------------------------------
-   SECTION HEADERS
---------------------------------------------------------- */
-.kreativ-section-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 1.2rem;
-}
-
-.kreativ-section-title {
-    font-size: 1.8rem;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-}
-
-.kreativ-section-title i {
-    font-size: 1.8rem;
-    color: #4A4AFF;
-}
-
-.kf-view-all {
-    font-size: 1.2rem;
-    padding-right: 4px;
-    color: #4A4AFF;
-    text-decoration: none;
-    transition: 0.2s ease;
-}
-
-.kf-view-all:hover {
-    color: #2d2def;
-    transform: translateX(3px);
-}
-
-/* ---------------------------------------------------------
-   SECTION GRADIENTS MATCHING BADGE COLORS
---------------------------------------------------------- */
-
-/* Fonts — very light blue */
-.kreativ-section-fonts {
-    background: linear-gradient(135deg, #f8f9ff 0%, #fdfdff 100%) !important;
-}
-
-/* Templates — very light teal */
-.kreativ-section-templates-themes {
-    background: linear-gradient(135deg, #f5fcfc 0%, #fcfefe 100%) !important;
-}
-
-/* Graphics — very light peach */
-.kreativ-section-graphics {
-    background: linear-gradient(135deg, #fff9f6 0%, #fffdfb 100%) !important;
-}
-
-/* Photos — very light gold */
-.kreativ-section-photos {
-    background: linear-gradient(135deg, #fffdf3 0%, #fffef9 100%) !important;
-}
-
-/* Videos — very light coral */
-.kreativ-section-videos {
-    background: linear-gradient(135deg, #fff6f6 0%, #fffafa 100%) !important;
-}
-
-/* Sounds — very light lavender */
-.kreativ-section-sounds {
-    background: linear-gradient(135deg, #fcf7ff 0%, #fefbff 100%) !important;
-}
-
-/* Freebies — green */
-.kreativ-section-free {
-    background: linear-gradient(135deg, #e2f7e8 0%, #f3fff6 100%) !important;
-}
-
-/* ---------------------------------------------------------
-   CARDS
---------------------------------------------------------- */
-.kreativ-font-card {
-    background: #fff;
-    padding: 1rem;
-    border-radius: 14px;
-    margin-bottom: 1rem;
-    border: 1px solid #e2e4ea;
-    transition: 0.25s ease;
-}
-
-.kreativ-font-card:hover {
-    box-shadow: 0px 5px 22px rgba(0,0,0,0.12);
-    transform: translateY(-4px);
-    border-color: #4A4AFF;
-}
-
-.kreativ-font-card a {
-    text-decoration: none;
-    color: inherit;
-    display: block;
-}
-
-.kreativ-card-media {
-    position: relative;
-    overflow: hidden;
-    border-radius: 10px;
-}
-
-.kreativ-card-media img {
-    width: 100%;
-    display: block;
-    transition: transform 0.3s ease;
-}
-
-.kreativ-card-media:hover img {
-    transform: scale(1.06);
-}
-
-/* Grid spacing (gutters) */
-.kreativ-section .row {
-    margin-left: -10px;
-    margin-right: -10px;
-}
-
-.kreativ-section .col-md-3,
-.kreativ-section .col-sm-6 {
-    padding: 10px;
-}
-
-/* Category badges */
-.kf-badge {
-    position: absolute;
-    top: 0.75rem;
-    left: 0.75rem;
-    padding: 0.2rem 0.6rem;
-    border-radius: 999px;
-    font-size: 0.72rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: #fff;
-    z-index: 2;
-}
-
-.kf-badge-fonts            { background: #4A4AFF; }
-.kf-badge-templates-themes { background: #00A7B5; }
-.kf-badge-graphics         { background: #FF7A59; }
-.kf-badge-photos           { background: #F4B400; }
-.kf-badge-videos           { background: #E53935; }
-.kf-badge-sounds           { background: #8E24AA; }
-.kf-badge-free             { background: #43A047; }
-
-/* NEW badge */
-.kf-badge-new {
-    position: absolute;
-    top: 0.75rem;
-    right: 0.75rem;
-    padding: 0.2rem 0.5rem;
-    border-radius: 999px;
-    background: #ff3366;
-    color: #fff;
-    font-size: 0.7rem;
-    font-weight: bold;
-    letter-spacing: 0.03em;
-    z-index: 2;
-}
-
-/* Card titles */
-.kreativ-font-card h3 {
-    font-size: 1rem;
-    margin-top: 0.85rem;
-    margin-bottom: 0;
-    font-weight: 600;
-}
-
-/* ---------------------------------------------------------
-   ENTRY ANIMATION
---------------------------------------------------------- */
-.kreativ-card-animate {
-    opacity: 0;
-    transform: translateY(12px);
-    animation: kfFadeUp 0.6s ease forwards;
-}
-
-@keyframes kfFadeUp {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Small stagger based on column order */
-.kreativ-card-animate:nth-child(2) { animation-delay: 0.05s; }
-.kreativ-card-animate:nth-child(3) { animation-delay: 0.1s; }
-.kreativ-card-animate:nth-child(4) { animation-delay: 0.15s; }
-
-@media (max-width: 767px) {
-    .kreativ-section-title {
-        font-size: 1.4rem;
-    }
-}
-</style>
 
 
 
@@ -347,24 +32,24 @@ $kreativ_fa_icons = [
     <div class="kreativ-hero-tools">
         <span class="kreativ-hero-tools-label">Tools:</span>
 
-        <a href="/tools/kreativ-font-pairing-tools" class="kreativ-hero-tool-card">
-            <i class="fa-solid fa-search"></i>
+        <a href="<?php echo esc_url( kreativ_get_internal_url( 'tools/kreativ-font-pairing-tools' ) ); ?>" class="kreativ-hero-tool-card">
+            <?php echo kreativ_render_icon( 'search' ); ?>
             <span>Font Pairing Tools</span>
             <small class="kreativ-tool-new">NEW</small>
         </a>
 
-        <a href="/tools/kreativ-font-identifier" class="kreativ-hero-tool-card">
-            <i class="fa-solid fa-search"></i>
+        <a href="<?php echo esc_url( kreativ_get_internal_url( 'tools/kreativ-font-identifier' ) ); ?>" class="kreativ-hero-tool-card">
+            <?php echo kreativ_render_icon( 'search' ); ?>
             <span>Font Identifier</span>
         </a>
 
-        <a href="/tools/fancy-text-generator" class="kreativ-hero-tool-card">
-            <i class="fa-solid fa-wand-magic-sparkles"></i>
+        <a href="<?php echo esc_url( kreativ_get_internal_url( 'tools/fancy-text-generator' ) ); ?>" class="kreativ-hero-tool-card">
+            <?php echo kreativ_render_icon( 'magic' ); ?>
             <span>Fancy Text Generator</span>
         </a>
 
-        <a href="/tools/kreativ-font-name-generator" class="kreativ-hero-tool-card">
-            <i class="fa-solid fa-lightbulb"></i>
+        <a href="<?php echo esc_url( kreativ_get_internal_url( 'tools/kreativ-font-name-generator' ) ); ?>" class="kreativ-hero-tool-card">
+            <?php echo kreativ_render_icon( 'idea' ); ?>
             <span>Font Name Generator</span>
         </a>
     </div>
@@ -387,18 +72,15 @@ $home_sections = [
 ];
 
 foreach ( $home_sections as $slug => $title ) :
-    $icon = $kreativ_fa_icons[ $slug ] ?? '';
     ?>
     <div class="container kreativ-section kreativ-section-<?php echo esc_attr( $slug ); ?>">
 
         <div class="kreativ-section-header">
             <h2 class="kreativ-section-title">
-                <?php if ( $icon ) : ?>
-                    <i class="<?php echo esc_attr( $icon ); ?>"></i>
-                <?php endif; ?>
+                <?php echo kreativ_render_icon( $slug ); ?>
                 <?php echo esc_html( $title ); ?>
             </h2>
-            <a href="<?php echo esc_url( '/category/' . $slug ); ?>" class="kf-view-all">View All &rsaquo;</a>
+            <a href="<?php echo esc_url( kreativ_get_category_url( $slug ) ); ?>" class="kf-view-all">View All &rsaquo;</a>
         </div>
 
         <div class="row">
@@ -467,12 +149,12 @@ foreach ( $home_sections as $slug => $title ) :
 ===================================================== -->
 <div class="container kreativ-section kreativ-section-free">
 
-    <div class="kreativ-section-header">
+        <div class="kreativ-section-header">
         <h2 class="kreativ-section-title">
-            <i class="fa-solid fa-gift"></i>
+            <?php echo kreativ_render_icon( 'free' ); ?>
             Free Creative Resources
         </h2>
-        <a href="/category/free" class="kf-view-all">View All &rsaquo;</a>
+        <a href="<?php echo esc_url( kreativ_get_category_url( 'free' ) ); ?>" class="kf-view-all">View All &rsaquo;</a>
     </div>
 
     <div class="row">

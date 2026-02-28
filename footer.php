@@ -1,7 +1,7 @@
 		<footer class="kreativ-footer">
 		  <p>
 			Kreativ Font is part of the <strong>KREATIV</strong> ecosystem — independent creative tools and curated resources.<br />
-			Created and maintained by <a href="/blog/about">Andrei Olaru</a>.<br />
+			Created and maintained by <a href="<?php echo esc_url( kreativ_get_internal_url( 'blog/about' ) ); ?>">Andrei Olaru</a>.<br />
 
 			Kreativ Font does not host or distribute commercial fonts.
 			All font names, trademarks, and copyrights belong to their respective owners.<br />
@@ -15,32 +15,14 @@
 			  WhatFontIs
 			</a>.<br />
 
-			<a href="/blog/contact">Contact</a> ·
-			<a href="/blog/terms-of-use">Terms of Use</a> ·
-			<a href="/blog/privacy-policy">Privacy Policy</a> ·
+			<a href="<?php echo esc_url( kreativ_get_internal_url( 'blog/contact' ) ); ?>">Contact</a> ·
+			<a href="<?php echo esc_url( kreativ_get_internal_url( 'blog/terms-of-use' ) ); ?>">Terms of Use</a> ·
+			<a href="<?php echo esc_url( kreativ_get_internal_url( 'blog/privacy-policy' ) ); ?>">Privacy Policy</a> ·
 			<a href="https://madebykreativ.com" target="_blank" rel="noopener">
 			  About KREATIV
 			</a>
 		  </p>
 		</footer>
-
-		<script>
-		document.addEventListener('DOMContentLoaded', function() {
-		  const toggle = document.createElement('button');
-		  toggle.classList.add('dark-toggle');
-		  toggle.innerHTML = '<svg viewBox="0 0 24 24"><path d="M21.64 13a9 9 0 0 1-8.64 8.95A9 9 0 0 1 12 3v0a9 9 0 0 1 9.64 10z"/></svg>';
-		  document.body.appendChild(toggle);
-
-		  const isDark = localStorage.getItem('kreativ-dark') === 'true';
-		  if (isDark) document.body.classList.add('dark-mode');
-
-		  toggle.addEventListener('click', () => {
-			document.body.classList.toggle('dark-mode');
-			localStorage.setItem('kreativ-dark', document.body.classList.contains('dark-mode'));
-		  });
-		});
-		</script>
-
         <?php wp_footer(); ?>
     </div>
 </body>
