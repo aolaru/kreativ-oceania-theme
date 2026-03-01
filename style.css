@@ -1,10 +1,10 @@
 /*
-Theme Name: Oceania (KREATIV Edition)
+Theme Name: Kreativ Oceania Theme
 Theme URI: https://kreativfont.com
 Author: Andrei Olaru
 Author URI: https://kreativfont.com
 Description: A creative, lightweight, and responsive WordPress theme by KREATIV — designed for designers, typographers, and creators. Includes dark mode, Bootstrap grid, and SEO-optimized structure.
-Version: 1.0.3
+Version: 1.0.4
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: kreativ
@@ -203,4 +203,3 @@ body.dark-mode .kreativ-footer {
   transform: translateY(-5px);
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
-

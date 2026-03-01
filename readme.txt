@@ -1,4 +1,4 @@
-Oceania WordPres Theme
+Kreativ Oceania Theme
 * by Andrei Olaru - http://kreativpro.wordpress.com
 
 About
