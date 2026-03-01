@@ -98,10 +98,7 @@ $query = new WP_Query($args);
 			<p><?php echo wp_kses_post($cat_desc); ?></p>
 		<?php endif; ?>
 
-		<?php
-		// Suggest an update CTA (always available for this category)
-		echo do_shortcode('[kcc_suggest_update]');
-		?>
+		<?php echo kreativ_render_category_update_cta(); ?>
 		
 		
     </div>

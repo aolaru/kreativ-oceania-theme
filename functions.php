@@ -227,6 +227,73 @@ function kreativ_get_primary_category_badge( $post_id, $labels ) {
     return array( null, null );
 }
 
+function kreativ_single_related_posts_enabled() {
+    return (bool) get_theme_mod( 'kreativ_enable_theme_related_posts', true );
+}
+
+function kreativ_get_related_posts_query( $post_id, $posts_per_page = 4 ) {
+    $category_ids = wp_get_post_categories( $post_id );
+    $tag_ids      = wp_get_post_tags( $post_id, array( 'fields' => 'ids' ) );
+
+    $args = array(
+        'post_type'              => 'post',
+        'posts_per_page'         => absint( $posts_per_page ),
+        'post__not_in'           => array( absint( $post_id ) ),
+        'ignore_sticky_posts'    => true,
+        'post_status'            => 'publish',
+        'orderby'                => 'date',
+        'order'                  => 'DESC',
+        'no_found_rows'          => true,
+        'update_post_meta_cache' => false,
+        'update_post_term_cache' => false,
+    );
+
+    if ( ! empty( $tag_ids ) ) {
+        $args['tag__in'] = array_map( 'absint', $tag_ids );
+    } elseif ( ! empty( $category_ids ) ) {
+        $args['category__in'] = array_map( 'absint', $category_ids );
+    }
+
+    return new WP_Query( $args );
+}
+
+function kreativ_render_category_update_cta() {
+    if ( shortcode_exists( 'kcc_suggest_update' ) ) {
+        return do_shortcode( '[kcc_suggest_update]' );
+    }
+
+    return '';
+}
+
+function kreativ_customize_register( $wp_customize ) {
+    $wp_customize->add_section(
+        'kreativ_theme_options',
+        array(
+            'title'    => __( 'Kreativ Theme Options', 'kreativ' ),
+            'priority' => 160,
+        )
+    );
+
+    $wp_customize->add_setting(
+        'kreativ_enable_theme_related_posts',
+        array(
+            'default'           => true,
+            'sanitize_callback' => 'rest_sanitize_boolean',
+        )
+    );
+
+    $wp_customize->add_control(
+        'kreativ_enable_theme_related_posts',
+        array(
+            'type'        => 'checkbox',
+            'section'     => 'kreativ_theme_options',
+            'label'       => __( 'Show theme related posts on single posts', 'kreativ' ),
+            'description' => __( 'Disable this if another plugin or custom system handles related posts.', 'kreativ' ),
+        )
+    );
+}
+add_action( 'customize_register', 'kreativ_customize_register' );
+
 function kreativ_maybe_convert_showcases() {
     if ( ! is_admin() || ! current_user_can( 'manage_options' ) ) {
         return;
