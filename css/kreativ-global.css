@@ -43,3 +43,20 @@
   letter-spacing: -0.08em;
   font-size: 0.95em;
 }
+
+.kreativ-footer {
+  text-align: center;
+}
+
+.kreativ-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 0.8rem;
+}
+
+.kreativ-footer-meta {
+  margin: 0;
+  text-align: center;
+}
