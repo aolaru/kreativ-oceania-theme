@@ -47,8 +47,11 @@
     <meta name="application-name" content="KREATIV">
     <meta name="theme-color" content="#ffffff">
 
-    <!-- Favicon -->
-    <link rel="icon" href="<?php echo esc_url( kreativ_get_theme_asset_url( 'img/favicon-96x96.png' ) ); ?>" type="image/png">
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo esc_url( kreativ_get_theme_asset_url( 'img/favicon-16x16.png' ) ); ?>">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?php echo esc_url( kreativ_get_theme_asset_url( 'img/favicon-32x32.png' ) ); ?>">
+    <link rel="icon" type="image/png" sizes="96x96" href="<?php echo esc_url( kreativ_get_theme_asset_url( 'img/favicon-96x96.png' ) ); ?>">
+    <link rel="shortcut icon" href="<?php echo esc_url( kreativ_get_theme_asset_url( 'img/favicon.ico' ) ); ?>">
 
     <!-- Manifest -->
     <link rel="manifest" href="<?php echo esc_url( kreativ_get_theme_asset_url( 'manifest.json' ) ); ?>">
@@ -93,7 +96,7 @@
                 <div class="kreativ-hdr-left">
                     <h1 class="kreativ-logo">
 						<a href="<?php echo esc_url( home_url('/') ); ?>" title="<?php echo esc_attr( get_bloginfo( 'description' ) ); ?>">
-							<img src="<?php echo esc_url( kreativ_get_theme_asset_url( 'img/logo-96.png' ) ); ?>"
+							<img src="<?php echo esc_url( kreativ_get_theme_asset_url( 'img/k-logo.svg' ) ); ?>"
 								 alt="KREATIV Logo"
 								 class="kreativ-logo-icon">
 							<span class="kreativ-logo-text">KREATIV</span>
@@ -126,7 +129,7 @@
 
 			<h2 class="kreativ-logo offcanvas-show">
 				<a href="<?php echo esc_url( home_url('/') ); ?>" title="<?php echo esc_attr( get_bloginfo( 'description' ) ); ?>">
-						<img src="<?php echo esc_url( kreativ_get_theme_asset_url( 'img/logo-96.png' ) ); ?>"
+						<img src="<?php echo esc_url( kreativ_get_theme_asset_url( 'img/k-logo.svg' ) ); ?>"
 						 alt="KREATIV Logo"
 						 class="kreativ-logo-icon">
 					<span class="kreativ-logo-text">KREATIV</span>

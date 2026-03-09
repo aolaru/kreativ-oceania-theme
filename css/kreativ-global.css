@@ -60,3 +60,10 @@
   margin: 0;
   text-align: center;
 }
+
+.kreativ-logo-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  object-fit: contain;
+}
