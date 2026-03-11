@@ -105,8 +105,6 @@ foreach ( $home_sections as $slug => $title ) :
                 while ( $query->have_posts() ) :
                     $query->the_post();
 
-                    $thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'medium' );
-                    $thumb_url = $thumb[0] ?? kreativ_get_fallback_image_url();
                     $is_new    = kf_is_new_post( get_the_ID() );
                     ?>
                     <div class="col-md-3 col-sm-6 kreativ-card-animate">
@@ -122,12 +120,15 @@ foreach ( $home_sections as $slug => $title ) :
                                         <span class="kf-badge-new">NEW</span>
                                     <?php endif; ?>
 
-                                    <img class="lazyload"
-                                         loading="lazy"
-                                         decoding="async"
-                                         alt="<?php the_title_attribute(); ?>"
-                                         data-src="<?php echo esc_url( $thumb_url ); ?>"
-                                         src="<?php echo esc_url( get_template_directory_uri() . '/img/loading.gif' ); ?>" />
+                                    <?php
+                                    echo kreativ_get_post_thumbnail_markup(
+                                        get_the_ID(),
+                                        'medium',
+                                        array(
+                                            'class' => 'card-img-top',
+                                        )
+                                    );
+                                    ?>
                                 </div>
                                 <h3><?php the_title(); ?></h3>
                             </a>
@@ -173,8 +174,6 @@ foreach ( $home_sections as $slug => $title ) :
             while ( $free->have_posts() ) :
                 $free->the_post();
 
-                $thumb     = wp_get_attachment_image_src( get_post_thumbnail_id(), 'medium' );
-                $thumb_url = $thumb[0] ?? kreativ_get_fallback_image_url();
                 $is_new    = kf_is_new_post( get_the_ID() );
                 ?>
                 <div class="col-md-3 col-sm-6 kreativ-card-animate">
@@ -188,12 +187,15 @@ foreach ( $home_sections as $slug => $title ) :
                                     <span class="kf-badge-new">NEW</span>
                                 <?php endif; ?>
 
-                                <img class="lazyload"
-                                     loading="lazy"
-                                     decoding="async"
-                                     alt="<?php the_title_attribute(); ?>"
-                                     data-src="<?php echo esc_url( $thumb_url ); ?>"
-                                     src="<?php echo esc_url( get_template_directory_uri() . '/img/loading.gif' ); ?>" />
+                                <?php
+                                echo kreativ_get_post_thumbnail_markup(
+                                    get_the_ID(),
+                                    'medium',
+                                    array(
+                                        'class' => 'card-img-top',
+                                    )
+                                );
+                                ?>
                             </div>
                             <h3><?php the_title(); ?></h3>
                         </a>

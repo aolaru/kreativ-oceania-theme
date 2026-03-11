@@ -126,11 +126,6 @@ $query = new WP_Query($args);
         <?php if ($query->have_posts()) : ?>
             <?php while ($query->have_posts()) : $query->the_post(); ?>
 
-                <?php
-                $img = wp_get_attachment_image_src(get_post_thumbnail_id(), 'medium');
-                $thumb = $img[0] ?? kreativ_get_fallback_image_url();
-                ?>
-
                 <div class="col-md-4 col-lg-3 col-sm-6 kreativ-card-animate">
                     <div class="kreativ-font-card">
 
@@ -142,13 +137,15 @@ $query = new WP_Query($args);
                                     <?php echo esc_html($cat_name); ?>
                                 </span>
 
-                                <img class="lazyload"
-                                     loading="lazy"
-                                     decoding="async"
-                                     alt="<?php the_title_attribute(); ?>"
-                                     data-src="<?php echo esc_url($thumb); ?>"
-                                     src="<?php echo esc_url(get_template_directory_uri() . '/img/loading.gif'); ?>"
-                                />
+                                <?php
+                                echo kreativ_get_post_thumbnail_markup(
+                                    get_the_ID(),
+                                    'medium',
+                                    array(
+                                        'class' => 'card-img-top',
+                                    )
+                                );
+                                ?>
                             </div>
 
                             <h3><?php the_title(); ?></h3>

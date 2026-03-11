@@ -90,8 +90,13 @@ foreach ( $home_sections as $slug => $title ) :
     <div class="row">
         <?php
         $query = new WP_Query([
-            'posts_per_page' => 8,
-            'tax_query' => [[
+            'posts_per_page'         => 8,
+            'post_status'            => 'publish',
+            'ignore_sticky_posts'    => true,
+            'no_found_rows'          => true,
+            'update_post_term_cache' => false,
+            'update_post_meta_cache' => false,
+            'tax_query'              => [[
                 'taxonomy' => 'category',
                 'field'    => 'slug',
                 'terms'    => [$slug],
@@ -101,10 +106,6 @@ foreach ( $home_sections as $slug => $title ) :
         if ($query->have_posts()):
             while ($query->have_posts()):
                 $query->the_post();
-
-                $thumb = wp_get_attachment_image_src(
-                    get_post_thumbnail_id(), 'medium'
-                )[0] ?: kreativ_get_fallback_image_url();
 
                 $is_new = kf_is_new_post(get_the_ID());
         ?>
@@ -122,10 +123,15 @@ foreach ( $home_sections as $slug => $title ) :
                         <span class="kf-badge-new">NEW</span>
                         <?php endif; ?>
 
-                        <img class="lazyload"
-                             loading="lazy"
-                             data-src="<?php echo esc_url($thumb); ?>"
-                             src="<?php echo get_template_directory_uri(); ?>/img/loading.gif" />
+                        <?php
+                        echo kreativ_get_post_thumbnail_markup(
+                            get_the_ID(),
+                            'medium',
+                            array(
+                                'class' => 'card-img-top',
+                            )
+                        );
+                        ?>
                     </div>
                     <h3><?php the_title(); ?></h3>
                 </a>
@@ -155,17 +161,18 @@ foreach ( $home_sections as $slug => $title ) :
     <div class="row">
         <?php
         $free = new WP_Query([
-            'category_name' => 'free',
-            'posts_per_page'=> 8
+            'category_name'           => 'free',
+            'posts_per_page'          => 8,
+            'post_status'             => 'publish',
+            'ignore_sticky_posts'     => true,
+            'no_found_rows'           => true,
+            'update_post_term_cache'  => false,
+            'update_post_meta_cache'  => false,
         ]);
 
         if ($free->have_posts()):
             while ($free->have_posts()):
                 $free->the_post();
-
-                $thumb = wp_get_attachment_image_src(
-                    get_post_thumbnail_id(), 'medium'
-                )[0] ?: kreativ_get_fallback_image_url();
 
                 $is_new = kf_is_new_post(get_the_ID());
         ?>
@@ -181,10 +188,15 @@ foreach ( $home_sections as $slug => $title ) :
                         <span class="kf-badge-new">NEW</span>
                         <?php endif; ?>
 
-                        <img class="lazyload"
-                             loading="lazy"
-                             data-src="<?php echo esc_url($thumb); ?>"
-                             src="<?php echo get_template_directory_uri(); ?>/img/loading.gif" />
+                        <?php
+                        echo kreativ_get_post_thumbnail_markup(
+                            get_the_ID(),
+                            'medium',
+                            array(
+                                'class' => 'card-img-top',
+                            )
+                        );
+                        ?>
                     </div>
                     <h3><?php the_title(); ?></h3>
                 </a>

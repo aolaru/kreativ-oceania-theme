@@ -32,26 +32,6 @@ function kreativ_jquery_loading() {
 }
 add_action('wp_enqueue_scripts', 'kreativ_jquery_loading');
 
-function kreativ_enqueue_lazyload() {
-    wp_enqueue_script(
-        'jquery-lazyload',
-        get_template_directory_uri() . '/js/jquery.lazyload.min.js',
-        array( 'jquery' ),
-        '1.9.5',
-        true
-    );
-
-    wp_enqueue_script(
-        'kreativ-lazyload-init',
-        get_template_directory_uri() . '/js/theme-lazyload.js',
-        array( 'jquery-lazyload' ),
-        wp_get_theme()->get( 'Version' ),
-        true
-    );
-}
-add_action('wp_enqueue_scripts', 'kreativ_enqueue_lazyload');
-
-
 function kreativ_script_enqueue()
 {
     $theme_version = wp_get_theme()->get( 'Version' );
@@ -152,6 +132,42 @@ if ( ! defined( 'EDD_SLUG' ) ) {
 
 function kreativ_get_fallback_image_url() {
     return get_template_directory_uri() . '/img/logo-192.png';
+}
+
+function kreativ_get_post_thumbnail_markup( $post_id = 0, $size = 'medium', $attributes = array() ) {
+    $post_id = $post_id ? absint( $post_id ) : get_the_ID();
+
+    $default_attributes = array(
+        'class'    => 'card-img-top',
+        'loading'  => 'lazy',
+        'decoding' => 'async',
+        'sizes'    => '(max-width: 575px) 100vw, (max-width: 991px) 50vw, (max-width: 1199px) 33vw, 25vw',
+    );
+
+    $attributes = wp_parse_args( $attributes, $default_attributes );
+    $thumb_id   = get_post_thumbnail_id( $post_id );
+
+    if ( $thumb_id ) {
+        if ( empty( $attributes['alt'] ) ) {
+            $attributes['alt'] = trim( wp_strip_all_tags( get_the_title( $post_id ) ) );
+        }
+
+        return wp_get_attachment_image( $thumb_id, $size, false, $attributes );
+    }
+
+    $class   = trim( ( $attributes['class'] ?? '' ) . ' kreativ-fallback-thumb' );
+    $alt     = $attributes['alt'] ?? trim( wp_strip_all_tags( get_the_title( $post_id ) ) );
+    $loading = $attributes['loading'] ?? 'lazy';
+    $decoding = $attributes['decoding'] ?? 'async';
+
+    return sprintf(
+        '<img src="%1$s" class="%2$s" alt="%3$s" loading="%4$s" decoding="%5$s" width="192" height="192" />',
+        esc_url( kreativ_get_fallback_image_url() ),
+        esc_attr( $class ),
+        esc_attr( $alt ),
+        esc_attr( $loading ),
+        esc_attr( $decoding )
+    );
 }
 
 function kreativ_get_theme_asset_url( $path ) {

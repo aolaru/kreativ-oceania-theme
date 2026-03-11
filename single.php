@@ -43,20 +43,20 @@
                         while ( $related_query->have_posts() ) :
                             $related_query->the_post();
 
-                            $image_medium = wp_get_attachment_image_src( get_post_thumbnail_id(), 'medium' );
-                            $image_src    = $image_medium[0] ?? kreativ_get_fallback_image_url();
                             ?>
                             <div class="col-md-3 col-sm-6 mb-4">
                                 <div class="kreativ-font-card">
                                     <a href="<?php echo esc_url( get_permalink() ); ?>" class="kreativ-card-title" title="<?php the_title_attribute(); ?>">
                                         <strong><?php the_title(); ?></strong>
-                                        <img
-                                            class="card-img-top lazyload"
-                                            data-src="<?php echo esc_url( $image_src ); ?>"
-                                            src="<?php echo esc_url( get_template_directory_uri() . '/img/loading.gif' ); ?>"
-                                            alt="<?php the_title_attribute(); ?>"
-                                            loading="lazy"
-                                        />
+                                        <?php
+                                        echo kreativ_get_post_thumbnail_markup(
+                                            get_the_ID(),
+                                            'medium',
+                                            array(
+                                                'class' => 'card-img-top',
+                                            )
+                                        );
+                                        ?>
                                     </a>
                                 </div>
                             </div>

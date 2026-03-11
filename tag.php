@@ -116,12 +116,7 @@ $query = new WP_Query($args);
         <?php if ($query->have_posts()) : ?>
             <?php while ($query->have_posts()) : $query->the_post(); ?>
 
-                <?php
-                $img   = wp_get_attachment_image_src(get_post_thumbnail_id(), 'medium');
-                $thumb = $img[0] ?? kreativ_get_fallback_image_url();
-
-                $is_new = (time() - get_the_time('U')) < 7 * DAY_IN_SECONDS;
-                ?>
+                <?php $is_new = (time() - get_the_time('U')) < 7 * DAY_IN_SECONDS; ?>
 
                 <div class="col-md-4 col-lg-3 col-sm-6 kreativ-card-animate">
                     <div class="kreativ-font-card">
@@ -138,12 +133,15 @@ $query = new WP_Query($args);
                                     <span class="kf-badge kf-badge-new">NEW</span>
                                 <?php endif; ?>
 
-                                <img
-                                    src="<?php echo esc_url($thumb); ?>"
-                                    loading="lazy"
-                                    decoding="async"
-                                    alt="<?php the_title_attribute(); ?>"
-                                />
+                                <?php
+                                echo kreativ_get_post_thumbnail_markup(
+                                    get_the_ID(),
+                                    'medium',
+                                    array(
+                                        'class' => 'card-img-top',
+                                    )
+                                );
+                                ?>
                             </div>
 
                             <h3><?php the_title(); ?></h3>

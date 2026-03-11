@@ -87,11 +87,12 @@
 
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
+<a class="kreativ-skip-link" href="#kreativ-main-content"><?php esc_html_e( 'Skip to content', 'kreativ' ); ?></a>
 
 <header class="kreativ-header">
     <div class="container">
         <nav class="navbar navbar-expand-lg">
-            <div class="navbar-collapse offcanvas-collapse">
+            <div id="site-navigation" class="navbar-collapse offcanvas-collapse">
                 
                 <div class="kreativ-hdr-left">
                     <h1 class="kreativ-logo">
@@ -107,8 +108,10 @@
 
                 <div class="kreativ-search">
                     <form method="get" id="searchform" action="<?php echo esc_url( home_url('/') ); ?>">
+                        <label class="screen-reader-text" for="searchi"><?php esc_html_e( 'Search for:', 'kreativ' ); ?></label>
                         <input id="searchi" type="search" name="s" value="<?php echo esc_attr( get_search_query() ); ?>"
                                maxlength="128" placeholder="Type your search and press enter"
+                               aria-label="<?php esc_attr_e( 'Search site content', 'kreativ' ); ?>"
                                class="form-control form-control-sm">
                     </form>
                 </div>
@@ -136,11 +139,11 @@
 				</a>
 			</h2>
 
-            <button class="navbar-toggler" type="button" data-toggle="offcanvas">
+            <button class="navbar-toggler" type="button" data-toggle="offcanvas" aria-controls="site-navigation" aria-expanded="false" aria-label="<?php esc_attr_e( 'Toggle menu', 'kreativ' ); ?>">
                 Menu
             </button>
         </nav>
     </div>
 </header>
 
-<section class="kreativ-content">
+<section id="kreativ-main-content" class="kreativ-content" tabindex="-1">
