@@ -5,6 +5,7 @@ function oceania_setup() {
 
 	if (function_exists('register_nav_menu')) {
 		register_nav_menu('primary', 'Primary Menu');
+        register_nav_menu('footer', 'Footer Menu');
 	}
 
 	//Enable Post Thumbnails
@@ -12,6 +13,27 @@ function oceania_setup() {
 
 	//Enable Theme Titles
 	add_theme_support('title-tag');
+    add_theme_support(
+        'custom-logo',
+        array(
+            'height'      => 96,
+            'width'       => 96,
+            'flex-height' => true,
+            'flex-width'  => true,
+        )
+    );
+    add_theme_support(
+        'html5',
+        array(
+            'search-form',
+            'comment-form',
+            'comment-list',
+            'gallery',
+            'caption',
+            'style',
+            'script',
+        )
+    );
 
 	load_theme_textdomain( 'kreativ', get_template_directory() . '/languages' );
 
@@ -174,6 +196,71 @@ function kreativ_get_theme_asset_url( $path ) {
     return trailingslashit( get_template_directory_uri() ) . ltrim( $path, '/' );
 }
 
+function kreativ_get_site_title() {
+    return get_bloginfo( 'name' ) ? get_bloginfo( 'name' ) : wp_get_theme()->get( 'Name' );
+}
+
+function kreativ_get_site_description() {
+    $description = get_bloginfo( 'description' );
+
+    if ( $description ) {
+        return $description;
+    }
+
+    return __( 'A lightweight, responsive WordPress site.', 'kreativ' );
+}
+
+function kreativ_get_schema_social_links() {
+    $raw_urls = (string) get_theme_mod( 'kreativ_social_profile_urls', '' );
+
+    if ( '' === trim( $raw_urls ) ) {
+        return array();
+    }
+
+    $urls = preg_split( '/[\r\n,]+/', $raw_urls );
+    $urls = array_filter( array_map( 'esc_url_raw', array_map( 'trim', $urls ) ) );
+
+    return array_values( array_unique( $urls ) );
+}
+
+function kreativ_get_featured_categories( $limit = 6 ) {
+    $slugs = (string) get_theme_mod( 'kreativ_featured_category_slugs', '' );
+
+    if ( '' !== trim( $slugs ) ) {
+        $categories = array();
+        foreach ( array_map( 'trim', explode( ',', $slugs ) ) as $slug ) {
+            if ( '' === $slug ) {
+                continue;
+            }
+
+            $category = get_category_by_slug( sanitize_title( $slug ) );
+            if ( $category && ! is_wp_error( $category ) && (int) $category->count > 0 ) {
+                $categories[] = $category;
+            }
+
+            if ( count( $categories ) >= $limit ) {
+                break;
+            }
+        }
+
+        if ( ! empty( $categories ) ) {
+            return $categories;
+        }
+    }
+
+    $categories = get_categories(
+        array(
+            'orderby'    => 'count',
+            'order'      => 'DESC',
+            'hide_empty' => true,
+            'number'     => $limit,
+            'exclude'    => array( 1 ),
+        )
+    );
+
+    return is_array( $categories ) ? $categories : array();
+}
+
 function kreativ_get_internal_url( $path = '/' ) {
     return home_url( '/' . ltrim( $path, '/' ) );
 }
@@ -285,7 +372,7 @@ function kreativ_customize_register( $wp_customize ) {
     $wp_customize->add_section(
         'kreativ_theme_options',
         array(
-            'title'    => __( 'Kreativ Theme Options', 'kreativ' ),
+            'title'    => __( 'Theme Options', 'kreativ' ),
             'priority' => 160,
         )
     );
@@ -305,6 +392,60 @@ function kreativ_customize_register( $wp_customize ) {
             'section'     => 'kreativ_theme_options',
             'label'       => __( 'Show theme related posts on single posts', 'kreativ' ),
             'description' => __( 'Disable this if another plugin or custom system handles related posts.', 'kreativ' ),
+        )
+    );
+
+    $wp_customize->add_setting(
+        'kreativ_featured_category_slugs',
+        array(
+            'default'           => '',
+            'sanitize_callback' => 'sanitize_text_field',
+        )
+    );
+
+    $wp_customize->add_control(
+        'kreativ_featured_category_slugs',
+        array(
+            'type'        => 'text',
+            'section'     => 'kreativ_theme_options',
+            'label'       => __( 'Featured category slugs', 'kreativ' ),
+            'description' => __( 'Optional comma-separated category slugs for the homepage sections. Leave empty to use the most active categories automatically.', 'kreativ' ),
+        )
+    );
+
+    $wp_customize->add_setting(
+        'kreativ_footer_text',
+        array(
+            'default'           => '',
+            'sanitize_callback' => 'sanitize_text_field',
+        )
+    );
+
+    $wp_customize->add_control(
+        'kreativ_footer_text',
+        array(
+            'type'        => 'text',
+            'section'     => 'kreativ_theme_options',
+            'label'       => __( 'Footer text', 'kreativ' ),
+            'description' => __( 'Optional footer note shown below the footer menu.', 'kreativ' ),
+        )
+    );
+
+    $wp_customize->add_setting(
+        'kreativ_social_profile_urls',
+        array(
+            'default'           => '',
+            'sanitize_callback' => 'sanitize_textarea_field',
+        )
+    );
+
+    $wp_customize->add_control(
+        'kreativ_social_profile_urls',
+        array(
+            'type'        => 'textarea',
+            'section'     => 'kreativ_theme_options',
+            'label'       => __( 'Organization social profile URLs', 'kreativ' ),
+            'description' => __( 'Optional URLs for Schema.org sameAs, one per line or comma-separated.', 'kreativ' ),
         )
     );
 }

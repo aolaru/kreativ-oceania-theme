@@ -1,125 +1,109 @@
 <?php
 /*
-Template Name: Kreativ Unified Home
+Template Name: Editorial Home
 */
 get_header();
 
-/**
- * CATEGORY LABELS + ICONS
- */
-$kreativ_category_labels = [
-    'fonts'            => 'Fonts',
-    'templates-themes' => 'Templates',
-    'graphics'         => 'Graphics',
-    'photos'           => 'Photos',
-    'videos'           => 'Videos',
-    'sounds'           => 'Sounds',
-    'free'             => 'Freebies',
-];
+$featured_categories = kreativ_get_featured_categories( 6 );
+$hero_description    = kreativ_get_site_description();
 ?>
-
-
-
-<!-- =====================================================
-     HERO SECTION WITH TOOLS
-===================================================== -->
 <div class="kreativ-hero container">
-
-    <p class="kreativ-hero-subtitle">
-        Fonts, Templates, Graphics, Photos, Videos & Sounds — updated daily.
-    </p>
-
-    <div class="kreativ-hero-tools">
-        <span class="kreativ-hero-tools-label">Tools:</span>
-
-        <a href="<?php echo esc_url( kreativ_get_internal_url( 'tools/kreativ-font-pairing-tools' ) ); ?>" class="kreativ-hero-tool-card">
-            <?php echo kreativ_render_icon( 'search' ); ?>
-            <span>Font Pairing Tools</span>
-            <small class="kreativ-tool-new">NEW</small>
-        </a>
-
-        <a href="<?php echo esc_url( kreativ_get_internal_url( 'tools/kreativ-font-identifier' ) ); ?>" class="kreativ-hero-tool-card">
-            <?php echo kreativ_render_icon( 'search' ); ?>
-            <span>Font Identifier</span>
-        </a>
-
-        <a href="<?php echo esc_url( kreativ_get_internal_url( 'tools/fancy-text-generator' ) ); ?>" class="kreativ-hero-tool-card">
-            <?php echo kreativ_render_icon( 'magic' ); ?>
-            <span>Fancy Text Generator</span>
-        </a>
-
-        <a href="<?php echo esc_url( kreativ_get_internal_url( 'tools/kreativ-font-name-generator' ) ); ?>" class="kreativ-hero-tool-card">
-            <?php echo kreativ_render_icon( 'idea' ); ?>
-            <span>Font Name Generator</span>
-        </a>
-    </div>
-
+    <p class="kreativ-hero-subtitle"><?php echo esc_html( $hero_description ); ?></p>
 </div>
 
+<?php if ( ! empty( $featured_categories ) ) : ?>
+    <?php foreach ( $featured_categories as $category ) : ?>
+        <div class="container kreativ-section kreativ-section-<?php echo esc_attr( $category->slug ); ?>">
 
+            <div class="kreativ-section-header">
+                <h2 class="kreativ-section-title">
+                    <?php echo kreativ_render_icon( $category->slug ); ?>
+                    <?php echo esc_html( $category->name ); ?>
+                </h2>
+                <a href="<?php echo esc_url( get_category_link( $category ) ); ?>" class="kf-view-all"><?php esc_html_e( 'View all', 'kreativ' ); ?> &rsaquo;</a>
+            </div>
 
-<!-- =====================================================
-     LATEST BY CATEGORY
-===================================================== -->
-<?php
-$home_sections = [
-    'fonts'            => 'Latest Fonts',
-    'templates-themes' => 'Latest Templates',
-    'graphics'         => 'Latest Graphics',
-    'photos'           => 'Latest Photos',
-    'videos'           => 'Latest Videos',
-    'sounds'           => 'Latest Sounds',
-];
+            <div class="row">
+                <?php
+                $query = new WP_Query(
+                    array(
+                        'posts_per_page'         => 8,
+                        'post_status'            => 'publish',
+                        'ignore_sticky_posts'    => true,
+                        'no_found_rows'          => true,
+                        'update_post_term_cache' => false,
+                        'update_post_meta_cache' => false,
+                        'cat'                    => (int) $category->term_id,
+                    )
+                );
 
-foreach ( $home_sections as $slug => $title ) :
-    ?>
-    <div class="container kreativ-section kreativ-section-<?php echo esc_attr( $slug ); ?>">
+                if ( $query->have_posts() ) :
+                    while ( $query->have_posts() ) :
+                        $query->the_post();
 
-        <div class="kreativ-section-header">
-            <h2 class="kreativ-section-title">
-                <?php echo kreativ_render_icon( $slug ); ?>
-                <?php echo esc_html( $title ); ?>
-            </h2>
-            <a href="<?php echo esc_url( kreativ_get_category_url( $slug ) ); ?>" class="kf-view-all">View All &rsaquo;</a>
+                        $is_new = function_exists( 'kf_is_new_post' ) ? kf_is_new_post( get_the_ID() ) : false;
+                        ?>
+                        <div class="col-md-3 col-sm-6 kreativ-card-animate">
+                            <div class="kreativ-font-card">
+                                <a href="<?php the_permalink(); ?>">
+                                    <div class="kreativ-card-media">
+
+                                        <span class="kf-badge kf-badge-<?php echo esc_attr( $category->slug ); ?>">
+                                            <?php echo esc_html( $category->name ); ?>
+                                        </span>
+
+                                        <?php if ( $is_new ) : ?>
+                                            <span class="kf-badge-new"><?php esc_html_e( 'New', 'kreativ' ); ?></span>
+                                        <?php endif; ?>
+
+                                        <?php
+                                        echo kreativ_get_post_thumbnail_markup(
+                                            get_the_ID(),
+                                            'medium',
+                                            array(
+                                                'class' => 'card-img-top',
+                                            )
+                                        );
+                                        ?>
+                                    </div>
+                                    <h3><?php the_title(); ?></h3>
+                                </a>
+                            </div>
+                        </div>
+                    <?php
+                    endwhile;
+                endif;
+                wp_reset_postdata();
+                ?>
+            </div>
         </div>
-
+    <?php endforeach; ?>
+<?php else : ?>
+    <div class="container kreativ-section">
+        <div class="kreativ-section-header">
+            <h2 class="kreativ-section-title"><?php esc_html_e( 'Latest Posts', 'kreativ' ); ?></h2>
+        </div>
         <div class="row">
             <?php
-            $query = new WP_Query( [
-                'posts_per_page'         => 8,
-                'post_status'            => 'publish',
-                'ignore_sticky_posts'    => true,
-                'no_found_rows'          => true, // perf
-                'update_post_term_cache' => false,
-                'update_post_meta_cache' => false,
-                'tax_query'              => [
-                    [
-                        'taxonomy' => 'category',
-                        'field'    => 'slug',
-                        'terms'    => [ $slug ],
-                    ],
-                ],
-            ] );
+            $latest_posts = new WP_Query(
+                array(
+                    'posts_per_page'         => 8,
+                    'post_status'            => 'publish',
+                    'ignore_sticky_posts'    => true,
+                    'no_found_rows'          => true,
+                    'update_post_term_cache' => false,
+                    'update_post_meta_cache' => false,
+                )
+            );
 
-            if ( $query->have_posts() ) :
-                while ( $query->have_posts() ) :
-                    $query->the_post();
-
-                    $is_new    = kf_is_new_post( get_the_ID() );
+            if ( $latest_posts->have_posts() ) :
+                while ( $latest_posts->have_posts() ) :
+                    $latest_posts->the_post();
                     ?>
                     <div class="col-md-3 col-sm-6 kreativ-card-animate">
                         <div class="kreativ-font-card">
                             <a href="<?php the_permalink(); ?>">
                                 <div class="kreativ-card-media">
-
-                                    <span class="kf-badge kf-badge-<?php echo esc_attr( $slug ); ?>">
-                                        <?php echo esc_html( $kreativ_category_labels[ $slug ] ); ?>
-                                    </span>
-
-                                    <?php if ( $is_new ) : ?>
-                                        <span class="kf-badge-new">NEW</span>
-                                    <?php endif; ?>
-
                                     <?php
                                     echo kreativ_get_post_thumbnail_markup(
                                         get_the_ID(),
@@ -134,79 +118,13 @@ foreach ( $home_sections as $slug => $title ) :
                             </a>
                         </div>
                     </div>
-                <?php
+                    <?php
                 endwhile;
             endif;
             wp_reset_postdata();
             ?>
         </div>
     </div>
-<?php endforeach; ?>
-
-
-
-<!-- =====================================================
-     FREEBIES
-===================================================== -->
-<div class="container kreativ-section kreativ-section-free">
-
-        <div class="kreativ-section-header">
-        <h2 class="kreativ-section-title">
-            <?php echo kreativ_render_icon( 'free' ); ?>
-            Free Creative Resources
-        </h2>
-        <a href="<?php echo esc_url( kreativ_get_category_url( 'free' ) ); ?>" class="kf-view-all">View All &rsaquo;</a>
-    </div>
-
-    <div class="row">
-        <?php
-        $free = new WP_Query( [
-            'category_name'           => 'free',
-            'posts_per_page'          => 8,
-            'post_status'             => 'publish',
-            'ignore_sticky_posts'     => true,
-            'no_found_rows'           => true,
-            'update_post_term_cache'  => false,
-            'update_post_meta_cache'  => false,
-        ] );
-
-        if ( $free->have_posts() ) :
-            while ( $free->have_posts() ) :
-                $free->the_post();
-
-                $is_new    = kf_is_new_post( get_the_ID() );
-                ?>
-                <div class="col-md-3 col-sm-6 kreativ-card-animate">
-                    <div class="kreativ-font-card">
-                        <a href="<?php the_permalink(); ?>">
-                            <div class="kreativ-card-media">
-
-                                <span class="kf-badge kf-badge-free">Free</span>
-
-                                <?php if ( $is_new ) : ?>
-                                    <span class="kf-badge-new">NEW</span>
-                                <?php endif; ?>
-
-                                <?php
-                                echo kreativ_get_post_thumbnail_markup(
-                                    get_the_ID(),
-                                    'medium',
-                                    array(
-                                        'class' => 'card-img-top',
-                                    )
-                                );
-                                ?>
-                            </div>
-                            <h3><?php the_title(); ?></h3>
-                        </a>
-                    </div>
-                </div>
-            <?php
-            endwhile;
-        endif;
-        wp_reset_postdata();
-        ?>
-    </div>
-</div>
+<?php endif; ?>
 
 <?php get_footer(); ?>

@@ -11,7 +11,7 @@
 			<br/>
         </div>
 
-        <p class="text-muted mt-4">Thank you for visiting KREATIV!</p>
+        <p class="text-muted mt-4"><?php echo esc_html( kreativ_get_site_title() ); ?></p>
     </div>
     <hr class="my-5" />
 

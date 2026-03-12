@@ -1,16 +1,31 @@
 		<footer class="kreativ-footer">
-			<nav class="kreativ-footer-links" aria-label="Kreativ products">
-				<a href="<?php echo esc_url( kreativ_get_internal_url( 'fonts' ) ); ?>">Kreativ Font</a>
-				<a href="<?php echo esc_url( kreativ_get_internal_url( 'sounds' ) ); ?>">Kreativ Sound</a>
-				<a href="<?php echo esc_url( kreativ_get_internal_url( 'wp' ) ); ?>">Kreativ WP</a>
-			</nav>
+            <?php if ( has_nav_menu( 'footer' ) ) : ?>
+                <nav class="kreativ-footer-links" aria-label="<?php esc_attr_e( 'Footer menu', 'kreativ' ); ?>">
+                    <?php
+                    wp_nav_menu(
+                        array(
+                            'theme_location' => 'footer',
+                            'container'      => false,
+                            'menu_class'     => 'kreativ-footer-links-menu',
+                            'fallback_cb'    => false,
+                            'depth'          => 1,
+                        )
+                    );
+                    ?>
+                </nav>
+            <?php endif; ?>
 
 			<p class="kreativ-footer-meta">
-				&copy; 2026 <a href="https://madebykreativ.com" target="_blank" rel="noopener">Made by KREATIV</a> &middot;
-				Independent creative tools and assets by Andrei Olaru
+                &copy; <?php echo esc_html( gmdate( 'Y' ) ); ?> <?php echo esc_html( kreativ_get_site_title() ); ?>
+                <?php
+                $footer_text = trim( (string) get_theme_mod( 'kreativ_footer_text', '' ) );
+                if ( '' !== $footer_text ) :
+                    ?>
+                    &middot; <?php echo esc_html( $footer_text ); ?>
+                <?php endif; ?>
 			</p>
 		</footer>
         <?php wp_footer(); ?>
-    </div>
+    </section>
 </body>
 </html>

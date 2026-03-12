@@ -56,6 +56,16 @@
   margin-bottom: 0.8rem;
 }
 
+.kreativ-footer-links-menu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
 .kreativ-footer-meta {
   margin: 0;
   text-align: center;

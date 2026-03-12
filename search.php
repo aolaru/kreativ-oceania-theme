@@ -42,7 +42,7 @@
 
         </div>
 
-		<p class="text-center"> We couldn’t find any matching fonts. Try another keyword or explore our <a href="<?php echo esc_url( kreativ_get_popular_fonts_url() ); ?>">Popular Fonts</a> collection.</p>
+		<p class="text-center"><?php esc_html_e( 'We could not find any matching content. Try another keyword or browse recent posts from the homepage.', 'kreativ' ); ?></p>
 
 		<?php endif; ?>
 
