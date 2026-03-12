@@ -1,16 +1,22 @@
 Kreativ Oceania Theme
-* by Andrei Olaru - http://kreativpro.wordpress.com
 
-About
-Oceania is a clean, flexible WordPress theme started in 2010 as a personal project to have the same theme on all my websites. It was built to make it easier for me to take care of all my website by updating only one theme.
+A lightweight, responsive WordPress theme for editorial sites, blogs, and content-driven websites.
 
-Oceania is:
+Highlights
 
-	1. fast loading
-	2. clean looking
-	3. very flexible
-	4. easy to administrate
-	5. responsive and mobile ready
-	6. unique in features
+- Sectioned homepage templates
+- Responsive image handling
+- Dark mode
+- Custom logo support
+- Footer menu support
+- Theme options for related posts, featured categories, footer text, and social profile URLs
 
-These points are always kept in mind when Oceania is developed.
+Setup
+
+1. Install and activate the theme.
+2. Assign a primary menu and an optional footer menu.
+3. Set a logo and site tagline.
+4. Publish posts in categories.
+5. Use the Editorial Home or Sectioned Home page template for a category-driven homepage.
+
+For full repository documentation and GitHub-friendly setup notes, see README.md.
