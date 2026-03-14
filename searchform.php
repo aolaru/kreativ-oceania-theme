@@ -5,7 +5,7 @@
  */
 ?>
 <form method="get" id="searchform" action="<?php echo esc_url(home_url('/')); ?>">
-    <label class="screen-reader-text" for="s"><?php esc_html_e( 'Search for:', 'kreativ' ); ?></label>
-    <input id="s" type="search" placeholder="<?php esc_attr_e('Search', 'kreativ'); ?>" name="s" value="<?php echo esc_attr( get_search_query() ); ?>">
+    <label class="screen-reader-text" for="s"><?php esc_html_e( 'Search for:', 'kreativ-oceania-theme' ); ?></label>
+    <input id="s" type="search" placeholder="<?php esc_attr_e('Search', 'kreativ-oceania-theme'); ?>" name="s" value="<?php echo esc_attr( get_search_query() ); ?>">
 
 </form>

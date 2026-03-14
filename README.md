@@ -25,7 +25,7 @@ The theme is now suitable for:
 - Private or client WordPress themes
 - WordPress.com custom theme uploads on plugin-enabled plans
 
-The repository still includes a few legacy marketplace-oriented files such as `single-download.php`, `template-filter-free.php`, and `frontend-menu.php`. These are optional remnants from earlier EDD/FES usage and may be excluded from a simplified distribution build if you want a stricter general-purpose package.
+The repository has been cleaned up to remove older marketplace-specific templates and bundled proprietary font assets so the package is closer to WordPress.org submission expectations.
 
 ## Requirements
 

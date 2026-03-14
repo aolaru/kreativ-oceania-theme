@@ -17,7 +17,7 @@ $featured_categories = kreativ_get_featured_categories( 6 );
                     <?php echo kreativ_render_icon( $category->slug ); ?>
                     <?php echo esc_html( $category->name ); ?>
                 </h2>
-                <a href="<?php echo esc_url( get_category_link( $category ) ); ?>" class="kf-view-all"><?php esc_html_e( 'View all', 'kreativ' ); ?> &rsaquo;</a>
+                <a href="<?php echo esc_url( get_category_link( $category ) ); ?>" class="kf-view-all"><?php esc_html_e( 'View all', 'kreativ-oceania-theme' ); ?> &rsaquo;</a>
             </div>
             <div class="row">
                 <?php
@@ -47,7 +47,7 @@ $featured_categories = kreativ_get_featured_categories( 6 );
                                             <?php echo esc_html( $category->name ); ?>
                                         </span>
                                         <?php if ( $is_new ) : ?>
-                                            <span class="kf-badge-new"><?php esc_html_e( 'New', 'kreativ' ); ?></span>
+                                            <span class="kf-badge-new"><?php esc_html_e( 'New', 'kreativ-oceania-theme' ); ?></span>
                                         <?php endif; ?>
                                         <?php
                                         echo kreativ_get_post_thumbnail_markup(

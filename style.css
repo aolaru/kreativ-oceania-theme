@@ -4,22 +4,18 @@ Theme URI: https://kreativfont.com
 Author: Andrei Olaru
 Author URI: https://kreativfont.com
 Description: A lightweight, responsive WordPress theme for editorial sites, blogs, and content-driven websites. Includes a sectioned homepage, dark mode, and flexible branding options.
-Version: 1.1.0
+Version: 1.2.0
+Requires at least: 6.4
+Tested up to: 6.9
+Requires PHP: 7.4
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
-Text Domain: kreativ
+Text Domain: kreativ-oceania-theme
+Domain Path: /languages
 Tags: blog, news, portfolio, responsive, custom-logo, custom-menu, featured-images, minimal, creative, clean
 */
 
 @charset "UTF-8";
-
-/* --- Font --- */
-@font-face {
-  font-family: 'ProximaNova-Light';
-  src: url('webfonts/2EE639_0_0.woff2') format('woff2'),
-       url('webfonts/2EE639_0_0.woff') format('woff');
-  font-display: swap;
-}
 
 /* --- KREATIV Brand Colors --- */
 :root {
@@ -47,7 +43,7 @@ body.dark-mode {
 /* --- Base Styles --- */
 body {
   margin: 0;
-  font-family: "ProximaNova-Light", "Trebuchet MS", Verdana, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 1.1rem;
   line-height: 1.6;
   color: var(--color-text);

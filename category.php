@@ -1,6 +1,6 @@
 <?php
 /*
- * Kreativ – Enhanced Category Template (FINAL)
+ * Category archive template.
  */
 get_header();
 
@@ -13,13 +13,13 @@ $cat_slug = $category->slug;
 $cat_name = $category->name;
 $cat_desc = category_description();
 
-$cat_icon = in_array( $cat_slug, array( 'fonts', 'templates-themes', 'graphics', 'photos', 'videos', 'sounds', 'free' ), true ) ? $cat_slug : 'folder';
+$cat_icon = 'folder';
 
 /* --------------------------------------------
    SORTING LOGIC
 --------------------------------------------- */
 $sort = isset( $_GET['sort'] ) ? sanitize_key( wp_unslash( $_GET['sort'] ) ) : 'latest';
-$valid_sorts = [ 'latest', 'popular', 'free', 'ai' ];
+$valid_sorts = array( 'latest', 'popular' );
 if ( ! in_array( $sort, $valid_sorts, true ) ) {
     $sort = 'latest';
 }
@@ -29,15 +29,6 @@ $meta_key = '';
 switch ($sort) {
     case 'popular':
         $orderby = 'comment_count';
-        break;
-
-    case 'free':
-        $orderby = 'date';
-        break;
-
-    case 'ai':
-        $orderby = 'meta_value_num';
-        $meta_key = 'ai_score';
         break;
 
     default:
@@ -57,14 +48,6 @@ $tax_query = [
         'terms'    => [$cat_id],
     ]
 ];
-
-if ($sort === 'free') {
-    $tax_query[] = [
-        'taxonomy' => 'category',
-        'field'    => 'slug',
-        'terms'    => ['free'],
-    ];
-}
 
 /* --------------------------------------------
    FINAL QUERY (CORRECT PAGINATION)
@@ -91,16 +74,18 @@ $query = new WP_Query($args);
     <div class="kreativ-category-header">
         <h1>
             <?php echo kreativ_render_icon( $cat_icon ); ?>
-            Browse <?php echo esc_html($cat_name); ?>
+            <?php
+            printf(
+                esc_html__( 'Browse %s', 'kreativ-oceania-theme' ),
+                esc_html( $cat_name )
+            );
+            ?>
         </h1>
 
 		<?php if ($cat_desc): ?>
 			<p><?php echo wp_kses_post($cat_desc); ?></p>
 		<?php endif; ?>
 
-		<?php echo kreativ_render_category_update_cta(); ?>
-		
-		
     </div>
 </div>
 
@@ -109,10 +94,8 @@ $query = new WP_Query($args);
      SORT BAR
 ===================================================== -->
 <div class="kreativ-sort-bar">
-    <a href="<?php echo esc_url( add_query_arg( 'sort', 'latest' ) ); ?>" class="kreativ-sort-btn <?php echo $sort==='latest'?'active':''; ?>">Latest</a>
-    <a href="<?php echo esc_url( add_query_arg( 'sort', 'popular' ) ); ?>" class="kreativ-sort-btn <?php echo $sort==='popular'?'active':''; ?>">Popular</a>
-    <a href="<?php echo esc_url( add_query_arg( 'sort', 'free' ) ); ?>" class="kreativ-sort-btn <?php echo $sort==='free'?'active':''; ?>">Free</a>
-    <a href="<?php echo esc_url( add_query_arg( 'sort', 'ai' ) ); ?>" class="kreativ-sort-btn <?php echo $sort==='ai'?'active':''; ?>">AI Recommended</a>
+    <a href="<?php echo esc_url( add_query_arg( 'sort', 'latest' ) ); ?>" class="kreativ-sort-btn <?php echo $sort === 'latest' ? 'active' : ''; ?>"><?php esc_html_e( 'Latest', 'kreativ-oceania-theme' ); ?></a>
+    <a href="<?php echo esc_url( add_query_arg( 'sort', 'popular' ) ); ?>" class="kreativ-sort-btn <?php echo $sort === 'popular' ? 'active' : ''; ?>"><?php esc_html_e( 'Popular', 'kreativ-oceania-theme' ); ?></a>
 </div>
 
 
@@ -158,7 +141,7 @@ $query = new WP_Query($args);
 
         <?php else : ?>
 
-            <h2 class="text-center my-5">No creatives found.</h2>
+            <h2 class="text-center my-5"><?php esc_html_e( 'No posts found.', 'kreativ-oceania-theme' ); ?></h2>
 
         <?php endif; wp_reset_postdata(); ?>
 
@@ -172,8 +155,8 @@ $query = new WP_Query($args);
             'total'     => $query->max_num_pages,
             'current'   => $paged,
             'mid_size'  => 2,
-            'prev_text' => '&laquo; Previous',
-            'next_text' => 'Next &raquo;',
+            'prev_text' => esc_html__( 'Previous', 'kreativ-oceania-theme' ),
+            'next_text' => esc_html__( 'Next', 'kreativ-oceania-theme' ),
             'add_args'  => ['sort' => $sort],
         ]);
         ?>

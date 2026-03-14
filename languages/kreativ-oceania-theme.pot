@@ -1,0 +1,314 @@
+# Kreativ Oceania Theme translation template.
+# Copyright (C) 2026 Andrei Olaru
+# This file is distributed under the same license as the Kreativ Oceania Theme package.
+# Andrei Olaru <contact@kreativfont.com>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Kreativ Oceania Theme 1.2.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-14 19:18+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: template-sitemap.php:13
+msgid "Articles in alphabetic order"
+msgstr ""
+
+#: template-sitemap.php:20
+msgid "Articles by category"
+msgstr ""
+
+#: template-sitemap.php:25
+msgid "Articles by month"
+msgstr ""
+
+#: template-sitemap.php:32
+msgid "Articles by tags"
+msgstr ""
+
+#: searchform.php:8 header.php:110
+msgid "Search for:"
+msgstr ""
+
+#: searchform.php:9
+msgid "Search"
+msgstr ""
+
+#: author.php:12
+#, php-format
+msgid "About %s"
+msgstr ""
+
+#: author.php:16
+msgid "Website"
+msgstr ""
+
+#: author.php:21
+msgid "No website provided."
+msgstr ""
+
+#: author.php:24
+msgid "Profile"
+msgstr ""
+
+#: author.php:29
+#, php-format
+msgid "Posts written by %s"
+msgstr ""
+
+#: author.php:43
+msgid "No posts by this author."
+msgstr ""
+
+#: author.php:52 index.php:51
+msgid "Older posts"
+msgstr ""
+
+#: author.php:53 index.php:52
+msgid "Newer posts"
+msgstr ""
+
+#: single.php:21
+msgid "Home"
+msgstr ""
+
+#: single.php:37
+msgid "You Might Also Like"
+msgstr ""
+
+#: single.php:68
+msgid "No related posts found."
+msgstr ""
+
+#: single.php:90
+#, php-format
+msgid "Published on %1$s in %2$s by %3$s."
+msgstr ""
+
+#: single.php:104
+msgid "Sorry, no posts matched your criteria."
+msgstr ""
+
+#: single.php:105
+msgid "Back to Home"
+msgstr ""
+
+#: footer.php:3
+msgid "Footer menu"
+msgstr ""
+
+#: template-filter-market.php:20 template-filter-all.php:23
+msgid "View all"
+msgstr ""
+
+#: template-filter-market.php:50 tag.php:119 template-filter-all.php:56
+msgid "New"
+msgstr ""
+
+#: header.php:85
+msgid "Skip to content"
+msgstr ""
+
+#: header.php:113
+msgid "Search site content"
+msgstr ""
+
+#: header.php:145
+msgid "Toggle menu"
+msgstr ""
+
+#: header.php:146
+msgid "Menu"
+msgstr ""
+
+#: search.php:7
+#, php-format
+msgid "No results for “%s”"
+msgstr ""
+
+#: search.php:45
+msgid ""
+"We could not find any matching content. Try another keyword or browse recent "
+"posts from the homepage."
+msgstr ""
+
+#: tag.php:76
+#, php-format
+msgid "Tag: %s"
+msgstr ""
+
+#: tag.php:92 category.php:97
+msgid "Latest"
+msgstr ""
+
+#: tag.php:93 category.php:98
+msgid "Popular"
+msgstr ""
+
+#: tag.php:143
+msgid "No posts found for this tag."
+msgstr ""
+
+#: tag.php:144
+msgid "Try browsing another archive or returning to the homepage."
+msgstr ""
+
+#: tag.php:158 category.php:158
+msgid "Previous"
+msgstr ""
+
+#: tag.php:159 category.php:159
+msgid "Next"
+msgstr ""
+
+#: comments.php:4
+msgid "This post is password protected. Enter the password to view comments."
+msgstr ""
+
+#: comments.php:13
+msgid "No Comments"
+msgstr ""
+
+#: comments.php:13
+msgid "One Comment"
+msgstr ""
+
+#: comments.php:13
+msgid "% Comments"
+msgstr ""
+
+#: comments.php:14
+msgid "to"
+msgstr ""
+
+#: comments.php:29
+msgid "Comments are closed."
+msgstr ""
+
+#: comments.php:35
+msgid "Leave a comment"
+msgstr ""
+
+#: comments.php:36
+msgid "Submit Comment"
+msgstr ""
+
+#: index.php:9
+msgid "Featured"
+msgstr ""
+
+#: index.php:21
+#, php-format
+msgid "Published on %1$s in %2$s."
+msgstr ""
+
+#: index.php:29
+msgid "Read the rest of this article »"
+msgstr ""
+
+#: index.php:35
+msgid "Pages:"
+msgstr ""
+
+#: index.php:45
+msgid "Post not found"
+msgstr ""
+
+#: index.php:46
+msgid ""
+"The post you are looking for does not exist or has been moved. Please use "
+"the search form to find what you are looking for."
+msgstr ""
+
+#: 404.php:5
+msgid "Nothing found"
+msgstr ""
+
+#: 404.php:6
+msgid "The content you are looking for does not exist or may have been moved."
+msgstr ""
+
+#: 404.php:7
+#, php-format
+msgid ""
+"You can use the search field below to find it, or <a "
+"href=\"%s\"><strong>return to the home page</strong></a>."
+msgstr ""
+
+#: 404.php:19
+msgid "Explore More Posts"
+msgstr ""
+
+#: 404.php:60
+msgid "No posts available right now."
+msgstr ""
+
+#: template-filter-all.php:84
+msgid "Latest Posts"
+msgstr ""
+
+#: category.php:79
+#, php-format
+msgid "Browse %s"
+msgstr ""
+
+#: category.php:144
+msgid "No posts found."
+msgstr ""
+
+#: functions.php:7
+msgid "Primary Menu"
+msgstr ""
+
+#: functions.php:8
+msgid "Footer Menu"
+msgstr ""
+
+#: functions.php:202
+msgid "A lightweight, responsive WordPress site."
+msgstr ""
+
+#: functions.php:345
+msgid "Theme Options"
+msgstr ""
+
+#: functions.php:363
+msgid "Show theme related posts on single posts"
+msgstr ""
+
+#: functions.php:364
+msgid "Disable this if another plugin or custom system handles related posts."
+msgstr ""
+
+#: functions.php:381
+msgid "Featured category slugs"
+msgstr ""
+
+#: functions.php:382
+msgid ""
+"Optional comma-separated category slugs for the homepage sections. Leave "
+"empty to use the most active categories automatically."
+msgstr ""
+
+#: functions.php:399
+msgid "Footer text"
+msgstr ""
+
+#: functions.php:400
+msgid "Optional footer note shown below the footer menu."
+msgstr ""
+
+#: functions.php:417
+msgid "Organization social profile URLs"
+msgstr ""
+
+#: functions.php:418
+msgid "Optional URLs for Schema.org sameAs, one per line or comma-separated."
+msgstr ""

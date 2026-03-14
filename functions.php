@@ -4,8 +4,8 @@ function oceania_setup() {
     add_theme_support('menus');
 
 	if (function_exists('register_nav_menu')) {
-		register_nav_menu('primary', 'Primary Menu');
-        register_nav_menu('footer', 'Footer Menu');
+		register_nav_menu( 'primary', __( 'Primary Menu', 'kreativ-oceania-theme' ) );
+        register_nav_menu( 'footer', __( 'Footer Menu', 'kreativ-oceania-theme' ) );
 	}
 
 	//Enable Post Thumbnails
@@ -35,7 +35,7 @@ function oceania_setup() {
         )
     );
 
-	load_theme_textdomain( 'kreativ', get_template_directory() . '/languages' );
+	load_theme_textdomain( 'kreativ-oceania-theme', get_template_directory() . '/languages' );
 
 	add_editor_style( 'assets/dist/main.min.css' );
 
@@ -62,10 +62,6 @@ function kreativ_script_enqueue()
     wp_enqueue_style( 'kreativ-global', get_template_directory_uri() . '/css/kreativ-global.css', array( 'kreativ-styles' ), $theme_version );
     wp_register_script('init', get_template_directory_uri() . '/assets/assets/components/init.js', array('jquery'), $theme_version, true);
     wp_enqueue_script('init');
-	if ( is_singular('post') || is_front_page() || is_tag() || is_category() ) {
-		wp_dequeue_style( 'edd-styles' );
-		wp_dequeue_script( 'edd-ajax' );
-	}
 	wp_deregister_script('wp-embed');
 }
 add_action('wp_enqueue_scripts', 'kreativ_script_enqueue');
@@ -148,10 +144,6 @@ add_theme_support( 'title-tag' );
 add_filter('login_headertitle', 'my_login_logo_url_title');
 
 // marketplace slug menu
-if ( ! defined( 'EDD_SLUG' ) ) {
-	define( 'EDD_SLUG', 'market' );
-}
-
 function kreativ_get_fallback_image_url() {
     return get_template_directory_uri() . '/img/logo-192.png';
 }
@@ -207,7 +199,7 @@ function kreativ_get_site_description() {
         return $description;
     }
 
-    return __( 'A lightweight, responsive WordPress site.', 'kreativ' );
+    return __( 'A lightweight, responsive WordPress site.', 'kreativ-oceania-theme' );
 }
 
 function kreativ_get_schema_social_links() {
@@ -263,20 +255,6 @@ function kreativ_get_featured_categories( $limit = 6 ) {
 
 function kreativ_get_internal_url( $path = '/' ) {
     return home_url( '/' . ltrim( $path, '/' ) );
-}
-
-function kreativ_get_checkout_url( $download_id ) {
-    return add_query_arg(
-        array(
-            'edd_action'  => 'add_to_cart',
-            'download_id' => absint( $download_id ),
-        ),
-        kreativ_get_internal_url( 'checkout' )
-    );
-}
-
-function kreativ_get_popular_fonts_url() {
-    return kreativ_get_internal_url( 'fonts' );
 }
 
 function kreativ_get_category_url( $slug ) {
@@ -360,19 +338,11 @@ function kreativ_get_related_posts_query( $post_id, $posts_per_page = 4 ) {
     return new WP_Query( $args );
 }
 
-function kreativ_render_category_update_cta() {
-    if ( shortcode_exists( 'kcc_suggest_update' ) ) {
-        return do_shortcode( '[kcc_suggest_update]' );
-    }
-
-    return '';
-}
-
 function kreativ_customize_register( $wp_customize ) {
     $wp_customize->add_section(
         'kreativ_theme_options',
         array(
-            'title'    => __( 'Theme Options', 'kreativ' ),
+            'title'    => __( 'Theme Options', 'kreativ-oceania-theme' ),
             'priority' => 160,
         )
     );
@@ -390,8 +360,8 @@ function kreativ_customize_register( $wp_customize ) {
         array(
             'type'        => 'checkbox',
             'section'     => 'kreativ_theme_options',
-            'label'       => __( 'Show theme related posts on single posts', 'kreativ' ),
-            'description' => __( 'Disable this if another plugin or custom system handles related posts.', 'kreativ' ),
+            'label'       => __( 'Show theme related posts on single posts', 'kreativ-oceania-theme' ),
+            'description' => __( 'Disable this if another plugin or custom system handles related posts.', 'kreativ-oceania-theme' ),
         )
     );
 
@@ -408,8 +378,8 @@ function kreativ_customize_register( $wp_customize ) {
         array(
             'type'        => 'text',
             'section'     => 'kreativ_theme_options',
-            'label'       => __( 'Featured category slugs', 'kreativ' ),
-            'description' => __( 'Optional comma-separated category slugs for the homepage sections. Leave empty to use the most active categories automatically.', 'kreativ' ),
+            'label'       => __( 'Featured category slugs', 'kreativ-oceania-theme' ),
+            'description' => __( 'Optional comma-separated category slugs for the homepage sections. Leave empty to use the most active categories automatically.', 'kreativ-oceania-theme' ),
         )
     );
 
@@ -426,8 +396,8 @@ function kreativ_customize_register( $wp_customize ) {
         array(
             'type'        => 'text',
             'section'     => 'kreativ_theme_options',
-            'label'       => __( 'Footer text', 'kreativ' ),
-            'description' => __( 'Optional footer note shown below the footer menu.', 'kreativ' ),
+            'label'       => __( 'Footer text', 'kreativ-oceania-theme' ),
+            'description' => __( 'Optional footer note shown below the footer menu.', 'kreativ-oceania-theme' ),
         )
     );
 
@@ -444,59 +414,12 @@ function kreativ_customize_register( $wp_customize ) {
         array(
             'type'        => 'textarea',
             'section'     => 'kreativ_theme_options',
-            'label'       => __( 'Organization social profile URLs', 'kreativ' ),
-            'description' => __( 'Optional URLs for Schema.org sameAs, one per line or comma-separated.', 'kreativ' ),
+            'label'       => __( 'Organization social profile URLs', 'kreativ-oceania-theme' ),
+            'description' => __( 'Optional URLs for Schema.org sameAs, one per line or comma-separated.', 'kreativ-oceania-theme' ),
         )
     );
 }
 add_action( 'customize_register', 'kreativ_customize_register' );
-
-function kreativ_maybe_convert_showcases() {
-    if ( ! is_admin() || ! current_user_can( 'manage_options' ) ) {
-        return;
-    }
-
-    if ( ! isset( $_GET['convert_showcases'] ) ) {
-        return;
-    }
-
-    $nonce = isset( $_GET['_wpnonce'] ) ? sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) ) : '';
-    if ( ! wp_verify_nonce( $nonce, 'kreativ_convert_showcases' ) ) {
-        return;
-    }
-
-    $query = new WP_Query(
-        [
-            'post_type'      => 'kreativ_showcase',
-            'posts_per_page' => -1,
-            'post_status'    => 'any',
-            'fields'         => 'ids',
-        ]
-    );
-
-    $count = 0;
-    foreach ( $query->posts as $post_id ) {
-        wp_update_post(
-            [
-                'ID'        => $post_id,
-                'post_type' => 'post',
-            ]
-        );
-        $count++;
-    }
-
-    add_action(
-        'admin_notices',
-        static function () use ( $count ) {
-            ?>
-            <div class="notice notice-success is-dismissible">
-                <p><?php echo esc_html( sprintf( 'Converted %d showcase posts to regular posts.', $count ) ); ?></p>
-            </div>
-            <?php
-        }
-    );
-}
-add_action( 'admin_init', 'kreativ_maybe_convert_showcases' );
 
 function kreativ_add_category_body_class( $classes ) {
     if ( is_category() ) {

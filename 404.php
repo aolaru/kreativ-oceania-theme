@@ -2,9 +2,9 @@
 
 <main id="primary" class="site-main container-fluid error-404 not-found text-center py-5">
     <div class="center">
-        <h1 class="heading-h1 mb-3">Nothing found</h1>
-        <p>Hi! We’re sorry, but the information you’re looking for doesn’t exist or may have been moved.</p>
-        <p>You can use the search field below to find it, or <a href="<?php echo esc_url( home_url('/') ); ?>"><strong>return to the home page</strong></a>.</p>
+        <h1 class="heading-h1 mb-3"><?php esc_html_e( 'Nothing found', 'kreativ-oceania-theme' ); ?></h1>
+        <p><?php esc_html_e( 'The content you are looking for does not exist or may have been moved.', 'kreativ-oceania-theme' ); ?></p>
+        <p><?php printf( wp_kses_post( __( 'You can use the search field below to find it, or <a href="%s"><strong>return to the home page</strong></a>.', 'kreativ-oceania-theme' ) ), esc_url( home_url( '/' ) ) ); ?></p>
 
         <div class="my-4">
             <?php get_search_form(); ?>
@@ -16,7 +16,7 @@
     <hr class="my-5" />
 
     <section class="suggested-posts text-center">
-        <h2 class="heading-h1 mb-4">Explore More Creatives</h2>
+        <h2 class="heading-h1 mb-4"><?php esc_html_e( 'Explore More Posts', 'kreativ-oceania-theme' ); ?></h2>
         <div class="row justify-content-center">
 
             <?php
@@ -57,7 +57,7 @@
             <?php
                 endwhile;
             else :
-                echo '<p>No posts available right now.</p>';
+                echo '<p>' . esc_html__( 'No posts available right now.', 'kreativ-oceania-theme' ) . '</p>';
             endif;
 
             wp_reset_postdata();

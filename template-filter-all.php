@@ -20,7 +20,7 @@ $hero_description    = kreativ_get_site_description();
                     <?php echo kreativ_render_icon( $category->slug ); ?>
                     <?php echo esc_html( $category->name ); ?>
                 </h2>
-                <a href="<?php echo esc_url( get_category_link( $category ) ); ?>" class="kf-view-all"><?php esc_html_e( 'View all', 'kreativ' ); ?> &rsaquo;</a>
+                <a href="<?php echo esc_url( get_category_link( $category ) ); ?>" class="kf-view-all"><?php esc_html_e( 'View all', 'kreativ-oceania-theme' ); ?> &rsaquo;</a>
             </div>
 
             <div class="row">
@@ -53,7 +53,7 @@ $hero_description    = kreativ_get_site_description();
                                         </span>
 
                                         <?php if ( $is_new ) : ?>
-                                            <span class="kf-badge-new"><?php esc_html_e( 'New', 'kreativ' ); ?></span>
+                                            <span class="kf-badge-new"><?php esc_html_e( 'New', 'kreativ-oceania-theme' ); ?></span>
                                         <?php endif; ?>
 
                                         <?php
@@ -81,7 +81,7 @@ $hero_description    = kreativ_get_site_description();
 <?php else : ?>
     <div class="container kreativ-section">
         <div class="kreativ-section-header">
-            <h2 class="kreativ-section-title"><?php esc_html_e( 'Latest Posts', 'kreativ' ); ?></h2>
+            <h2 class="kreativ-section-title"><?php esc_html_e( 'Latest Posts', 'kreativ-oceania-theme' ); ?></h2>
         </div>
         <div class="row">
             <?php

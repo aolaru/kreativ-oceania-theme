@@ -4,7 +4,7 @@
 
         <div class="text-center">
 
-            <h2 class="heading-h2">No results for “<?php echo esc_html(get_search_query()); ?>”</h2>
+            <h2 class="heading-h2"><?php printf( esc_html__( 'No results for “%s”', 'kreativ-oceania-theme' ), esc_html( get_search_query() ) ); ?></h2>
 
         </div>
 
@@ -42,7 +42,7 @@
 
         </div>
 
-		<p class="text-center"><?php esc_html_e( 'We could not find any matching content. Try another keyword or browse recent posts from the homepage.', 'kreativ' ); ?></p>
+		<p class="text-center"><?php esc_html_e( 'We could not find any matching content. Try another keyword or browse recent posts from the homepage.', 'kreativ-oceania-theme' ); ?></p>
 
 		<?php endif; ?>
 

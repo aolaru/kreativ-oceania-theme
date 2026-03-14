@@ -1,6 +1,6 @@
 <?php
 /*
- * Kreativ – Enhanced Tag Template
+ * Tag archive template.
  */
 get_header();
 
@@ -17,7 +17,7 @@ $tag_desc = tag_description();
    SORTING LOGIC
 --------------------------------------------- */
 $sort = isset( $_GET['sort'] ) ? sanitize_key( wp_unslash( $_GET['sort'] ) ) : 'latest';
-$valid_sorts = [ 'latest', 'popular', 'free', 'ai' ];
+$valid_sorts = array( 'latest', 'popular' );
 if ( ! in_array( $sort, $valid_sorts, true ) ) {
     $sort = 'latest';
 }
@@ -30,15 +30,6 @@ switch ($sort) {
         $orderby = 'comment_count';
         break;
 
-    case 'ai':
-        // Future-ready AI score
-        $orderby  = 'meta_value_num';
-        $meta_key = 'ai_score';
-        break;
-
-    case 'free':
-        $orderby = 'date';
-        break;
 }
 
 /* Pagination */
@@ -54,14 +45,6 @@ $tax_query = [
         'terms'    => [$tag_id],
     ]
 ];
-
-if ($sort === 'free') {
-    $tax_query[] = [
-        'taxonomy' => 'category',
-        'field'    => 'slug',
-        'terms'    => ['free'],
-    ];
-}
 
 /* --------------------------------------------
    FINAL QUERY
@@ -88,7 +71,12 @@ $query = new WP_Query($args);
     <div class="kreativ-category-header">
         <h1>
             <?php echo kreativ_render_icon( 'tag' ); ?>
-            Tag: <?php echo esc_html($tag_name); ?>
+            <?php
+            printf(
+                esc_html__( 'Tag: %s', 'kreativ-oceania-theme' ),
+                esc_html( $tag_name )
+            );
+            ?>
         </h1>
 
         <?php if ($tag_desc): ?>
@@ -101,10 +89,8 @@ $query = new WP_Query($args);
      SORT BAR
 ===================================================== -->
 <div class="kreativ-sort-bar">
-    <a href="<?php echo esc_url( add_query_arg( 'sort', 'latest' ) ); ?>" class="kreativ-sort-btn <?php echo $sort==='latest'?'active':''; ?>">Latest</a>
-    <a href="<?php echo esc_url( add_query_arg( 'sort', 'popular' ) ); ?>" class="kreativ-sort-btn <?php echo $sort==='popular'?'active':''; ?>">Popular</a>
-    <a href="<?php echo esc_url( add_query_arg( 'sort', 'free' ) ); ?>" class="kreativ-sort-btn <?php echo $sort==='free'?'active':''; ?>">Free</a>
-    <a href="<?php echo esc_url( add_query_arg( 'sort', 'ai' ) ); ?>" class="kreativ-sort-btn <?php echo $sort==='ai'?'active':''; ?>">AI Recommended</a>
+    <a href="<?php echo esc_url( add_query_arg( 'sort', 'latest' ) ); ?>" class="kreativ-sort-btn <?php echo $sort === 'latest' ? 'active' : ''; ?>"><?php esc_html_e( 'Latest', 'kreativ-oceania-theme' ); ?></a>
+    <a href="<?php echo esc_url( add_query_arg( 'sort', 'popular' ) ); ?>" class="kreativ-sort-btn <?php echo $sort === 'popular' ? 'active' : ''; ?>"><?php esc_html_e( 'Popular', 'kreativ-oceania-theme' ); ?></a>
 </div>
 
 <!-- =====================================================
@@ -130,7 +116,7 @@ $query = new WP_Query($args);
                                 </span>
 
                                 <?php if ($is_new): ?>
-                                    <span class="kf-badge kf-badge-new">NEW</span>
+                                    <span class="kf-badge kf-badge-new"><?php esc_html_e( 'New', 'kreativ-oceania-theme' ); ?></span>
                                 <?php endif; ?>
 
                                 <?php
@@ -154,8 +140,8 @@ $query = new WP_Query($args);
         <?php else : ?>
 
             <div class="text-center my-5">
-                <h2>No posts found for this tag.</h2>
-                <p>Try changing the sorting or explore related categories.</p>
+                <h2><?php esc_html_e( 'No posts found for this tag.', 'kreativ-oceania-theme' ); ?></h2>
+                <p><?php esc_html_e( 'Try browsing another archive or returning to the homepage.', 'kreativ-oceania-theme' ); ?></p>
             </div>
 
         <?php endif; wp_reset_postdata(); ?>
@@ -169,8 +155,8 @@ $query = new WP_Query($args);
             'total'     => $query->max_num_pages,
             'current'   => $paged,
             'mid_size'  => 2,
-            'prev_text' => '&laquo; Previous',
-            'next_text' => 'Next &raquo;',
+            'prev_text' => esc_html__( 'Previous', 'kreativ-oceania-theme' ),
+            'next_text' => esc_html__( 'Next', 'kreativ-oceania-theme' ),
             'add_args'  => ['sort' => $sort],
         ]);
         ?>

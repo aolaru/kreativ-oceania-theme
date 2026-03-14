@@ -18,7 +18,7 @@
     <!-- Breadcrumb -->
     <div class="col-lg-7 col-md-9 col-sm-12 center-margin">
         <p class="breadcrumb" style="font-size: 0.7em; text-align: left;">
-            <a href="<?php echo esc_url(home_url('/')); ?>" title="Home">Home</a> › 
+            <a href="<?php echo esc_url(home_url('/')); ?>" title="<?php esc_attr_e( 'Home', 'kreativ-oceania-theme' ); ?>"><?php esc_html_e( 'Home', 'kreativ-oceania-theme' ); ?></a> ›
             <?php the_category(' › '); ?>
         </p>
     </div>
@@ -34,7 +34,7 @@
         <!-- Suggested Posts -->
         <section class="related-posts mt-5">
             <div class="col-lg-10 col-md-11 col-sm-12 center-margin text-center">
-                <h2 class="heading-h2 mb-4">You Might Also Like</h2>
+                <h2 class="heading-h2 mb-4"><?php esc_html_e( 'You Might Also Like', 'kreativ-oceania-theme' ); ?></h2>
                 <div class="row justify-content-center">
                     <?php
                     $related_query = kreativ_get_related_posts_query( get_the_ID(), 4 );
@@ -65,7 +65,7 @@
                         wp_reset_postdata();
                     else :
                         ?>
-                        <p>No related posts found.</p>
+                        <p><?php esc_html_e( 'No related posts found.', 'kreativ-oceania-theme' ); ?></p>
                         <?php
                     endif;
                     ?>
@@ -85,8 +85,14 @@
             <?php endif; ?>
 
             <div class="post_meta text-muted mb-4">
-                Published on <time datetime="<?php echo get_the_date('c'); ?>"><?php the_time('F j, Y'); ?></time>
-                in <?php the_category(', '); ?> by <?php the_author(); ?>.
+                <?php
+                printf(
+                    esc_html__( 'Published on %1$s in %2$s by %3$s.', 'kreativ-oceania-theme' ),
+                    esc_html( get_the_date( 'F j, Y' ) ),
+                    wp_strip_all_tags( get_the_category_list( ', ' ) ),
+                    esc_html( get_the_author() )
+                );
+                ?>
                 <?php edit_post_link('Edit', ' | ', ''); ?>
             </div>
         </div>
@@ -95,8 +101,8 @@
 <?php endwhile; else: ?>
 
     <div class="text-center py-5">
-        <h2>Sorry, no articles matched your criteria.</h2>
-        <a href="<?php echo esc_url(home_url('/')); ?>" class="btn btn-primary mt-3">Back to Home</a>
+        <h2><?php esc_html_e( 'Sorry, no posts matched your criteria.', 'kreativ-oceania-theme' ); ?></h2>
+        <a href="<?php echo esc_url(home_url('/')); ?>" class="btn btn-primary mt-3"><?php esc_html_e( 'Back to Home', 'kreativ-oceania-theme' ); ?></a>
     </div>
 
 <?php endif; ?>
