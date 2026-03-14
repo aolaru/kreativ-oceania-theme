@@ -1,3 +1,28 @@
+Repository History
+------------------
+
+version 1.0.6 (March 2026)
+- prepared the theme package for WordPress.org submission
+- removed marketplace and plugin-specific templates and helper files
+- removed bundled proprietary webfonts and switched the theme to a system font stack
+- aligned the text domain and added a generated translation template in /languages
+- updated style.css headers and converted readme.txt to WordPress.org format
+- normalized line endings across the theme and added .gitattributes
+
+version 1.0.5 (March 2026)
+- generalized theme branding and homepage sections for broader reuse
+- improved accessibility with skip links, focus states, and better search/menu labeling
+- improved responsive image performance using native WordPress image markup
+- refreshed the repository documentation with a stronger GitHub README
+
+version 1.0.4 (March 2026)
+- renamed the theme to Kreativ Oceania Theme and bumped the public version
+- updated footer presentation and simplified the screenshot artwork
+- refreshed the K logo across favicon, app icons, manifest, and social image assets
+- cleaned legacy templates, production links, and unused assets
+
+----------------------------------
+
 Oceania 2024
 - fully resposnsive theme
 - search form improvements

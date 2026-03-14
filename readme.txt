@@ -3,7 +3,7 @@ Contributors: andreiolaru
 Requires at least: 6.4
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.2.0
+Stable tag: 1.0.6
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: blog, news, portfolio, responsive, custom-logo, custom-menu, featured-images, minimal, creative, clean
@@ -44,13 +44,13 @@ Yes. Use `Appearance > Customize > Theme Options` and disable `Show theme relate
 
 == Changelog ==
 
-= 1.2.0 =
+= 1.0.6 =
 
 * removed marketplace-specific templates and helper files
 * removed bundled proprietary font assets and switched to a system font stack
 * aligned text domain, readme format, and translation template for WordPress.org submission prep
 
-= 1.1.0 =
+= 1.0.5 =
 
 * generalized branding and homepage sections
 * improved accessibility and responsive image performance
