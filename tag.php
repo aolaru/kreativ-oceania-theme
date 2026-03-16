@@ -73,7 +73,7 @@ $query = new WP_Query($args);
             <?php echo kreativ_render_icon( 'tag' ); ?>
             <?php
             printf(
-                esc_html__( 'Tag: %s', 'kreativ-oceania-theme' ),
+                esc_html__( 'Tag: %s', 'kreativ-core' ),
                 esc_html( $tag_name )
             );
             ?>
@@ -89,8 +89,8 @@ $query = new WP_Query($args);
      SORT BAR
 ===================================================== -->
 <div class="kreativ-sort-bar">
-    <a href="<?php echo esc_url( add_query_arg( 'sort', 'latest' ) ); ?>" class="kreativ-sort-btn <?php echo $sort === 'latest' ? 'active' : ''; ?>"><?php esc_html_e( 'Latest', 'kreativ-oceania-theme' ); ?></a>
-    <a href="<?php echo esc_url( add_query_arg( 'sort', 'popular' ) ); ?>" class="kreativ-sort-btn <?php echo $sort === 'popular' ? 'active' : ''; ?>"><?php esc_html_e( 'Popular', 'kreativ-oceania-theme' ); ?></a>
+    <a href="<?php echo esc_url( add_query_arg( 'sort', 'latest' ) ); ?>" class="kreativ-sort-btn <?php echo $sort === 'latest' ? 'active' : ''; ?>"><?php esc_html_e( 'Latest', 'kreativ-core' ); ?></a>
+    <a href="<?php echo esc_url( add_query_arg( 'sort', 'popular' ) ); ?>" class="kreativ-sort-btn <?php echo $sort === 'popular' ? 'active' : ''; ?>"><?php esc_html_e( 'Popular', 'kreativ-core' ); ?></a>
 </div>
 
 <!-- =====================================================
@@ -116,7 +116,7 @@ $query = new WP_Query($args);
                                 </span>
 
                                 <?php if ($is_new): ?>
-                                    <span class="kf-badge kf-badge-new"><?php esc_html_e( 'New', 'kreativ-oceania-theme' ); ?></span>
+                                    <span class="kf-badge kf-badge-new"><?php esc_html_e( 'New', 'kreativ-core' ); ?></span>
                                 <?php endif; ?>
 
                                 <?php
@@ -140,8 +140,8 @@ $query = new WP_Query($args);
         <?php else : ?>
 
             <div class="text-center my-5">
-                <h2><?php esc_html_e( 'No posts found for this tag.', 'kreativ-oceania-theme' ); ?></h2>
-                <p><?php esc_html_e( 'Try browsing another archive or returning to the homepage.', 'kreativ-oceania-theme' ); ?></p>
+                <h2><?php esc_html_e( 'No posts found for this tag.', 'kreativ-core' ); ?></h2>
+                <p><?php esc_html_e( 'Try browsing another archive or returning to the homepage.', 'kreativ-core' ); ?></p>
             </div>
 
         <?php endif; wp_reset_postdata(); ?>
@@ -155,8 +155,8 @@ $query = new WP_Query($args);
             'total'     => $query->max_num_pages,
             'current'   => $paged,
             'mid_size'  => 2,
-            'prev_text' => esc_html__( 'Previous', 'kreativ-oceania-theme' ),
-            'next_text' => esc_html__( 'Next', 'kreativ-oceania-theme' ),
+            'prev_text' => esc_html__( 'Previous', 'kreativ-core' ),
+            'next_text' => esc_html__( 'Next', 'kreativ-core' ),
             'add_args'  => ['sort' => $sort],
         ]);
         ?>

@@ -82,7 +82,7 @@
 
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
-<a class="kreativ-skip-link" href="#kreativ-main-content"><?php esc_html_e( 'Skip to content', 'kreativ-oceania-theme' ); ?></a>
+<a class="kreativ-skip-link" href="#kreativ-main-content"><?php esc_html_e( 'Skip to content', 'kreativ-core' ); ?></a>
 
 <header class="kreativ-header">
     <div class="container">
@@ -107,10 +107,10 @@
 
                 <div class="kreativ-search">
                     <form method="get" id="searchform" action="<?php echo esc_url( home_url('/') ); ?>">
-                        <label class="screen-reader-text" for="searchi"><?php esc_html_e( 'Search for:', 'kreativ-oceania-theme' ); ?></label>
+                        <label class="screen-reader-text" for="searchi"><?php esc_html_e( 'Search for:', 'kreativ-core' ); ?></label>
                         <input id="searchi" type="search" name="s" value="<?php echo esc_attr( get_search_query() ); ?>"
                                maxlength="128" placeholder="Type your search and press enter"
-                               aria-label="<?php esc_attr_e( 'Search site content', 'kreativ-oceania-theme' ); ?>"
+                               aria-label="<?php esc_attr_e( 'Search site content', 'kreativ-core' ); ?>"
                                class="form-control form-control-sm">
                     </form>
                 </div>
@@ -142,8 +142,8 @@
 				</a>
 			</h2>
 
-            <button class="navbar-toggler" type="button" data-toggle="offcanvas" aria-controls="site-navigation" aria-expanded="false" aria-label="<?php esc_attr_e( 'Toggle menu', 'kreativ-oceania-theme' ); ?>">
-                <?php esc_html_e( 'Menu', 'kreativ-oceania-theme' ); ?>
+            <button class="navbar-toggler" type="button" data-toggle="offcanvas" aria-controls="site-navigation" aria-expanded="false" aria-label="<?php esc_attr_e( 'Toggle menu', 'kreativ-core' ); ?>">
+                <?php esc_html_e( 'Menu', 'kreativ-core' ); ?>
             </button>
         </nav>
     </div>

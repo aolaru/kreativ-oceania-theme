@@ -76,7 +76,7 @@ $query = new WP_Query($args);
             <?php echo kreativ_render_icon( $cat_icon ); ?>
             <?php
             printf(
-                esc_html__( 'Browse %s', 'kreativ-oceania-theme' ),
+                esc_html__( 'Browse %s', 'kreativ-core' ),
                 esc_html( $cat_name )
             );
             ?>
@@ -94,8 +94,8 @@ $query = new WP_Query($args);
      SORT BAR
 ===================================================== -->
 <div class="kreativ-sort-bar">
-    <a href="<?php echo esc_url( add_query_arg( 'sort', 'latest' ) ); ?>" class="kreativ-sort-btn <?php echo $sort === 'latest' ? 'active' : ''; ?>"><?php esc_html_e( 'Latest', 'kreativ-oceania-theme' ); ?></a>
-    <a href="<?php echo esc_url( add_query_arg( 'sort', 'popular' ) ); ?>" class="kreativ-sort-btn <?php echo $sort === 'popular' ? 'active' : ''; ?>"><?php esc_html_e( 'Popular', 'kreativ-oceania-theme' ); ?></a>
+    <a href="<?php echo esc_url( add_query_arg( 'sort', 'latest' ) ); ?>" class="kreativ-sort-btn <?php echo $sort === 'latest' ? 'active' : ''; ?>"><?php esc_html_e( 'Latest', 'kreativ-core' ); ?></a>
+    <a href="<?php echo esc_url( add_query_arg( 'sort', 'popular' ) ); ?>" class="kreativ-sort-btn <?php echo $sort === 'popular' ? 'active' : ''; ?>"><?php esc_html_e( 'Popular', 'kreativ-core' ); ?></a>
 </div>
 
 
@@ -141,7 +141,7 @@ $query = new WP_Query($args);
 
         <?php else : ?>
 
-            <h2 class="text-center my-5"><?php esc_html_e( 'No posts found.', 'kreativ-oceania-theme' ); ?></h2>
+            <h2 class="text-center my-5"><?php esc_html_e( 'No posts found.', 'kreativ-core' ); ?></h2>
 
         <?php endif; wp_reset_postdata(); ?>
 
@@ -155,8 +155,8 @@ $query = new WP_Query($args);
             'total'     => $query->max_num_pages,
             'current'   => $paged,
             'mid_size'  => 2,
-            'prev_text' => esc_html__( 'Previous', 'kreativ-oceania-theme' ),
-            'next_text' => esc_html__( 'Next', 'kreativ-oceania-theme' ),
+            'prev_text' => esc_html__( 'Previous', 'kreativ-core' ),
+            'next_text' => esc_html__( 'Next', 'kreativ-core' ),
             'add_args'  => ['sort' => $sort],
         ]);
         ?>

@@ -4,8 +4,8 @@ function oceania_setup() {
     add_theme_support('menus');
 
 	if (function_exists('register_nav_menu')) {
-		register_nav_menu( 'primary', __( 'Primary Menu', 'kreativ-oceania-theme' ) );
-        register_nav_menu( 'footer', __( 'Footer Menu', 'kreativ-oceania-theme' ) );
+		register_nav_menu( 'primary', __( 'Primary Menu', 'kreativ-core' ) );
+        register_nav_menu( 'footer', __( 'Footer Menu', 'kreativ-core' ) );
 	}
 
 	//Enable Post Thumbnails
@@ -35,7 +35,7 @@ function oceania_setup() {
         )
     );
 
-	load_theme_textdomain( 'kreativ-oceania-theme', get_template_directory() . '/languages' );
+	load_theme_textdomain( 'kreativ-core', get_template_directory() . '/languages' );
 
 	add_editor_style( 'assets/dist/main.min.css' );
 
@@ -199,7 +199,7 @@ function kreativ_get_site_description() {
         return $description;
     }
 
-    return __( 'A lightweight, responsive WordPress site.', 'kreativ-oceania-theme' );
+    return __( 'A lightweight, responsive WordPress site.', 'kreativ-core' );
 }
 
 function kreativ_get_schema_social_links() {
@@ -342,7 +342,7 @@ function kreativ_customize_register( $wp_customize ) {
     $wp_customize->add_section(
         'kreativ_theme_options',
         array(
-            'title'    => __( 'Theme Options', 'kreativ-oceania-theme' ),
+            'title'    => __( 'Theme Options', 'kreativ-core' ),
             'priority' => 160,
         )
     );
@@ -360,8 +360,8 @@ function kreativ_customize_register( $wp_customize ) {
         array(
             'type'        => 'checkbox',
             'section'     => 'kreativ_theme_options',
-            'label'       => __( 'Show theme related posts on single posts', 'kreativ-oceania-theme' ),
-            'description' => __( 'Disable this if another plugin or custom system handles related posts.', 'kreativ-oceania-theme' ),
+            'label'       => __( 'Show theme related posts on single posts', 'kreativ-core' ),
+            'description' => __( 'Disable this if another plugin or custom system handles related posts.', 'kreativ-core' ),
         )
     );
 
@@ -378,8 +378,8 @@ function kreativ_customize_register( $wp_customize ) {
         array(
             'type'        => 'text',
             'section'     => 'kreativ_theme_options',
-            'label'       => __( 'Featured category slugs', 'kreativ-oceania-theme' ),
-            'description' => __( 'Optional comma-separated category slugs for the homepage sections. Leave empty to use the most active categories automatically.', 'kreativ-oceania-theme' ),
+            'label'       => __( 'Featured category slugs', 'kreativ-core' ),
+            'description' => __( 'Optional comma-separated category slugs for the homepage sections. Leave empty to use the most active categories automatically.', 'kreativ-core' ),
         )
     );
 
@@ -396,8 +396,8 @@ function kreativ_customize_register( $wp_customize ) {
         array(
             'type'        => 'text',
             'section'     => 'kreativ_theme_options',
-            'label'       => __( 'Footer text', 'kreativ-oceania-theme' ),
-            'description' => __( 'Optional footer note shown below the footer menu.', 'kreativ-oceania-theme' ),
+            'label'       => __( 'Footer text', 'kreativ-core' ),
+            'description' => __( 'Optional footer note shown below the footer menu.', 'kreativ-core' ),
         )
     );
 
@@ -414,8 +414,8 @@ function kreativ_customize_register( $wp_customize ) {
         array(
             'type'        => 'textarea',
             'section'     => 'kreativ_theme_options',
-            'label'       => __( 'Organization social profile URLs', 'kreativ-oceania-theme' ),
-            'description' => __( 'Optional URLs for Schema.org sameAs, one per line or comma-separated.', 'kreativ-oceania-theme' ),
+            'label'       => __( 'Organization social profile URLs', 'kreativ-core' ),
+            'description' => __( 'Optional URLs for Schema.org sameAs, one per line or comma-separated.', 'kreativ-core' ),
         )
     );
 }

@@ -1,6 +1,6 @@
 		<footer class="kreativ-footer">
             <?php if ( has_nav_menu( 'footer' ) ) : ?>
-                <nav class="kreativ-footer-links" aria-label="<?php esc_attr_e( 'Footer menu', 'kreativ-oceania-theme' ); ?>">
+                <nav class="kreativ-footer-links" aria-label="<?php esc_attr_e( 'Footer menu', 'kreativ-core' ); ?>">
                     <?php
                     wp_nav_menu(
                         array(
