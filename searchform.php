@@ -1,6 +1,6 @@
 <?php
 /**
- * The template for displaying search forms in Oceania
+ * The template for displaying search forms in Kreativ Core
  *
  */
 ?>

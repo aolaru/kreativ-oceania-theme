@@ -16,7 +16,7 @@ version 1.0.5 (March 2026)
 - refreshed the repository documentation with a stronger GitHub README
 
 version 1.0.4 (March 2026)
-- renamed the theme to Kreativ Oceania Theme and bumped the public version
+- renamed the public theme to Kreativ Core and bumped the public version
 - updated footer presentation and simplified the screenshot artwork
 - refreshed the K logo across favicon, app icons, manifest, and social image assets
 - cleaned legacy templates, production links, and unused assets

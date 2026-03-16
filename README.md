@@ -1,4 +1,4 @@
-# Kreativ Oceania Theme
+# Kreativ Core
 
 A lightweight, responsive WordPress theme for editorial sites, blogs, and content-driven websites.
 
@@ -37,7 +37,7 @@ The repository has been cleaned up to remove older marketplace-specific template
 ### Self-hosted WordPress
 
 1. Copy the theme folder into `wp-content/themes/`.
-2. Activate `Kreativ Oceania Theme` from `Appearance > Themes`.
+2. Activate `Kreativ Core` from `Appearance > Themes`.
 3. Assign menus in `Appearance > Menus`.
 4. Optionally set a custom logo in `Appearance > Customize > Site Identity`.
 

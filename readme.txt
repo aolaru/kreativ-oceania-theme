@@ -1,4 +1,4 @@
-=== Kreativ Oceania Theme ===
+=== Kreativ Core ===
 Contributors: andreiolaru
 Requires at least: 6.4
 Tested up to: 6.9
@@ -12,7 +12,7 @@ A lightweight, responsive WordPress theme for editorial sites, blogs, and conten
 
 == Description ==
 
-Kreativ Oceania Theme is a clean, flexible theme for publishing-focused WordPress sites.
+Kreativ Core is a clean, flexible theme for publishing-focused WordPress sites.
 
 It includes:
 
@@ -58,4 +58,4 @@ Yes. Use `Appearance > Customize > Theme Options` and disable `Show theme relate
 
 == License ==
 
-Kreativ Oceania Theme is licensed under the GPL-2.0-or-later license.
+Kreativ Core is licensed under the GPL-2.0-or-later license.
