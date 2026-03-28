@@ -60,8 +60,6 @@ function kreativ_script_enqueue()
 
     wp_enqueue_style( 'kreativ-styles', get_template_directory_uri() . '/assets/dist/main.min.css' , array(), $theme_version);
     wp_enqueue_style( 'kreativ-global', get_template_directory_uri() . '/css/kreativ-global.css', array( 'kreativ-styles' ), $theme_version );
-    wp_register_script('init', get_template_directory_uri() . '/assets/assets/components/init.js', array('jquery'), $theme_version, true);
-    wp_enqueue_script('init');
 	wp_deregister_script('wp-embed');
 }
 add_action('wp_enqueue_scripts', 'kreativ_script_enqueue');

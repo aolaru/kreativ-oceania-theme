@@ -1,6 +1,11 @@
 Repository History
 ------------------
 
+version 1.0.7 (March 2026)
+- removed an outdated script enqueue that referenced a deleted source asset
+- tightened the public theme metadata for distribution
+- prepared a cleaner submission package and release zip
+
 version 1.0.6 (March 2026)
 - prepared the theme package for WordPress.org submission
 - removed marketplace and plugin-specific templates and helper files

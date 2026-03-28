@@ -1,10 +1,10 @@
 /*
 Theme Name: Kreativ Core
-Theme URI: https://kreativfont.com
+Theme URI: https://madebykreativ.com
 Author: Andrei Olaru
-Author URI: https://kreativfont.com
-Description: A lightweight, responsive WordPress theme for editorial sites, blogs, and content-driven websites. Includes a sectioned homepage, dark mode, and flexible branding options.
-Version: 1.0.6
+Author URI: https://madebykreativ.com
+Description: A lightweight, responsive WordPress theme for editorial sites, blogs, portfolios, and content-driven websites.
+Version: 1.0.7
 Requires at least: 6.4
 Tested up to: 6.9
 Requires PHP: 7.4
@@ -17,7 +17,7 @@ Tags: blog, news, portfolio, responsive, custom-logo, custom-menu, featured-imag
 
 @charset "UTF-8";
 
-/* --- KREATIV Brand Colors --- */
+/* --- Theme Color Variables --- */
 :root {
   --color-brand: #FF3366;    /* Main brand pink */
   --color-accent: #00C2FF;   /* Accent cyan */

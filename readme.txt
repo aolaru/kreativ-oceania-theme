@@ -3,12 +3,12 @@ Contributors: andreiolaru
 Requires at least: 6.4
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.0.6
+Stable tag: 1.0.7
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: blog, news, portfolio, responsive, custom-logo, custom-menu, featured-images, minimal, creative, clean
 
-A lightweight, responsive WordPress theme for editorial sites, blogs, and content-driven websites.
+A lightweight, responsive WordPress theme for editorial sites, blogs, portfolios, and content-driven websites.
 
 == Description ==
 
@@ -43,6 +43,11 @@ Use `Appearance > Customize > Theme Options` and set `Featured category slugs` t
 Yes. Use `Appearance > Customize > Theme Options` and disable `Show theme related posts on single posts`.
 
 == Changelog ==
+
+= 1.0.7 =
+
+* removed an outdated script enqueue that pointed to a deleted source asset
+* tightened theme metadata and submission packaging details
 
 = 1.0.6 =
 
