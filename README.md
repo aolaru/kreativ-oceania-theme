@@ -12,7 +12,7 @@ This repository contains the current private production version of the theme, in
 - Dark mode toggle
 - Footer menu support
 - Theme option for built-in related posts
-- Theme options for homepage featured categories, footer text, and schema social links
+- Theme options for homepage featured categories and footer text
 - Refreshed favicon, app icon, and social image assets
 
 ## Theme Scope
@@ -100,3 +100,9 @@ For broader validation, lint any edited PHP templates before packaging a release
 ## License
 
 GPL-2.0-or-later. See [license.txt](license.txt).
+
+## Bundled Resources
+
+- Theme screenshot and icon assets: Copyright 2026 Andrei Olaru, GPL-2.0-or-later.
+- K logo SVG and generated PNG icon variants: Copyright 2026 Andrei Olaru, GPL-2.0-or-later.
+- `assets/dist/main.css` includes Bootstrap-derived CSS components, Copyright 2011-2018 Twitter, Inc. and The Bootstrap Authors, MIT license, source: https://getbootstrap.com/.

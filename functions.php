@@ -1,5 +1,5 @@
 <?php
-function oceania_setup() {
+function kreativ_core_setup() {
 	//Enable Custom Menus
     add_theme_support('menus');
 
@@ -37,7 +37,7 @@ function oceania_setup() {
 
 	load_theme_textdomain( 'kreativ-core', get_template_directory() . '/languages' );
 
-	add_editor_style( 'assets/dist/main.min.css' );
+	add_editor_style( 'assets/dist/main.css' );
 
 	if ( ! isset( $GLOBALS['content_width'] ) ) {
 		$GLOBALS['content_width'] = 900;
@@ -45,22 +45,14 @@ function oceania_setup() {
 
 }
 
-add_action( 'after_setup_theme', 'oceania_setup' );
-
-function kreativ_jquery_loading() {
-    if ( ! is_admin() ) {
-        wp_enqueue_script( 'jquery' );
-    }
-}
-add_action('wp_enqueue_scripts', 'kreativ_jquery_loading');
+add_action( 'after_setup_theme', 'kreativ_core_setup' );
 
 function kreativ_script_enqueue()
 {
     $theme_version = wp_get_theme()->get( 'Version' );
 
-    wp_enqueue_style( 'kreativ-styles', get_template_directory_uri() . '/assets/dist/main.min.css' , array(), $theme_version);
+    wp_enqueue_style( 'kreativ-styles', get_template_directory_uri() . '/assets/dist/main.css' , array(), $theme_version);
     wp_enqueue_style( 'kreativ-global', get_template_directory_uri() . '/css/kreativ-global.css', array( 'kreativ-styles' ), $theme_version );
-	wp_deregister_script('wp-embed');
 }
 add_action('wp_enqueue_scripts', 'kreativ_script_enqueue');
 
@@ -87,61 +79,6 @@ function kreativ_enqueue_page_assets() {
 add_action( 'wp_enqueue_scripts', 'kreativ_enqueue_page_assets' );
 
 
-function remove_comments_rss($for_comments)
-{
-    return;
-}
-
-add_filter('post_comments_feed_link', 'remove_comments_rss');
-
-remove_action('wp_head', 'wp_generator');
-
-remove_action('wp_head', 'wlwmanifest_link');
-
-remove_action('wp_head', 'rsd_link');
-
-remove_action('wp_head', 'print_emoji_detection_script', 7);
-
-remove_action('wp_print_styles', 'print_emoji_styles');
-
-function my_login_head()
-{
-    $logo_url = esc_url( kreativ_get_theme_asset_url( 'img/logo-192.png' ) );
-
-    echo "
-	<style>
-	body.login #login h1 a {
-		background: url('{$logo_url}') no-repeat scroll center top transparent;
-		background-size: 128px 128px;
-		height: 128px;
-		width: 128px;
-	}
-	</style>
-	";
-}
-
-add_action("login_head", "my_login_head");
-
-//change login form URL
-function my_login_logo_url()
-{
-    return home_url();
-}
-
-add_filter('login_headerurl', 'my_login_logo_url');
-
-//change login form info
-function my_login_logo_url_title()
-{
-    return get_bloginfo('name');
-}
-
-add_theme_support( 'title-tag' );
-
-
-add_filter('login_headertitle', 'my_login_logo_url_title');
-
-// marketplace slug menu
 function kreativ_get_fallback_image_url() {
     return get_template_directory_uri() . '/img/logo-192.png';
 }
@@ -198,19 +135,6 @@ function kreativ_get_site_description() {
     }
 
     return __( 'A lightweight, responsive WordPress site.', 'kreativ-core' );
-}
-
-function kreativ_get_schema_social_links() {
-    $raw_urls = (string) get_theme_mod( 'kreativ_social_profile_urls', '' );
-
-    if ( '' === trim( $raw_urls ) ) {
-        return array();
-    }
-
-    $urls = preg_split( '/[\r\n,]+/', $raw_urls );
-    $urls = array_filter( array_map( 'esc_url_raw', array_map( 'trim', $urls ) ) );
-
-    return array_values( array_unique( $urls ) );
 }
 
 function kreativ_get_featured_categories( $limit = 6 ) {
@@ -399,23 +323,6 @@ function kreativ_customize_register( $wp_customize ) {
         )
     );
 
-    $wp_customize->add_setting(
-        'kreativ_social_profile_urls',
-        array(
-            'default'           => '',
-            'sanitize_callback' => 'sanitize_textarea_field',
-        )
-    );
-
-    $wp_customize->add_control(
-        'kreativ_social_profile_urls',
-        array(
-            'type'        => 'textarea',
-            'section'     => 'kreativ_theme_options',
-            'label'       => __( 'Organization social profile URLs', 'kreativ-core' ),
-            'description' => __( 'Optional URLs for Schema.org sameAs, one per line or comma-separated.', 'kreativ-core' ),
-        )
-    );
 }
 add_action( 'customize_register', 'kreativ_customize_register' );
 

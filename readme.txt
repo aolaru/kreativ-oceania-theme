@@ -3,10 +3,10 @@ Contributors: andreiolaru
 Requires at least: 6.4
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.0.7
+Stable tag: 1.0.8
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
-Tags: blog, news, portfolio, responsive, custom-logo, custom-menu, featured-images, minimal, creative, clean
+Tags: blog, portfolio, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
 
 A lightweight, responsive WordPress theme for editorial sites, blogs, portfolios, and content-driven websites.
 
@@ -44,6 +44,12 @@ Yes. Use `Appearance > Customize > Theme Options` and disable `Show theme relate
 
 == Changelog ==
 
+= 1.0.8 =
+
+* removed SEO, social metadata, schema, login customization, and core hook removals from the theme package
+* replaced the minified-only distributed stylesheet with a readable compiled stylesheet
+* removed ICO assets and aligned theme tags with the WordPress.org allowed tag list
+
 = 1.0.7 =
 
 * removed an outdated script enqueue that pointed to a deleted source asset
@@ -64,3 +70,20 @@ Yes. Use `Appearance > Customize > Theme Options` and disable `Show theme relate
 == License ==
 
 Kreativ Core is licensed under the GPL-2.0-or-later license.
+
+== Resources ==
+
+Kreativ Core screenshot and icon assets
+Copyright 2026 Andrei Olaru
+License: GPL-2.0-or-later
+Source: bundled with this theme
+
+K logo SVG and generated PNG icon variants
+Copyright 2026 Andrei Olaru
+License: GPL-2.0-or-later
+Source: bundled with this theme
+
+Theme CSS in assets/dist/main.css includes Bootstrap-derived CSS components.
+Bootstrap Copyright 2011-2018 Twitter, Inc. and The Bootstrap Authors
+License: MIT
+Source: https://getbootstrap.com/

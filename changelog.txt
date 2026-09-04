@@ -1,6 +1,11 @@
 Repository History
 ------------------
 
+version 1.0.8 (May 2026)
+- removed SEO, social metadata, schema, login customization, and core hook removals from the theme package
+- replaced the minified-only distributed stylesheet with a readable compiled stylesheet
+- removed ICO assets and aligned theme tags with the WordPress.org allowed tag list
+
 version 1.0.7 (March 2026)
 - removed an outdated script enqueue that referenced a deleted source asset
 - tightened the public theme metadata for distribution

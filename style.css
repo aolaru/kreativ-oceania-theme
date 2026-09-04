@@ -4,7 +4,7 @@ Theme URI: https://madebykreativ.com
 Author: Andrei Olaru
 Author URI: https://madebykreativ.com
 Description: A lightweight, responsive WordPress theme for editorial sites, blogs, portfolios, and content-driven websites.
-Version: 1.0.7
+Version: 1.0.8
 Requires at least: 6.4
 Tested up to: 6.9
 Requires PHP: 7.4
@@ -12,15 +12,15 @@ License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: kreativ-core
 Domain Path: /languages
-Tags: blog, news, portfolio, responsive, custom-logo, custom-menu, featured-images, minimal, creative, clean
+Tags: blog, portfolio, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
 */
 
 @charset "UTF-8";
 
 /* --- Theme Color Variables --- */
 :root {
-  --color-brand: #FF3366;    /* Main brand pink */
-  --color-accent: #00C2FF;   /* Accent cyan */
+  --color-brand: #ff3366; /* Main brand pink */
+  --color-accent: #00c2ff; /* Accent cyan */
   --color-success: #00d084;
   --color-text: #212529;
   --color-bg: #ffffff;
@@ -48,10 +48,17 @@ body {
   line-height: 1.6;
   color: var(--color-text);
   background-color: var(--color-bg);
-  transition: background-color 0.4s ease, color 0.4s ease;
+  transition:
+    background-color 0.4s ease,
+    color 0.4s ease;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: var(--color-brand);
   font-weight: 600;
   letter-spacing: -0.01em;
@@ -76,7 +83,9 @@ a:hover {
   border-radius: 0.3rem;
   padding: 0.4rem 1rem;
   font-weight: 600;
-  transition: background-color 0.3s ease, border-color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease;
 }
 .btn-primary:hover {
   background-color: var(--color-btn-hover);
@@ -86,8 +95,10 @@ a:hover {
 /* --- Header --- */
 .kreativ-header {
   background: var(--color-bg);
-  border-bottom: 1px solid rgba(0,0,0,0.05);
-  transition: background 0.4s ease, color 0.4s ease;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  transition:
+    background 0.4s ease,
+    color 0.4s ease;
 }
 
 .kreativ-logo a {
@@ -149,7 +160,7 @@ body.dark-mode .kreativ-logo a {
   color: var(--color-muted);
   text-align: center;
   background-color: #fafafa;
-  border-top: 1px solid rgba(0,0,0,0.05);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
   font-size: 0.95rem;
 }
 body.dark-mode .kreativ-footer {
@@ -170,7 +181,7 @@ body.dark-mode .kreativ-footer {
   width: 46px;
   height: 46px;
   cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
   transition: background 0.3s ease;
   z-index: 10000;
 }
@@ -184,18 +195,20 @@ body.dark-mode .kreativ-footer {
   fill: currentColor;
 }
 
-
-
-.kreativ-header { padding-bottom: 0.5rem; }
-.kreativ-content { padding-top: 1.5rem; }
+.kreativ-header {
+  padding-bottom: 0.5rem;
+}
+.kreativ-content {
+  padding-top: 1.5rem;
+}
 
 .kreativ-heading {
-  border-top: 1px solid rgba(0,0,0,0.05);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
   padding-top: 1rem;
   margin-top: 1rem;
 }
 
 .kreativ-font-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
