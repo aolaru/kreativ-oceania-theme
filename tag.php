@@ -1,167 +1,40 @@
+<?php get_header(); ?>
+
 <?php
-/*
- * Tag archive template.
- */
-get_header();
-
-/* --------------------------------------------
-   TAG CONTEXT
---------------------------------------------- */
-$tag      = get_queried_object();
-$tag_id   = $tag->term_id;
-$tag_slug = $tag->slug;
-$tag_name = single_tag_title('', false);
-$tag_desc = tag_description();
-
-/* --------------------------------------------
-   SORTING LOGIC
---------------------------------------------- */
-$sort = isset( $_GET['sort'] ) ? sanitize_key( wp_unslash( $_GET['sort'] ) ) : 'latest';
-$valid_sorts = array( 'latest', 'popular' );
-if ( ! in_array( $sort, $valid_sorts, true ) ) {
-    $sort = 'latest';
-}
-
-$orderby  = 'date';
-$meta_key = '';
-
-switch ($sort) {
-    case 'popular':
-        $orderby = 'comment_count';
-        break;
-
-}
-
-/* Pagination */
-$paged = max(1, get_query_var('paged'));
-
-/* --------------------------------------------
-   TAX QUERY
---------------------------------------------- */
-$tax_query = [
-    [
-        'taxonomy' => 'post_tag',
-        'field'    => 'term_id',
-        'terms'    => [$tag_id],
-    ]
-];
-
-/* --------------------------------------------
-   FINAL QUERY
---------------------------------------------- */
-$args = [
-    'post_type'           => 'post',
-    'posts_per_page'      => 24,
-    'paged'               => $paged,
-    'orderby'             => $orderby,
-    'order'               => 'DESC',
-    'meta_key'            => $meta_key ?: null,
-    'ignore_sticky_posts' => true,
-    'post_status'         => 'publish',
-    'tax_query'           => $tax_query,
-];
-
-$query = new WP_Query($args);
+$tag   = get_queried_object();
+$sort  = kreativ_get_archive_sort();
+$query = kreativ_get_taxonomy_archive_query( 'post_tag', $tag->term_id, $sort );
 ?>
 
-<!-- =====================================================
-     TAG HEADER
-===================================================== -->
-<div class="container kreativ-category-bg">
-    <div class="kreativ-category-header">
-        <h1>
-            <?php echo kreativ_render_icon( 'tag' ); ?>
-            <?php
-            printf(
-                esc_html__( 'Tag: %s', 'kreativ-core' ),
-                esc_html( $tag_name )
-            );
-            ?>
-        </h1>
-
-        <?php if ($tag_desc): ?>
-            <p><?php echo wp_kses_post($tag_desc); ?></p>
+<main id="primary" class="kreativ-post-index">
+    <header class="kreativ-post-index-header">
+        <p class="kreativ-post-index-kicker"><?php esc_html_e( 'Tag', 'kreativ-core' ); ?></p>
+        <h1><?php echo esc_html( $tag->name ); ?></h1>
+        <?php if ( tag_description() ) : ?>
+            <div class="kreativ-post-index-intro"><?php echo wp_kses_post( tag_description() ); ?></div>
         <?php endif; ?>
-    </div>
-</div>
+    </header>
 
-<!-- =====================================================
-     SORT BAR
-===================================================== -->
-<div class="kreativ-sort-bar">
-    <a href="<?php echo esc_url( add_query_arg( 'sort', 'latest' ) ); ?>" class="kreativ-sort-btn <?php echo $sort === 'latest' ? 'active' : ''; ?>"><?php esc_html_e( 'Latest', 'kreativ-core' ); ?></a>
-    <a href="<?php echo esc_url( add_query_arg( 'sort', 'popular' ) ); ?>" class="kreativ-sort-btn <?php echo $sort === 'popular' ? 'active' : ''; ?>"><?php esc_html_e( 'Popular', 'kreativ-core' ); ?></a>
-</div>
+    <nav class="kreativ-archive-sort" aria-label="<?php esc_attr_e( 'Sort posts', 'kreativ-core' ); ?>">
+        <a href="<?php echo esc_url( add_query_arg( 'sort', 'latest' ) ); ?>" class="<?php echo esc_attr( 'latest' === $sort ? 'is-current' : '' ); ?>"><?php esc_html_e( 'Latest', 'kreativ-core' ); ?></a>
+        <a href="<?php echo esc_url( add_query_arg( 'sort', 'popular' ) ); ?>" class="<?php echo esc_attr( 'popular' === $sort ? 'is-current' : '' ); ?>"><?php esc_html_e( 'Popular', 'kreativ-core' ); ?></a>
+    </nav>
 
-<!-- =====================================================
-     POSTS GRID
-===================================================== -->
-<div class="container kreativ-category-grid kreativ-category-bg">
-    <div class="row">
-
-        <?php if ($query->have_posts()) : ?>
-            <?php while ($query->have_posts()) : $query->the_post(); ?>
-
-                <?php $is_new = (time() - get_the_time('U')) < 7 * DAY_IN_SECONDS; ?>
-
-                <div class="col-md-4 col-lg-3 col-sm-6 kreativ-card-animate">
-                    <div class="kreativ-font-card">
-
-                        <a href="<?php the_permalink(); ?>">
-                            <div class="kreativ-card-media">
-
-                                <!-- Tag badge -->
-                                <span class="kf-badge" style="background:#555;">
-                                    #<?php echo esc_html($tag_name); ?>
-                                </span>
-
-                                <?php if ($is_new): ?>
-                                    <span class="kf-badge kf-badge-new"><?php esc_html_e( 'New', 'kreativ-core' ); ?></span>
-                                <?php endif; ?>
-
-                                <?php
-                                echo kreativ_get_post_thumbnail_markup(
-                                    get_the_ID(),
-                                    'medium',
-                                    array(
-                                        'class' => 'card-img-top',
-                                    )
-                                );
-                                ?>
-                            </div>
-
-                            <h3><?php the_title(); ?></h3>
-                        </a>
-
-                    </div>
-                </div>
-
+    <?php if ( $query->have_posts() ) : ?>
+        <div class="kreativ-post-list">
+            <?php while ( $query->have_posts() ) : $query->the_post(); ?>
+                <?php kreativ_render_post_card(); ?>
             <?php endwhile; ?>
-        <?php else : ?>
-
-            <div class="text-center my-5">
-                <h2><?php esc_html_e( 'No posts found for this tag.', 'kreativ-core' ); ?></h2>
-                <p><?php esc_html_e( 'Try browsing another archive or returning to the homepage.', 'kreativ-core' ); ?></p>
-            </div>
-
-        <?php endif; wp_reset_postdata(); ?>
-
-    </div>
-
-    <!-- Pagination -->
-    <div class="kreativ-pagination">
-        <?php
-        echo paginate_links([
-            'total'     => $query->max_num_pages,
-            'current'   => $paged,
-            'mid_size'  => 2,
-            'prev_text' => esc_html__( 'Previous', 'kreativ-core' ),
-            'next_text' => esc_html__( 'Next', 'kreativ-core' ),
-            'add_args'  => ['sort' => $sort],
-        ]);
-        ?>
-    </div>
-
-</div>
+        </div>
+        <nav class="kreativ-post-index-pagination" aria-label="<?php esc_attr_e( 'Tag posts pagination', 'kreativ-core' ); ?>">
+            <?php kreativ_render_pagination( $query, array( 'add_args' => array( 'sort' => $sort ) ) ); ?>
+        </nav>
+    <?php else : ?>
+        <div class="kreativ-empty-state">
+            <p><?php esc_html_e( 'No posts found with this tag.', 'kreativ-core' ); ?></p>
+        </div>
+    <?php endif; ?>
+    <?php wp_reset_postdata(); ?>
+</main>
 
 <?php get_footer(); ?>

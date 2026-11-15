@@ -1,12 +1,12 @@
 /*
 Theme Name: Kreativ Core
-Theme URI: https://madebykreativ.com
+Theme URI: https://github.com/aolaru/kreativ-oceania-theme
 Author: Andrei Olaru
 Author URI: https://madebykreativ.com
 Description: A lightweight, responsive WordPress theme for editorial sites, blogs, portfolios, and content-driven websites.
-Version: 1.0.8
+Version: 1.0.14
 Requires at least: 6.4
-Tested up to: 6.9
+Tested up to: 7.1
 Requires PHP: 7.4
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -19,8 +19,8 @@ Tags: blog, portfolio, custom-logo, custom-menu, featured-images, threaded-comme
 
 /* --- Theme Color Variables --- */
 :root {
-  --color-brand: #ff3366; /* Main brand pink */
-  --color-accent: #00c2ff; /* Accent cyan */
+  --color-brand: #c7184d; /* Accessible brand crimson */
+  --color-accent: #007aa3; /* Accessible accent blue */
   --color-success: #00d084;
   --color-text: #212529;
   --color-bg: #ffffff;
@@ -36,6 +36,8 @@ body.dark-mode {
   --color-bg: #0e0e10;
   --color-text: #f5f5f7;
   --color-muted: #a1a1aa;
+  --color-brand: #ff8aac;
+  --color-accent: #5bd5ff;
   --color-btn-primary: var(--color-accent);
   --color-btn-hover: var(--color-brand);
 }
@@ -43,6 +45,7 @@ body.dark-mode {
 /* --- Base Styles --- */
 body {
   margin: 0;
+  padding-top: 96px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 1.1rem;
   line-height: 1.6;
@@ -51,6 +54,122 @@ body {
   transition:
     background-color 0.4s ease,
     color 0.4s ease;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+.container {
+  width: min(100% - 2rem, 1320px);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.row > [class*="col-"] {
+  min-width: 0;
+}
+
+/* Theme-owned navigation and grid primitives replace the former framework layer. */
+.kreativ-header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  min-height: 96px;
+}
+
+.navbar-collapse {
+  display: grid;
+  grid-template-columns: auto minmax(12rem, 1fr) auto;
+  align-items: center;
+  width: 100%;
+  gap: 2rem;
+}
+
+.kreativ-hdr-left,
+.kreativ-hdr-right {
+  display: flex;
+  align-items: center;
+}
+
+.kreativ-logo {
+  margin: 0;
+}
+
+.kreativ-search {
+  justify-self: center;
+  width: min(100%, 25rem);
+}
+
+.kreativ-search-form input {
+  width: 100%;
+  min-height: 2.5rem;
+  padding: 0.45rem 0.65rem;
+  color: var(--color-text);
+  background: var(--color-bg);
+  border: 1px solid color-mix(in srgb, var(--color-text) 30%, transparent);
+}
+
+.navbar-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.navbar-toggler,
+.offcanvas-show {
+  display: none;
+}
+
+.admin-bar {
+  padding-top: 128px;
+}
+
+/* Three restrained directions for sites with different editorial priorities. */
+body.kreativ-style-studio:not(.dark-mode) {
+  --color-brand: #8b2e1a;
+  --color-accent: #3d5e52;
+  --color-text: #27231f;
+  --color-bg: #f5f0e7;
+  --color-muted: #655e55;
+}
+
+body.kreativ-style-portfolio:not(.dark-mode) {
+  --color-brand: #2447a5;
+  --color-accent: #0b6e69;
+  --color-text: #182033;
+  --color-bg: #f4f7fc;
+  --color-muted: #586174;
 }
 
 h1,
@@ -169,37 +288,475 @@ body.dark-mode .kreativ-footer {
   border-top-color: #222;
 }
 
-/* --- Dark Mode Toggle --- */
-.dark-toggle {
-  position: fixed;
-  right: 1rem;
-  bottom: 1rem;
-  background: var(--color-btn-primary);
-  color: #fff;
-  border: none;
-  border-radius: 50%;
-  width: 46px;
-  height: 46px;
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
-  transition: background 0.3s ease;
-  z-index: 10000;
-}
-.dark-toggle:hover {
-  background: var(--color-btn-hover);
-}
-.dark-toggle svg {
-  width: 22px;
-  height: 22px;
-  vertical-align: middle;
-  fill: currentColor;
-}
-
 .kreativ-header {
-  padding-bottom: 0.5rem;
+  padding-bottom: 0;
 }
 .kreativ-content {
   padding-top: 1.5rem;
+}
+
+/* Default blog archives use a compact editorial reading layout. */
+.kreativ-post-index {
+  width: min(100% - 2.5rem, 1320px);
+  margin: 0 auto;
+  padding: clamp(3rem, 6vw, 6rem) 0;
+}
+
+.kreativ-post-index-header {
+  max-width: 46rem;
+  margin: 0 0 clamp(2.5rem, 5vw, 5rem);
+}
+
+.kreativ-post-index-intro {
+  max-width: 42rem;
+  margin: 1.5rem 0 0;
+  color: var(--color-muted);
+  font-size: 1.1rem;
+}
+
+.kreativ-post-index-kicker,
+.kreativ-post-card-badge,
+.kreativ-post-card-meta {
+  color: var(--color-muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.kreativ-post-index-kicker {
+  margin: 0 0 0.7rem;
+}
+
+.kreativ-post-index-header h1 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(3rem, 7vw, 6rem);
+  line-height: 0.9;
+}
+
+.kreativ-post-list {
+  border-top: 1px solid color-mix(in srgb, var(--color-text) 18%, transparent);
+}
+
+.kreativ-post-card {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(18rem, 1.1fr);
+  gap: clamp(1.5rem, 5vw, 7rem);
+  padding: clamp(2rem, 4vw, 4.5rem) 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-text) 18%, transparent);
+}
+
+.kreativ-post-card-badge {
+  grid-column: 1 / -1;
+  margin: -0.5rem 0 0;
+  color: var(--color-brand);
+}
+
+.kreativ-post-card h2 {
+  margin: 0 0 1.2rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2rem, 3.4vw, 4rem);
+  line-height: 0.98;
+}
+
+.kreativ-post-card h2 a {
+  color: var(--color-text);
+}
+
+.kreativ-post-card h2 a:hover,
+.kreativ-post-card-link:hover {
+  color: var(--color-brand);
+}
+
+.kreativ-post-card-meta {
+  line-height: 1.5;
+}
+
+.kreativ-post-card-meta a {
+  color: inherit;
+}
+
+.kreativ-post-card-summary {
+  max-width: 42rem;
+  align-self: center;
+  color: var(--color-text);
+  font-size: clamp(1.05rem, 1.4vw, 1.35rem);
+  line-height: 1.6;
+}
+
+.kreativ-post-card-summary p {
+  margin: 0 0 1.2rem;
+}
+
+.kreativ-post-card-link {
+  display: inline-flex;
+  padding-bottom: 0.15rem;
+  color: var(--color-text);
+  border-bottom: 2px solid var(--color-brand);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.kreativ-post-index-pagination {
+  padding-top: 2rem;
+}
+
+.kreativ-post-index-pagination .nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.kreativ-post-index-pagination a,
+.kreativ-post-index-pagination .current {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.5rem;
+  padding: 0.4rem 0.8rem;
+  color: var(--color-text);
+  border: 1px solid color-mix(in srgb, var(--color-text) 20%, transparent);
+}
+
+.kreativ-post-index-pagination .current {
+  color: #fff;
+  background: var(--color-brand);
+  border-color: var(--color-brand);
+}
+
+.kreativ-archive-sort {
+  display: flex;
+  gap: 0.6rem;
+  margin: -2.5rem 0 2.5rem;
+}
+
+.kreativ-archive-sort a {
+  padding: 0.45rem 0.8rem;
+  color: var(--color-text);
+  border: 1px solid color-mix(in srgb, var(--color-text) 20%, transparent);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.kreativ-archive-sort a.is-current,
+.kreativ-archive-sort a:hover {
+  color: #fff;
+  background: var(--color-brand);
+  border-color: var(--color-brand);
+  text-decoration: none;
+}
+
+.kreativ-content-shell {
+  width: min(100% - 2.5rem, 860px);
+  margin: 0 auto;
+  padding: clamp(3rem, 6vw, 6rem) 0;
+}
+
+.kreativ-wide-page {
+  width: min(100% - 2.5rem, 1320px);
+}
+
+.kreativ-entry-header {
+  max-width: 50rem;
+  margin: 0 auto clamp(2.5rem, 5vw, 4.5rem);
+}
+
+.kreativ-entry-header h1,
+.kreativ-empty-state h1,
+.kreativ-related-posts h2 {
+  margin: 0.4rem 0 1rem;
+  color: var(--color-text);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.8rem, 6vw, 5.5rem);
+  line-height: 0.94;
+}
+
+.kreativ-entry-content {
+  max-width: 44rem;
+  margin: 0 auto;
+  font-size: 1.15rem;
+}
+
+.kreativ-entry-content > * + * {
+  margin-top: 1.5rem;
+}
+
+.kreativ-entry-content img {
+  height: auto;
+  max-width: 100%;
+}
+
+.kreativ-entry-footer,
+.kreativ-entry-navigation,
+.post_comments {
+  max-width: 44rem;
+  margin: clamp(2.5rem, 5vw, 4rem) auto 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid color-mix(in srgb, var(--color-text) 18%, transparent);
+}
+
+.kreativ-entry-footer {
+  color: var(--color-muted);
+  font-size: 0.95rem;
+}
+
+.kreativ-entry-navigation .nav-links {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.kreativ-entry-navigation .nav-next {
+  margin-left: auto;
+  text-align: right;
+}
+
+.kreativ-related-posts {
+  margin-top: clamp(4rem, 8vw, 8rem);
+}
+
+.kreativ-related-posts h2 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+}
+
+.kreativ-empty-state {
+  max-width: 44rem;
+  padding: clamp(2rem, 5vw, 4rem) 0;
+}
+
+.kreativ-empty-state .kreativ-search-form {
+  display: flex;
+  max-width: 32rem;
+  margin: 2rem 0;
+}
+
+.kreativ-empty-state input[type="search"] {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid color-mix(in srgb, var(--color-text) 30%, transparent);
+}
+
+.kreativ-archive-density-compact .kreativ-post-card {
+  padding: clamp(1.5rem, 3vw, 3rem) 0;
+}
+
+/* Gutenberg patterns use the same spacing and type scale as theme templates. */
+.kreativ-pattern-introduction,
+.kreativ-pattern-feature,
+.kreativ-pattern-case-study,
+.kreativ-pattern-newsletter {
+  max-width: 62rem;
+  margin: clamp(2.5rem, 6vw, 6rem) auto;
+  padding: clamp(2rem, 5vw, 5rem);
+  color: var(--color-text);
+  background: color-mix(in srgb, var(--color-bg) 92%, var(--color-brand));
+}
+
+.kreativ-pattern-introduction {
+  max-width: 48rem;
+  padding: 0;
+  background: transparent;
+}
+
+.kreativ-pattern-kicker {
+  margin: 0 0 0.8rem;
+  color: var(--color-brand);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.kreativ-pattern-introduction h1,
+.kreativ-pattern-feature h2,
+.kreativ-pattern-case-study h2,
+.kreativ-pattern-newsletter h2 {
+  max-width: 16ch;
+  margin: 0 0 1.5rem;
+  color: var(--color-text);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.4rem, 6vw, 5rem);
+  line-height: 0.95;
+}
+
+.kreativ-pattern-lead {
+  max-width: 40rem;
+  margin: 0 0 1.8rem;
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  line-height: 1.55;
+}
+
+.kreativ-pattern-feature .wp-block-button__link,
+.kreativ-pattern-case-study .wp-block-button__link,
+.kreativ-pattern-newsletter .wp-block-button__link {
+  color: #fff;
+  background: var(--color-brand);
+}
+
+.kreativ-pattern-case-study .wp-block-columns {
+  gap: clamp(1.5rem, 4vw, 4rem);
+  margin-top: clamp(2rem, 4vw, 4rem);
+}
+
+.kreativ-pattern-case-study h3 {
+  margin-bottom: 0.6rem;
+  color: var(--color-brand);
+  font-size: 1.1rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.kreativ-pattern-quote {
+  max-width: 48rem;
+  margin: clamp(3rem, 7vw, 7rem) auto;
+  padding: 0;
+  color: var(--color-text);
+  border: 0;
+}
+
+.kreativ-pattern-quote p {
+  margin: 0 0 1rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2rem, 4.5vw, 4rem);
+  line-height: 1.02;
+}
+
+.kreativ-pattern-quote cite {
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  font-style: normal;
+}
+
+.kreativ-hdr-right .navbar-nav {
+  align-items: center;
+  gap: 0.2rem;
+  list-style: none;
+}
+
+.kreativ-hdr-right .navbar-nav a {
+  display: block;
+  padding: 0.5rem 0.8rem;
+  color: var(--color-text);
+  font-size: 0.9rem;
+}
+
+.kreativ-logo a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  white-space: nowrap;
+}
+
+.kreativ-logo-text {
+  font-size: clamp(1.15rem, 1.7vw, 2rem);
+}
+
+/* Keep the fixed header below WordPress's logged-in admin bar. */
+.admin-bar .kreativ-header {
+  top: 32px;
+}
+
+@media (max-width: 991.98px) {
+  .navbar {
+    justify-content: space-between;
+  }
+
+  .navbar-collapse.offcanvas-collapse {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 100%;
+    display: block;
+    width: 100%;
+    padding: 1.5rem;
+    overflow-y: auto;
+    visibility: hidden;
+    background: var(--color-bg);
+    transition: left 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  }
+
+  .navbar-collapse.offcanvas-collapse.open {
+    left: 0;
+    visibility: visible;
+  }
+
+  .offcanvas-collapse.open .kreativ-hdr-left {
+    display: none;
+  }
+
+  .offcanvas-collapse .kreativ-search {
+    width: 100%;
+    margin: 0 0 1.5rem;
+  }
+
+  .offcanvas-collapse .navbar-nav {
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .offcanvas-show {
+    display: block;
+  }
+
+  .navbar-toggler {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.5rem;
+    padding: 0.45rem 0.7rem;
+    color: var(--color-text);
+    background: transparent;
+    border: 1px solid color-mix(in srgb, var(--color-text) 30%, transparent);
+    cursor: pointer;
+  }
+
+  .offcanvas-collapse {
+    top: 96px;
+  }
+
+  .admin-bar .offcanvas-collapse {
+    top: 128px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .kreativ-post-index {
+    width: min(100% - 2rem, 1320px);
+  }
+
+  .kreativ-post-card {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 782px) {
+  .admin-bar {
+    padding-top: 142px;
+  }
+
+  .admin-bar .kreativ-header {
+    top: 46px;
+  }
+
+  .admin-bar .offcanvas-collapse {
+    top: 142px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 479.98px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
 }
 
 .kreativ-heading {

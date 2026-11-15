@@ -11,7 +11,7 @@ endif;
     <?php if ( have_comments() ) : ?>
         <h3>
             <?php comments_number( esc_html__( 'No Comments', 'kreativ-core' ), esc_html__( 'One Comment', 'kreativ-core' ), esc_html__( '% Comments', 'kreativ-core' ) ); ?>
-            <?php esc_html_e( 'to', 'kreativ-core' ); ?> &#8220;<?php the_title(); ?>&#8221;
+            <?php esc_html_e( 'to', 'kreativ-core' ); ?> &#8220;<?php echo esc_html( get_the_title() ); ?>&#8221;
         </h3>
 
         <ol class="commentlist">
@@ -25,6 +25,8 @@ endif;
             );
             ?>
         </ol>
+
+        <?php the_comments_navigation(); ?>
     <?php elseif ( ! comments_open() ) : ?>
         <p class="nocomments"><?php esc_html_e( 'Comments are closed.', 'kreativ-core' ); ?></p>
     <?php endif; ?>

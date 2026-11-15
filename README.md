@@ -12,8 +12,10 @@ This repository contains the current private production version of the theme, in
 - Dark mode toggle
 - Footer menu support
 - Theme option for built-in related posts
-- Theme options for homepage featured categories and footer text
-- Refreshed favicon, app icon, and social image assets
+- Theme options for homepage featured categories, archive presentation, footer text, and accent color
+- Six Gutenberg patterns for editorial storytelling, case studies, quotes, and newsletter calls to action
+- Journal, Studio, and Portfolio design variations
+- Supports WordPress Site Icons configured in `Appearance > Customize > Site Identity`
 
 ## Theme Scope
 
@@ -64,9 +66,17 @@ The theme currently exposes these options:
 - `Show theme related posts on single posts`
 - `Featured category slugs`
 - `Footer text`
-- `Organization social profile URLs`
+- `Blog archive heading`
+- `Blog archive introduction`
+- `Accent color`
+- `Archive spacing`
+- `Design variation`
 
 If `Featured category slugs` is left empty, the homepage templates automatically use the most active categories.
+
+## Patterns
+
+Open the block inserter and choose the `Kreativ` category to add an editorial introduction, feature story, project case study, pull quote, newsletter invitation, or general callout. The patterns use core blocks only, so they can be edited without a companion plugin.
 
 ## Repository Notes
 
@@ -80,22 +90,26 @@ Recent work in this repository included:
 
 - removal of old dead assets and code paths
 - cleanup of built-in related posts behavior
-- refreshed screenshot and icon set
+- refreshed screenshot and logo fallback asset
 - accessibility improvements including skip links and visible focus states
 - responsive image performance improvements
 - generalization of branding and homepage logic for broader reuse
+- removal of the legacy framework stylesheet in favor of a small theme-owned layout layer
+- matching block-editor typography, colors, and content widths
+- a native Gutenberg pattern library and curated design variations
 
 ## Development
 
-Useful local checks:
+Run these local release checks before creating a package:
 
 ```bash
-php -l functions.php
-php -l header.php
-php -l footer.php
+find . -type f -name '*.php' -not -path './vendor/*' -print0 | xargs -0 -n1 php -l
+find js -type f -name '*.js' -print0 | xargs -0 -n1 node --check
+rg -U '\r$' --glob '*.php' --glob '*.css' --glob '*.js' --glob '*.txt' --glob '*.md' --glob '*.pot' .
+git diff --check
 ```
 
-For broader validation, lint any edited PHP templates before packaging a release zip.
+These validate PHP syntax, JavaScript syntax, LF line endings, and whitespace errors in the Git diff. Run Theme Check separately in a WordPress installation before a WordPress.org submission.
 
 ## License
 
@@ -103,6 +117,5 @@ GPL-2.0-or-later. See [license.txt](license.txt).
 
 ## Bundled Resources
 
-- Theme screenshot and icon assets: Copyright 2026 Andrei Olaru, GPL-2.0-or-later.
-- K logo SVG and generated PNG icon variants: Copyright 2026 Andrei Olaru, GPL-2.0-or-later.
-- `assets/dist/main.css` includes Bootstrap-derived CSS components, Copyright 2011-2018 Twitter, Inc. and The Bootstrap Authors, MIT license, source: https://getbootstrap.com/.
+- Theme screenshot and logo fallback assets: Copyright 2026 Andrei Olaru, GPL-2.0-or-later.
+- K logo SVG: Copyright 2026 Andrei Olaru, GPL-2.0-or-later.

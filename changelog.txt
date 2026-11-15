@@ -1,6 +1,36 @@
 Repository History
 ------------------
 
+version 1.0.14 (November 2026)
+- fixed mobile menu keyboard focus order and opened-menu focus behavior
+- restored standard page loops, editor content, and comments support in the remaining legacy page templates
+- corrected page search-result metadata and removed duplicate dark-mode toggle CSS
+
+version 1.0.13 (November 2026)
+- added six native Gutenberg patterns in the Kreativ pattern category
+- added Journal, Studio, and Portfolio design variations in the Customizer
+
+version 1.0.12 (November 2026)
+- removed the legacy framework stylesheet and replaced it with theme-owned responsive layout primitives
+- added matching block-editor styles, editor color palette support, and dynamic accent-color styling
+- improved default color contrast and consolidated taxonomy archive queries
+
+version 1.0.11 (November 2026)
+- unified public templates around the editorial archive layout
+- added archive heading, introduction, accent color, and spacing options in the Customizer
+- documented release checks for PHP, JavaScript, line endings, and Git whitespace
+
+version 1.0.10 (November 2026)
+- fixed stylesheet loading and made the dark-mode toggle reliable when browser storage is unavailable
+- added accessible mobile navigation behavior with keyboard escape support
+- corrected search result states and pagination, restored standard content loops, and removed the unsafe attachment redirect template
+- improved translation coverage, output escaping, and theme resource cleanup for WordPress.org review
+
+version 1.0.9 (October 2026)
+- added standards-based navigation, feed, post-class, comments, and threaded-reply support
+- added block editor supports, a callout pattern, and configurable header and background settings
+- passed Theme Check and WordPress Theme Test Data validation
+
 version 1.0.8 (May 2026)
 - removed SEO, social metadata, schema, login customization, and core hook removals from the theme package
 - replaced the minified-only distributed stylesheet with a readable compiled stylesheet
@@ -71,7 +101,7 @@ version 0.9.9.3 (September 4, 2014)
 
 version 0.9.9.2 (July 8, 2014)
 - theme customization
-- wordpress 3.9.1 optimizations
+- WordPress 3.9.1 optimizations
 - scripts updated
 - better js minification and loading
 - improvements and fixes
@@ -119,7 +149,7 @@ version 0.9.6.2 (February 25, 2012)
 - started the _s theme adaptation
 
 version 0.9.6.0 (February 6, 2012)
-- native wordpress menu enabled
+- native WordPress menu enabled
 - 4 filters types
 - better transparent logo and new favicon
 - lots of css3 and htlm5 fixes

@@ -1,18 +1,51 @@
 <?php
 function kreativ_core_setup() {
-	//Enable Custom Menus
-    add_theme_support('menus');
+	register_nav_menus(
+		array(
+			'primary' => __( 'Primary Menu', 'kreativ-core' ),
+			'footer'  => __( 'Footer Menu', 'kreativ-core' ),
+		)
+	);
 
-	if (function_exists('register_nav_menu')) {
-		register_nav_menu( 'primary', __( 'Primary Menu', 'kreativ-core' ) );
-        register_nav_menu( 'footer', __( 'Footer Menu', 'kreativ-core' ) );
-	}
-
-	//Enable Post Thumbnails
-	add_theme_support('post-thumbnails');
-
-	//Enable Theme Titles
-	add_theme_support('title-tag');
+	add_theme_support( 'automatic-feed-links' );
+	add_theme_support( 'post-thumbnails' );
+	add_theme_support( 'title-tag' );
+	add_theme_support( 'wp-block-styles' );
+	add_theme_support( 'editor-styles' );
+	add_theme_support( 'responsive-embeds' );
+	add_theme_support( 'align-wide' );
+	add_theme_support(
+		'editor-color-palette',
+		array(
+			array(
+				'name'  => __( 'Kreativ crimson', 'kreativ-core' ),
+				'slug'  => 'kreativ-pink',
+				'color' => '#c7184d',
+			),
+			array(
+				'name'  => __( 'Kreativ blue', 'kreativ-core' ),
+				'slug'  => 'kreativ-blue',
+				'color' => '#007aa3',
+			),
+		)
+	);
+	add_theme_support(
+		'custom-background',
+		array(
+			'default-color' => 'ffffff',
+		)
+	);
+	add_theme_support(
+		'custom-header',
+		array(
+			'width'         => 2000,
+			'height'        => 600,
+			'flex-width'    => true,
+			'flex-height'   => true,
+			'header-text'   => false,
+			'uploads'       => true,
+		)
+	);
     add_theme_support(
         'custom-logo',
         array(
@@ -37,7 +70,7 @@ function kreativ_core_setup() {
 
 	load_theme_textdomain( 'kreativ-core', get_template_directory() . '/languages' );
 
-	add_editor_style( 'assets/dist/main.css' );
+	add_editor_style( 'editor-style.css' );
 
 	if ( ! isset( $GLOBALS['content_width'] ) ) {
 		$GLOBALS['content_width'] = 900;
@@ -47,17 +80,39 @@ function kreativ_core_setup() {
 
 add_action( 'after_setup_theme', 'kreativ_core_setup' );
 
-function kreativ_script_enqueue()
-{
+require_once get_template_directory() . '/inc/patterns.php';
+
+function kreativ_script_enqueue() {
     $theme_version = wp_get_theme()->get( 'Version' );
 
-    wp_enqueue_style( 'kreativ-styles', get_template_directory_uri() . '/assets/dist/main.css' , array(), $theme_version);
-    wp_enqueue_style( 'kreativ-global', get_template_directory_uri() . '/css/kreativ-global.css', array( 'kreativ-styles' ), $theme_version );
+    wp_enqueue_style( 'kreativ-core', get_stylesheet_uri(), array(), $theme_version );
+    wp_enqueue_style( 'kreativ-global', get_template_directory_uri() . '/css/kreativ-global.css', array( 'kreativ-core' ), $theme_version );
+
+    if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+        wp_enqueue_script( 'comment-reply' );
+    }
 }
-add_action('wp_enqueue_scripts', 'kreativ_script_enqueue');
+add_action( 'wp_enqueue_scripts', 'kreativ_script_enqueue' );
+
+function kreativ_page_menu_fallback( $args = array() ) {
+    $menu_class = ! empty( $args['menu_class'] ) ? $args['menu_class'] : 'navbar-nav';
+    ?>
+    <ul class="<?php echo esc_attr( $menu_class ); ?>">
+        <?php wp_list_pages( array( 'title_li' => '' ) ); ?>
+    </ul>
+    <?php
+}
 
 function kreativ_enqueue_page_assets() {
     $theme_version = wp_get_theme()->get( 'Version' );
+
+    wp_enqueue_script(
+        'kreativ-navigation',
+        get_template_directory_uri() . '/js/theme-navigation.js',
+        array(),
+        $theme_version,
+        true
+    );
 
     wp_enqueue_script(
         'kreativ-dark-mode',
@@ -65,6 +120,14 @@ function kreativ_enqueue_page_assets() {
         array(),
         $theme_version,
         true
+    );
+
+    wp_localize_script(
+        'kreativ-dark-mode',
+        'kreativCoreSettings',
+        array(
+            'darkModeLabel' => __( 'Toggle dark mode', 'kreativ-core' ),
+        )
     );
 
     if ( is_page_template( array( 'template-filter-all.php', 'template-filter-market.php' ) ) ) {
@@ -94,14 +157,12 @@ function kreativ_get_post_thumbnail_markup( $post_id = 0, $size = 'medium', $att
     );
 
     $attributes = wp_parse_args( $attributes, $default_attributes );
-    $thumb_id   = get_post_thumbnail_id( $post_id );
-
-    if ( $thumb_id ) {
+    if ( has_post_thumbnail( $post_id ) ) {
         if ( empty( $attributes['alt'] ) ) {
             $attributes['alt'] = trim( wp_strip_all_tags( get_the_title( $post_id ) ) );
         }
 
-        return wp_get_attachment_image( $thumb_id, $size, false, $attributes );
+        return get_the_post_thumbnail( $post_id, $size, $attributes );
     }
 
     $class   = trim( ( $attributes['class'] ?? '' ) . ' kreativ-fallback-thumb' );
@@ -117,6 +178,31 @@ function kreativ_get_post_thumbnail_markup( $post_id = 0, $size = 'medium', $att
         esc_attr( $loading ),
         esc_attr( $decoding )
     );
+}
+
+function kreativ_get_thumbnail_allowed_html() {
+    static $allowed_html = null;
+
+    if ( null === $allowed_html ) {
+        $allowed_html = wp_kses_allowed_html( 'post' );
+        $allowed_html['img'] = array_merge(
+            $allowed_html['img'] ?? array(),
+            array(
+                'alt'           => true,
+                'class'         => true,
+                'decoding'      => true,
+                'fetchpriority' => true,
+                'height'        => true,
+                'loading'       => true,
+                'sizes'         => true,
+                'src'           => true,
+                'srcset'        => true,
+                'width'         => true,
+            )
+        );
+    }
+
+    return $allowed_html;
 }
 
 function kreativ_get_theme_asset_url( $path ) {
@@ -135,6 +221,110 @@ function kreativ_get_site_description() {
     }
 
     return __( 'A lightweight, responsive WordPress site.', 'kreativ-core' );
+}
+
+function kreativ_get_archive_heading() {
+    $heading = trim( (string) get_theme_mod( 'kreativ_archive_heading', '' ) );
+
+    return '' !== $heading ? $heading : __( 'Latest posts', 'kreativ-core' );
+}
+
+function kreativ_get_archive_intro() {
+    return trim( (string) get_theme_mod( 'kreativ_archive_intro', '' ) );
+}
+
+function kreativ_get_archive_sort() {
+    $sort = isset( $_GET['sort'] ) ? sanitize_key( wp_unslash( $_GET['sort'] ) ) : 'latest';
+
+    return in_array( $sort, array( 'latest', 'popular' ), true ) ? $sort : 'latest';
+}
+
+function kreativ_get_taxonomy_archive_query( $taxonomy, $term_id, $sort = 'latest' ) {
+    $taxonomy = sanitize_key( $taxonomy );
+    $sort     = in_array( $sort, array( 'latest', 'popular' ), true ) ? $sort : 'latest';
+
+    return new WP_Query(
+        array(
+            'post_type'           => 'post',
+            'posts_per_page'      => (int) get_option( 'posts_per_page' ),
+            'paged'               => max( 1, (int) get_query_var( 'paged' ) ),
+            'orderby'             => 'popular' === $sort ? 'comment_count' : 'date',
+            'order'               => 'DESC',
+            'post_status'         => 'publish',
+            'ignore_sticky_posts' => true,
+            'tax_query'           => array(
+                array(
+                    'taxonomy' => $taxonomy,
+                    'field'    => 'term_id',
+                    'terms'    => array( absint( $term_id ) ),
+                ),
+            ),
+        )
+    );
+}
+
+function kreativ_render_post_card() {
+    ?>
+    <article id="post-<?php the_ID(); ?>" <?php post_class( 'kreativ-post-card' ); ?>>
+        <?php if ( is_sticky() ) : ?>
+            <p class="kreativ-post-card-badge"><?php esc_html_e( 'Featured', 'kreativ-core' ); ?></p>
+        <?php endif; ?>
+
+        <div class="kreativ-post-card-heading">
+            <h2>
+                <a href="<?php echo esc_url( get_permalink() ); ?>" rel="bookmark">
+                    <?php echo esc_html( get_the_title() ); ?>
+                </a>
+            </h2>
+
+            <div class="kreativ-post-card-meta">
+                <?php
+                $date       = esc_html( get_the_date( 'F j, Y' ) );
+                $categories = get_the_category_list( ', ' );
+
+                if ( 'post' === get_post_type() && $categories ) {
+                    $post_meta = sprintf(
+                        __( 'Published on %1$s in %2$s.', 'kreativ-core' ),
+                        $date,
+                        wp_kses_post( $categories )
+                    );
+                } else {
+                    $post_meta = sprintf(
+                        __( 'Published on %s.', 'kreativ-core' ),
+                        $date
+                    );
+                }
+
+                echo wp_kses_post( $post_meta );
+                ?>
+            </div>
+        </div>
+
+        <div class="kreativ-post-card-summary">
+            <?php the_excerpt(); ?>
+            <a class="kreativ-post-card-link" href="<?php echo esc_url( get_permalink() ); ?>">
+                <?php esc_html_e( 'Read article', 'kreativ-core' ); ?>
+            </a>
+        </div>
+    </article>
+    <?php
+}
+
+function kreativ_render_pagination( $query = null, $args = array() ) {
+    $pagination_args = array(
+        'mid_size'  => 1,
+        'prev_text' => __( 'Previous', 'kreativ-core' ),
+        'next_text' => __( 'Next', 'kreativ-core' ),
+    );
+
+    if ( $query instanceof WP_Query ) {
+        $pagination_args['total']   = max( 1, (int) $query->max_num_pages );
+        $pagination_args['current'] = max( 1, (int) get_query_var( 'paged' ) );
+    }
+
+    $pagination_args = wp_parse_args( $args, $pagination_args );
+
+    echo wp_kses_post( paginate_links( $pagination_args ) );
 }
 
 function kreativ_get_featured_categories( $limit = 6 ) {
@@ -323,8 +513,161 @@ function kreativ_customize_register( $wp_customize ) {
         )
     );
 
+    $wp_customize->add_setting(
+        'kreativ_archive_heading',
+        array(
+            'default'           => '',
+            'sanitize_callback' => 'sanitize_text_field',
+        )
+    );
+
+    $wp_customize->add_control(
+        'kreativ_archive_heading',
+        array(
+            'type'        => 'text',
+            'section'     => 'kreativ_theme_options',
+            'label'       => __( 'Blog archive heading', 'kreativ-core' ),
+            'description' => __( 'Optional heading for the main posts archive. Leave empty to use “Latest posts”.', 'kreativ-core' ),
+        )
+    );
+
+    $wp_customize->add_setting(
+        'kreativ_archive_intro',
+        array(
+            'default'           => '',
+            'sanitize_callback' => 'sanitize_textarea_field',
+        )
+    );
+
+    $wp_customize->add_control(
+        'kreativ_archive_intro',
+        array(
+            'type'        => 'textarea',
+            'section'     => 'kreativ_theme_options',
+            'label'       => __( 'Blog archive introduction', 'kreativ-core' ),
+            'description' => __( 'Optional introductory text below the main posts archive heading.', 'kreativ-core' ),
+        )
+    );
+
+    $wp_customize->add_setting(
+        'kreativ_accent_color',
+        array(
+            'default'           => '#c7184d',
+            'sanitize_callback' => 'sanitize_hex_color',
+        )
+    );
+
+    $wp_customize->add_control(
+        new WP_Customize_Color_Control(
+            $wp_customize,
+            'kreativ_accent_color',
+            array(
+                'section' => 'kreativ_theme_options',
+                'label'   => __( 'Accent color', 'kreativ-core' ),
+            )
+        )
+    );
+
+    $wp_customize->add_setting(
+        'kreativ_archive_density',
+        array(
+            'default'           => 'comfortable',
+            'sanitize_callback' => 'kreativ_sanitize_archive_density',
+        )
+    );
+
+    $wp_customize->add_control(
+        'kreativ_archive_density',
+        array(
+            'type'    => 'select',
+            'section' => 'kreativ_theme_options',
+            'label'   => __( 'Archive spacing', 'kreativ-core' ),
+            'choices' => array(
+                'comfortable' => __( 'Comfortable', 'kreativ-core' ),
+                'compact'     => __( 'Compact', 'kreativ-core' ),
+            ),
+        )
+    );
+
+    $wp_customize->add_setting(
+        'kreativ_style_variation',
+        array(
+            'default'           => 'journal',
+            'sanitize_callback' => 'kreativ_sanitize_style_variation',
+        )
+    );
+
+    $wp_customize->add_control(
+        'kreativ_style_variation',
+        array(
+            'type'        => 'select',
+            'section'     => 'kreativ_theme_options',
+            'label'       => __( 'Design variation', 'kreativ-core' ),
+            'description' => __( 'Choose the default visual direction for the theme.', 'kreativ-core' ),
+            'choices'     => array(
+                'journal'   => __( 'Journal', 'kreativ-core' ),
+                'studio'    => __( 'Studio', 'kreativ-core' ),
+                'portfolio' => __( 'Portfolio', 'kreativ-core' ),
+            ),
+        )
+    );
+
 }
 add_action( 'customize_register', 'kreativ_customize_register' );
+
+function kreativ_sanitize_archive_density( $value ) {
+    return in_array( $value, array( 'comfortable', 'compact' ), true ) ? $value : 'comfortable';
+}
+
+function kreativ_sanitize_style_variation( $value ) {
+    return in_array( $value, array( 'journal', 'studio', 'portfolio' ), true ) ? $value : 'journal';
+}
+
+function kreativ_add_theme_option_body_classes( $classes ) {
+    $classes[] = 'kreativ-archive-density-' . sanitize_html_class( get_theme_mod( 'kreativ_archive_density', 'comfortable' ) );
+    $classes[] = 'kreativ-style-' . sanitize_html_class( get_theme_mod( 'kreativ_style_variation', 'journal' ) );
+
+    if ( kreativ_get_custom_accent_color() ) {
+        $classes[] = 'kreativ-has-custom-accent';
+    }
+
+    return $classes;
+}
+add_filter( 'body_class', 'kreativ_add_theme_option_body_classes' );
+
+function kreativ_get_custom_accent_color() {
+    return sanitize_hex_color( get_theme_mod( 'kreativ_accent_color', false ) );
+}
+
+function kreativ_add_theme_option_styles() {
+    $accent_color = kreativ_get_custom_accent_color();
+
+    if ( $accent_color ) {
+        wp_add_inline_style( 'kreativ-core', 'body.kreativ-has-custom-accent { --color-brand: ' . $accent_color . '; }' );
+    }
+}
+add_action( 'wp_enqueue_scripts', 'kreativ_add_theme_option_styles', 20 );
+
+function kreativ_enqueue_editor_assets() {
+    if ( ! is_admin() ) {
+        return;
+    }
+
+    $theme_version = wp_get_theme()->get( 'Version' );
+    $accent_color  = sanitize_hex_color( get_theme_mod( 'kreativ_accent_color', '#c7184d' ) );
+
+    wp_enqueue_style(
+        'kreativ-editor',
+        get_theme_file_uri( 'editor-style.css' ),
+        array(),
+        $theme_version
+    );
+
+    if ( $accent_color ) {
+        wp_add_inline_style( 'kreativ-editor', ':root { --kreativ-editor-accent: ' . $accent_color . '; }' );
+    }
+}
+add_action( 'enqueue_block_assets', 'kreativ_enqueue_editor_assets' );
 
 function kreativ_add_category_body_class( $classes ) {
     if ( is_category() ) {
@@ -337,19 +680,6 @@ function kreativ_add_category_body_class( $classes ) {
 }
 add_filter( 'body_class', 'kreativ_add_category_body_class' );
 
-function kf_is_new_post( $post_id ) {
+function kreativ_is_new_post( $post_id ) {
     return ( time() - get_post_time( 'U', true, $post_id ) ) <= 7 * DAY_IN_SECONDS;
 }
-
-add_action('wp_enqueue_scripts', function () {
-
-    if (is_category() || is_tag()) {
-        wp_enqueue_style(
-            'kreativ-archive',
-            get_template_directory_uri() . '/css/kreativ-archive.css',
-            [],
-            '1.0.0'
-        );
-    }
-
-});

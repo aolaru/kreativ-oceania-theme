@@ -1,9 +1,9 @@
 === Kreativ Core ===
 Contributors: andreiolaru
 Requires at least: 6.4
-Tested up to: 6.9
+Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.8
+Stable tag: 1.0.14
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: blog, portfolio, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
@@ -23,6 +23,8 @@ It includes:
 * optional built-in related posts for single posts
 * dark mode
 * category-driven editorial layouts
+* six Gutenberg patterns for editorial, case-study, quote, and newsletter content
+* Journal, Studio, and Portfolio design variations
 
 == Installation ==
 
@@ -42,7 +44,45 @@ Use `Appearance > Customize > Theme Options` and set `Featured category slugs` t
 
 Yes. Use `Appearance > Customize > Theme Options` and disable `Show theme related posts on single posts`.
 
+= How do I change the visual style? =
+
+Use `Appearance > Customize > Theme Options` and select a design variation. Journal is the default editorial style, while Studio and Portfolio offer warmer and more structured alternatives.
+
 == Changelog ==
+
+= 1.0.14 =
+
+* fixed mobile menu keyboard focus order and focus management
+* restored standard page loops and editor content for all page templates
+* improved search-result metadata for pages and consolidated duplicate toggle styles
+
+= 1.0.13 =
+
+* added six Gutenberg patterns in the Kreativ pattern category
+* added Journal, Studio, and Portfolio design variations in the Customizer
+
+= 1.0.12 =
+
+* removed the legacy framework stylesheet and replaced its required layout primitives with theme-owned CSS
+* added editor typography, color palette, and dynamic accent-color support
+* improved default color contrast, consolidated taxonomy archive queries, and completed responsive accessibility checks
+
+= 1.0.11 =
+
+* unified post, page, archive, search, author, and error templates around the editorial layout
+* added Customizer controls for the archive heading, introduction, accent color, and spacing
+* documented local checks for PHP, JavaScript, line endings, and Git whitespace
+
+= 1.0.10 =
+
+* fixed stylesheet loading, responsive navigation, search results, attachment handling, and wide-page content output
+* improved output escaping, translation coverage, local storage resilience, and page/post pagination support
+
+= 1.0.9 =
+
+* added standards-based navigation, feed, post-class, comments, and threaded-reply support
+* added block editor supports, a callout pattern, and configurable header and background settings
+* passed Theme Check and WordPress Theme Test Data validation
 
 = 1.0.8 =
 
@@ -69,21 +109,16 @@ Yes. Use `Appearance > Customize > Theme Options` and disable `Show theme relate
 
 == License ==
 
-Kreativ Core is licensed under the GPL-2.0-or-later license.
+Kreativ Core, Copyright 2026 Andrei Olaru, is distributed under the terms of the GNU General Public License v2 or later.
 
 == Resources ==
 
-Kreativ Core screenshot and icon assets
+Kreativ Core screenshot and logo fallback assets
 Copyright 2026 Andrei Olaru
 License: GPL-2.0-or-later
 Source: bundled with this theme
 
-K logo SVG and generated PNG icon variants
+K logo SVG and logo fallback PNG
 Copyright 2026 Andrei Olaru
 License: GPL-2.0-or-later
 Source: bundled with this theme
-
-Theme CSS in assets/dist/main.css includes Bootstrap-derived CSS components.
-Bootstrap Copyright 2011-2018 Twitter, Inc. and The Bootstrap Authors
-License: MIT
-Source: https://getbootstrap.com/

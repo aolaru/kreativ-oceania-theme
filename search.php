@@ -1,51 +1,34 @@
 <?php get_header(); ?>
 
-    <div class="container-fluid">
+<main id="primary" class="kreativ-post-index">
+    <header class="kreativ-post-index-header">
+        <p class="kreativ-post-index-kicker"><?php esc_html_e( 'Search', 'kreativ-core' ); ?></p>
+        <h1>
+            <?php
+            if ( have_posts() ) {
+                printf( esc_html__( 'Results for "%s"', 'kreativ-core' ), esc_html( get_search_query() ) );
+            } else {
+                printf( esc_html__( 'No results for "%s"', 'kreativ-core' ), esc_html( get_search_query() ) );
+            }
+            ?>
+        </h1>
+    </header>
 
-        <div class="text-center">
-
-            <h2 class="heading-h2"><?php printf( esc_html__( 'No results for “%s”', 'kreativ-core' ), esc_html( get_search_query() ) ); ?></h2>
-
+    <?php if ( have_posts() ) : ?>
+        <div class="kreativ-post-list">
+            <?php while ( have_posts() ) : the_post(); ?>
+                <?php kreativ_render_post_card(); ?>
+            <?php endwhile; ?>
         </div>
-
-        <div class="row">
-
-			<?php if (have_posts()) : while (have_posts()) : the_post();
-
-			$post_id = $post->ID;
-			
-			?>
-            <div class="col-md-4 col-lg-3 col-sm-6">
-
-                <div class="kreativ-font-card">
-
-                        <a href="<?php echo esc_url( get_permalink() ); ?>" class="kreativ-card-title" title="<?php the_title_attribute(); ?>">
-                            <strong><?php the_title(); ?></strong>
-							<?php
-                            echo kreativ_get_post_thumbnail_markup(
-                                get_the_ID(),
-                                'medium',
-                                array(
-                                    'class' => 'card-img-top',
-                                )
-                            );
-                            ?>
-                        </a>
-
-                </div>
-
-            </div>
-
-		<?php endwhile; ?>
-
-		<?php else : ?>
-
+        <nav class="kreativ-post-index-pagination" aria-label="<?php esc_attr_e( 'Search results pagination', 'kreativ-core' ); ?>">
+            <?php kreativ_render_pagination(); ?>
+        </nav>
+    <?php else : ?>
+        <div class="kreativ-empty-state">
+            <p><?php esc_html_e( 'Try another keyword or browse the latest posts.', 'kreativ-core' ); ?></p>
+            <?php get_search_form(); ?>
         </div>
+    <?php endif; ?>
+</main>
 
-		<p class="text-center"><?php esc_html_e( 'We could not find any matching content. Try another keyword or browse recent posts from the homepage.', 'kreativ-core' ); ?></p>
-
-		<?php endif; ?>
-
-    </div>
-
-<?php get_footer();
+<?php get_footer(); ?>

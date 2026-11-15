@@ -62,7 +62,7 @@
   font-weight: 700;
   letter-spacing: 0.03em;
   text-transform: uppercase;
-  background: #ff3366;
+  background: var(--color-brand);
   border-radius: 8px;
 }
 
@@ -172,13 +172,12 @@
 }
 
 .kreativ-section .row {
-  margin-left: -10px;
-  margin-right: -10px;
+  gap: 1.25rem;
 }
 
 .kreativ-section .col-md-3,
 .kreativ-section .col-sm-6 {
-  padding: 10px;
+  padding: 0;
 }
 
 .kf-badge {
@@ -232,7 +231,7 @@
   font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.03em;
-  background: #ff3366;
+  background: var(--color-brand);
   border-radius: 999px;
 }
 
