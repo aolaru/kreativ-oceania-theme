@@ -3,7 +3,7 @@ Contributors: andreiolaru
 Requires at least: 6.4
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.14
+Stable tag: 1.0.15
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: blog, portfolio, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
@@ -49,6 +49,10 @@ Yes. Use `Appearance > Customize > Theme Options` and disable `Show theme relate
 Use `Appearance > Customize > Theme Options` and select a design variation. Journal is the default editorial style, while Studio and Portfolio offer warmer and more structured alternatives.
 
 == Changelog ==
+
+= 1.0.15 =
+
+* updated the author metadata to Kreativ WP and linked the theme to its dedicated Kreativ Core page
 
 = 1.0.14 =
 

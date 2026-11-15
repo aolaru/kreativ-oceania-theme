@@ -1,6 +1,9 @@
 Repository History
 ------------------
 
+version 1.0.15 (November 2026)
+- updated the public metadata to use Kreativ WP as the author and the dedicated Kreativ Core page as the theme URL
+
 version 1.0.14 (November 2026)
 - fixed mobile menu keyboard focus order and opened-menu focus behavior
 - restored standard page loops, editor content, and comments support in the remaining legacy page templates
