@@ -1,6 +1,9 @@
 Repository History
 ------------------
 
+version 1.0.16 (November 2026)
+- removed repository-control files that are not accepted in WordPress.org theme packages
+
 version 1.0.15 (November 2026)
 - updated the public metadata to use Kreativ WP as the author and the dedicated Kreativ Core page as the theme URL
 

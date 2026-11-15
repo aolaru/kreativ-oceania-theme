@@ -3,7 +3,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Kreativ Core 1.0.15\n"
+"Project-Id-Version: Kreativ Core 1.0.16\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-11-15 21:00+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
