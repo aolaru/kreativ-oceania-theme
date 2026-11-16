@@ -21,7 +21,7 @@ p, h1, h2, h3, h4, h5, h6 {
 .mr-auto { margin-left: auto !important; margin-right: 0 !important; }
 
 /* Navbar direction */
-.kreativ-header .navbar-nav {
+.kreativ-header .kreativ-primary-menu {
   flex-direction: row-reverse;
   text-align: right;
 }

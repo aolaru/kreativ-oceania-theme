@@ -95,10 +95,10 @@ function kreativ_script_enqueue() {
 add_action( 'wp_enqueue_scripts', 'kreativ_script_enqueue' );
 
 function kreativ_page_menu_fallback( $args = array() ) {
-    $menu_class = ! empty( $args['menu_class'] ) ? $args['menu_class'] : 'navbar-nav';
+    $menu_class = ! empty( $args['menu_class'] ) ? $args['menu_class'] : 'kreativ-primary-menu';
     ?>
     <ul class="<?php echo esc_attr( $menu_class ); ?>">
-        <?php wp_list_pages( array( 'title_li' => '' ) ); ?>
+        <?php wp_list_pages( array( 'depth' => 1, 'title_li' => '' ) ); ?>
     </ul>
     <?php
 }
@@ -333,7 +333,11 @@ function kreativ_render_pagination( $query = null, $args = array() ) {
 
     $pagination_args = wp_parse_args( $args, $pagination_args );
 
-    echo wp_kses_post( paginate_links( $pagination_args ) );
+    $pagination = paginate_links( $pagination_args );
+
+    if ( $pagination ) {
+        echo wp_kses_post( $pagination );
+    }
 }
 
 function kreativ_get_featured_categories( $limit = 6 ) {

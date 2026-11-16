@@ -24,8 +24,8 @@
         </div>
     <?php endif; ?>
     <div class="container">
-        <nav class="navbar navbar-expand-lg">
-            <p class="kreativ-logo offcanvas-show">
+        <nav class="kreativ-site-nav">
+            <p class="kreativ-logo kreativ-mobile-brand">
                 <a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'description' ) ); ?>">
                     <?php if ( has_custom_logo() ) : ?>
                         <?php echo wp_get_attachment_image( get_theme_mod( 'custom_logo' ), 'full', false, array( 'class' => 'kreativ-logo-icon', 'alt' => $site_title ) ); ?>
@@ -38,11 +38,11 @@
                 </a>
             </p>
 
-            <button class="navbar-toggler" type="button" data-kreativ-menu-toggle aria-controls="site-navigation" aria-expanded="false" aria-label="<?php esc_attr_e( 'Toggle menu', 'kreativ-core' ); ?>">
+            <button class="kreativ-menu-toggle" type="button" data-kreativ-menu-toggle aria-controls="site-navigation" aria-expanded="false" aria-label="<?php esc_attr_e( 'Toggle menu', 'kreativ-core' ); ?>">
                 <?php esc_html_e( 'Menu', 'kreativ-core' ); ?>
             </button>
 
-            <div id="site-navigation" class="navbar-collapse offcanvas-collapse">
+            <div id="site-navigation" class="kreativ-site-navigation kreativ-offcanvas">
                 
                 <div class="kreativ-hdr-left">
 					<p class="kreativ-logo">
@@ -69,7 +69,7 @@
                     wp_nav_menu(array(
                         'theme_location' => 'primary',
                         'container' => false,
-                        'menu_class' => 'navbar-nav',
+                        'menu_class' => 'kreativ-primary-menu',
                         'depth' => 0,
                         'fallback_cb' => 'kreativ_page_menu_fallback',
                     ));

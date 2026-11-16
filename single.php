@@ -3,6 +3,11 @@
 <main id="primary" class="kreativ-content-shell" tabindex="-1">
     <?php while ( have_posts() ) : the_post(); ?>
         <article id="post-<?php the_ID(); ?>" <?php post_class( 'kreativ-entry' ); ?>>
+            <?php
+            $post_tags      = get_the_tags();
+            $post_author    = get_the_author();
+            $can_edit_post  = current_user_can( 'edit_post', get_the_ID() );
+            ?>
             <header class="kreativ-entry-header">
                 <p class="kreativ-post-card-meta"><?php echo wp_kses_post( get_the_category_list( ', ' ) ); ?></p>
                 <h1><?php echo esc_html( get_the_title() ); ?></h1>
@@ -13,6 +18,12 @@
                     ?>
                 </p>
             </header>
+
+            <?php if ( has_post_thumbnail() ) : ?>
+                <figure class="kreativ-entry-featured-media">
+                    <?php the_post_thumbnail( 'large', array( 'class' => 'kreativ-entry-featured-image', 'loading' => 'eager', 'fetchpriority' => 'high' ) ); ?>
+                </figure>
+            <?php endif; ?>
 
             <div class="kreativ-entry-content">
                 <?php the_content(); ?>
@@ -26,16 +37,20 @@
                 ?>
             </div>
 
-            <footer class="kreativ-entry-footer">
-                <?php if ( get_the_tags() ) : ?>
+            <?php if ( $post_tags || $post_author || $can_edit_post ) : ?>
+                <footer class="kreativ-entry-footer">
+                <?php if ( $post_tags ) : ?>
                     <p><strong><?php esc_html_e( 'Tags:', 'kreativ-core' ); ?></strong> <?php the_tags( '', ', ', '' ); ?></p>
                 <?php endif; ?>
-                <p>
-                    <?php /* translators: %s: linked post author name. */ ?>
-                    <?php printf( wp_kses_post( __( 'Written by %s.', 'kreativ-core' ) ), wp_kses_post( get_the_author_posts_link() ) ); ?>
-                    <?php edit_post_link( esc_html__( 'Edit', 'kreativ-core' ), ' ', '' ); ?>
-                </p>
-            </footer>
+                <?php if ( $post_author ) : ?>
+                    <p>
+                        <?php /* translators: %s: linked post author name. */ ?>
+                        <?php printf( wp_kses_post( __( 'Written by %s.', 'kreativ-core' ) ), wp_kses_post( get_the_author_posts_link() ) ); ?>
+                    </p>
+                <?php endif; ?>
+                <?php edit_post_link( esc_html__( 'Edit', 'kreativ-core' ), '<p>', '</p>' ); ?>
+                </footer>
+            <?php endif; ?>
         </article>
 
         <?php if ( kreativ_single_related_posts_enabled() ) : ?>

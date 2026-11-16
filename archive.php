@@ -4,7 +4,15 @@
     <header class="kreativ-post-index-header">
         <p class="kreativ-post-index-kicker"><?php esc_html_e( 'Archive', 'kreativ-core' ); ?></p>
         <?php the_archive_title( '<h1>', '</h1>' ); ?>
-        <?php the_archive_description( '<div class="kreativ-post-index-intro">', '</div>' ); ?>
+        <?php
+        $archive_description = get_the_archive_description();
+
+        if ( $archive_description ) :
+            ?>
+            <div class="kreativ-post-index-intro"><?php echo wp_kses_post( $archive_description ); ?></div>
+            <?php
+        endif;
+        ?>
     </header>
 
     <?php if ( have_posts() ) : ?>

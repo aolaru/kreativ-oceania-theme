@@ -3,7 +3,7 @@ Contributors: andreiolaru
 Requires at least: 6.4
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.17
+Stable tag: 1.0.18
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: blog, portfolio, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
@@ -54,11 +54,19 @@ Kreativ Core does not set cookies or send visitor data to external services. The
 
 == Upgrade Notice ==
 
+= 1.0.18 =
+
+Prevents the header fallback navigation from expanding with nested pages and scopes its menu styles to Kreativ Core.
+
 = 1.0.17 =
 
 Adds dedicated archive handling, generic fixed-ratio post-card media, improved landmarks and multi-level navigation, and earlier accessible dark-mode initialization.
 
 == Changelog ==
+
+= 1.0.18 =
+
+* scoped header navigation styles to Kreativ Core, constrained the no-menu fallback to top-level pages, guarded empty archive pagination output, improved single-post media presentation, and refined related-post and submenu layouts
 
 = 1.0.17 =
 

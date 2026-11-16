@@ -1,6 +1,13 @@
 Repository History
 ------------------
 
+version 1.0.18 (November 2026)
+- scoped header navigation styles to avoid interfering with other WordPress navigation markup
+- limited the no-menu fallback to top-level pages so nested page hierarchies cannot expand the fixed header
+- guarded empty archive pagination output to keep debug-enabled sites free of PHP deprecations
+- added a responsive featured-image hero and improved single-post metadata and comment-form presentation
+- restored unclipped desktop submenu flyouts and condensed related posts into a compact reading list
+
 version 1.0.17 (November 2026)
 - added a dedicated archive template, correct posts-page headings, and archive pagination
 - replaced branded thumbnail fallbacks with neutral fixed-ratio media placeholders

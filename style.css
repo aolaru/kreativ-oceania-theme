@@ -4,7 +4,7 @@ Theme URI: https://kreativwp.com/themes/kreativ-core/
 Author: Kreativ WP
 Author URI: https://kreativwp.com/
 Description: A lightweight, responsive WordPress theme for editorial sites, blogs, portfolios, and content-driven websites.
-Version: 1.0.17
+Version: 1.0.18
 Requires at least: 6.4
 Tested up to: 7.1
 Requires PHP: 7.4
@@ -106,13 +106,13 @@ textarea {
   z-index: 1030;
 }
 
-.navbar {
+.kreativ-site-nav {
   display: flex;
   align-items: center;
   min-height: 96px;
 }
 
-.navbar-collapse {
+.kreativ-site-navigation {
   display: grid;
   grid-template-columns: auto minmax(12rem, 1fr) auto;
   align-items: center;
@@ -124,6 +124,7 @@ textarea {
 .kreativ-hdr-right {
   display: flex;
   align-items: center;
+  min-width: 0;
 }
 
 .kreativ-logo {
@@ -144,20 +145,22 @@ textarea {
   border: 1px solid color-mix(in srgb, var(--color-text) 30%, transparent);
 }
 
-.navbar-nav {
+.kreativ-primary-menu {
   display: flex;
   flex-wrap: wrap;
+  justify-content: flex-end;
   gap: 0.2rem;
+  overflow: visible;
   padding: 0;
   margin: 0;
   list-style: none;
 }
 
-.navbar-nav .menu-item-has-children {
+.kreativ-primary-menu .menu-item-has-children {
   position: relative;
 }
 
-.navbar-nav .sub-menu {
+.kreativ-primary-menu .sub-menu {
   position: absolute;
   z-index: 1031;
   top: 100%;
@@ -172,9 +175,14 @@ textarea {
   box-shadow: 0 0.7rem 1.5rem color-mix(in srgb, var(--color-text) 12%, transparent);
 }
 
-.navbar-nav .menu-item-has-children:hover > .sub-menu,
-.navbar-nav .menu-item-has-children:focus-within > .sub-menu,
-.navbar-nav .menu-item-has-children.menu-item-open > .sub-menu {
+.kreativ-primary-menu > .menu-item:last-child > .sub-menu {
+  right: 0;
+  left: auto;
+}
+
+.kreativ-primary-menu .menu-item-has-children:hover > .sub-menu,
+.kreativ-primary-menu .menu-item-has-children:focus-within > .sub-menu,
+.kreativ-primary-menu .menu-item-has-children.menu-item-open > .sub-menu {
   display: block;
 }
 
@@ -182,8 +190,8 @@ textarea {
   display: none;
 }
 
-.navbar-toggler,
-.offcanvas-show {
+.kreativ-menu-toggle,
+.kreativ-mobile-brand {
   display: none;
 }
 
@@ -508,7 +516,7 @@ body.dark-mode .kreativ-footer {
 }
 
 .kreativ-entry-header {
-  max-width: 50rem;
+  max-width: 60rem;
   margin: 0 auto clamp(2.5rem, 5vw, 4.5rem);
 }
 
@@ -518,8 +526,20 @@ body.dark-mode .kreativ-footer {
   margin: 0.4rem 0 1rem;
   color: var(--color-text);
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(2.8rem, 6vw, 5.5rem);
+  font-size: clamp(2.8rem, 4.5vw, 4.75rem);
   line-height: 0.94;
+}
+
+.kreativ-entry-featured-media {
+  max-width: 60rem;
+  margin: 0 auto clamp(2.5rem, 5vw, 4.5rem);
+}
+
+.kreativ-entry-featured-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
 }
 
 .kreativ-entry-content {
@@ -541,7 +561,7 @@ body.dark-mode .kreativ-footer {
 .kreativ-entry-navigation,
 .post_comments {
   max-width: 44rem;
-  margin: clamp(2.5rem, 5vw, 4rem) auto 0;
+  margin: clamp(2rem, 4vw, 3rem) auto 0;
   padding-top: 1.5rem;
   border-top: 1px solid color-mix(in srgb, var(--color-text) 18%, transparent);
 }
@@ -563,11 +583,79 @@ body.dark-mode .kreativ-footer {
 }
 
 .kreativ-related-posts {
-  margin-top: clamp(4rem, 8vw, 8rem);
+  max-width: 44rem;
+  margin-top: clamp(3rem, 6vw, 5rem);
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .kreativ-related-posts h2 {
-  font-size: clamp(2rem, 4vw, 3.5rem);
+  margin-bottom: 1.25rem;
+  font-size: clamp(1.75rem, 2.5vw, 2.25rem);
+  line-height: 1;
+}
+
+.kreativ-related-posts .kreativ-post-card {
+  display: block;
+  padding: 1.5rem 0;
+}
+
+.kreativ-related-posts .kreativ-post-card h2 {
+  margin-bottom: 0.5rem;
+  font-size: clamp(1.6rem, 2.5vw, 2.25rem);
+  line-height: 1;
+}
+
+.kreativ-related-posts .kreativ-post-card-summary {
+  max-width: none;
+  margin-top: 0.8rem;
+}
+
+.comment-form > p {
+  margin: 1.1rem 0;
+}
+
+.comment-form label {
+  display: block;
+  margin-bottom: 0.45rem;
+  font-weight: 700;
+}
+
+.comment-form textarea,
+.comment-form input[type="text"],
+.comment-form input[type="email"],
+.comment-form input[type="url"] {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid color-mix(in srgb, var(--color-text) 35%, transparent);
+  border-radius: 0;
+  background: transparent;
+  color: var(--color-text);
+}
+
+.comment-form textarea {
+  min-height: 12rem;
+}
+
+.comment-form .comment-form-cookies-consent label {
+  display: inline;
+  margin: 0;
+  font-weight: 400;
+}
+
+.comment-form .submit {
+  padding: 0.7rem 1rem;
+  border: 1px solid var(--color-brand);
+  background: var(--color-brand);
+  color: #fff;
+  cursor: pointer;
+}
+
+.comment-form .submit:hover,
+.comment-form .submit:focus-visible {
+  background: var(--color-text);
+  border-color: var(--color-text);
 }
 
 .kreativ-empty-state {
@@ -678,13 +766,13 @@ body.dark-mode .kreativ-footer {
   font-style: normal;
 }
 
-.kreativ-hdr-right .navbar-nav {
+.kreativ-hdr-right .kreativ-primary-menu {
   align-items: center;
   gap: 0.2rem;
   list-style: none;
 }
 
-.kreativ-hdr-right .navbar-nav a {
+.kreativ-hdr-right .kreativ-primary-menu a {
   display: block;
   padding: 0.5rem 0.8rem;
   color: var(--color-text);
@@ -708,11 +796,11 @@ body.dark-mode .kreativ-footer {
 }
 
 @media (max-width: 991.98px) {
-  .navbar {
+  .kreativ-site-nav {
     justify-content: space-between;
   }
 
-  .navbar-collapse.offcanvas-collapse {
+  .kreativ-site-navigation.kreativ-offcanvas {
     position: fixed;
     right: 0;
     bottom: 0;
@@ -726,32 +814,33 @@ body.dark-mode .kreativ-footer {
     transition: left 0.3s ease-in-out, visibility 0.3s ease-in-out;
   }
 
-  .navbar-collapse.offcanvas-collapse.open {
+  .kreativ-site-navigation.kreativ-offcanvas.open {
     left: 0;
     visibility: visible;
   }
 
-  .offcanvas-collapse.open .kreativ-hdr-left {
+  .kreativ-offcanvas.open .kreativ-hdr-left {
     display: none;
   }
 
-  .offcanvas-collapse .kreativ-search {
+  .kreativ-offcanvas .kreativ-search {
     width: 100%;
     margin: 0 0 1.5rem;
   }
 
-  .offcanvas-collapse .navbar-nav {
+  .kreativ-offcanvas .kreativ-primary-menu {
     flex-direction: column;
     gap: 0.35rem;
+    overflow-x: visible;
   }
 
-  .offcanvas-collapse .menu-item-has-children {
+  .kreativ-offcanvas .menu-item-has-children {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
   }
 
-  .offcanvas-collapse .sub-menu {
+  .kreativ-offcanvas .sub-menu {
     position: static;
     display: none;
     grid-column: 1 / -1;
@@ -762,12 +851,12 @@ body.dark-mode .kreativ-footer {
     box-shadow: none;
   }
 
-  .offcanvas-collapse .menu-item-has-children:hover > .sub-menu,
-  .offcanvas-collapse .menu-item-has-children:focus-within > .sub-menu {
+  .kreativ-offcanvas .menu-item-has-children:hover > .sub-menu,
+  .kreativ-offcanvas .menu-item-has-children:focus-within > .sub-menu {
     display: none;
   }
 
-  .offcanvas-collapse .menu-item-has-children.menu-item-open > .sub-menu {
+  .kreativ-offcanvas .menu-item-has-children.menu-item-open > .sub-menu {
     display: block;
   }
 
@@ -787,11 +876,11 @@ body.dark-mode .kreativ-footer {
     transform: rotate(45deg);
   }
 
-  .offcanvas-show {
+  .kreativ-mobile-brand {
     display: block;
   }
 
-  .navbar-toggler {
+  .kreativ-menu-toggle {
     display: inline-flex;
     align-items: center;
     min-height: 2.5rem;
@@ -802,11 +891,11 @@ body.dark-mode .kreativ-footer {
     cursor: pointer;
   }
 
-  .offcanvas-collapse {
+  .kreativ-offcanvas {
     top: 96px;
   }
 
-  .admin-bar .offcanvas-collapse {
+  .admin-bar .kreativ-offcanvas {
     top: 128px;
   }
 }
@@ -831,7 +920,7 @@ body.dark-mode .kreativ-footer {
     top: 46px;
   }
 
-  .admin-bar .offcanvas-collapse {
+  .admin-bar .kreativ-offcanvas {
     top: 142px;
   }
 }

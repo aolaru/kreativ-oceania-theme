@@ -52,7 +52,7 @@
             toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
 
             if (isOpen) {
-                var firstMenuLink = navigation.querySelector('.navbar-nav a');
+                var firstMenuLink = navigation.querySelector('.kreativ-primary-menu a');
 
                 if (firstMenuLink) {
                     window.setTimeout(function () {
@@ -64,10 +64,11 @@
 
         document.addEventListener('keydown', function (event) {
             if ('Escape' === event.key && navigation.classList.contains('open')) {
+                event.preventDefault();
                 closeSubmenus();
                 closeNavigation();
                 toggle.focus();
             }
-        });
+        }, true);
     });
 }());
