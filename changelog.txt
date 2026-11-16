@@ -1,6 +1,14 @@
 Repository History
 ------------------
 
+version 1.0.17 (November 2026)
+- added a dedicated archive template, correct posts-page headings, and archive pagination
+- replaced branded thumbnail fallbacks with neutral fixed-ratio media placeholders
+- removed the unused legacy logo fallback image
+- corrected the main landmark structure and added accessible multi-level mobile menus
+- removed legacy marketplace helpers, duplicate template code, and duplicate editor stylesheet loading
+- improved dark-mode startup behavior and toggle accessibility
+
 version 1.0.16 (November 2026)
 - removed repository-control files that are not accepted in WordPress.org theme packages
 

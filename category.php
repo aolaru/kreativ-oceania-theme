@@ -6,7 +6,7 @@ $sort     = kreativ_get_archive_sort();
 $query    = kreativ_get_taxonomy_archive_query( 'category', $category->term_id, $sort );
 ?>
 
-<main id="primary" class="kreativ-post-index">
+<main id="primary" class="kreativ-post-index" tabindex="-1">
     <header class="kreativ-post-index-header">
         <p class="kreativ-post-index-kicker"><?php esc_html_e( 'Category', 'kreativ-core' ); ?></p>
         <h1><?php echo esc_html( $category->name ); ?></h1>

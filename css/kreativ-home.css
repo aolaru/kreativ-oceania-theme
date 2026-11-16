@@ -14,58 +14,6 @@
   line-height: 1.5;
 }
 
-.kreativ-hero-tools {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-.kreativ-hero-tools-label {
-  padding: 0.75rem 0.3rem;
-  color: #4a4aff;
-  font-size: 1rem;
-  font-weight: 700;
-}
-
-.kreativ-hero-tool-card {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.75rem 1.3rem;
-  color: #1a1a1a;
-  text-decoration: none;
-  font-weight: 600;
-  background: #fff;
-  border: 1px solid #e2e4ea;
-  border-radius: 12px;
-  transition: 0.25s ease;
-}
-
-.kreativ-hero-tool-card .kreativ-symbol-icon {
-  color: #4a4aff;
-  font-size: 1.2rem;
-}
-
-.kreativ-hero-tool-card:hover {
-  border-color: #4a4aff;
-  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.12);
-  transform: translateY(-3px);
-}
-
-.kreativ-tool-new {
-  margin-left: 4px;
-  padding: 2px 8px;
-  color: #fff;
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-  background: var(--color-brand);
-  border-radius: 8px;
-}
-
 .kreativ-section {
   padding: 1rem 0;
   margin-bottom: 3rem;
@@ -88,12 +36,7 @@
   font-weight: 700;
 }
 
-.kreativ-section-title .kreativ-symbol-icon {
-  color: #4a4aff;
-  font-size: 1.15em;
-}
-
-.kf-view-all {
+.kreativ-view-all {
   padding-right: 4px;
   color: #4a4aff;
   font-size: 1.2rem;
@@ -101,40 +44,12 @@
   transition: 0.2s ease;
 }
 
-.kf-view-all:hover {
+.kreativ-view-all:hover {
   color: #2d2def;
   transform: translateX(3px);
 }
 
-.kreativ-section-fonts {
-  background: linear-gradient(135deg, #f8f9ff 0%, #fdfdff 100%) !important;
-}
-
-.kreativ-section-templates-themes {
-  background: linear-gradient(135deg, #f5fcfc 0%, #fcfefe 100%) !important;
-}
-
-.kreativ-section-graphics {
-  background: linear-gradient(135deg, #fff9f6 0%, #fffdfb 100%) !important;
-}
-
-.kreativ-section-photos {
-  background: linear-gradient(135deg, #fffdf3 0%, #fffef9 100%) !important;
-}
-
-.kreativ-section-videos {
-  background: linear-gradient(135deg, #fff6f6 0%, #fffafa 100%) !important;
-}
-
-.kreativ-section-sounds {
-  background: linear-gradient(135deg, #fcf7ff 0%, #fefbff 100%) !important;
-}
-
-.kreativ-section-free {
-  background: linear-gradient(135deg, #e2f7e8 0%, #f3fff6 100%) !important;
-}
-
-.kreativ-font-card {
+.kreativ-content-card {
   padding: 1rem;
   margin-bottom: 1rem;
   background: #fff;
@@ -143,13 +58,13 @@
   transition: 0.25s ease;
 }
 
-.kreativ-font-card:hover {
+.kreativ-content-card:hover {
   border-color: #4a4aff;
   box-shadow: 0 5px 22px rgba(0, 0, 0, 0.12);
   transform: translateY(-4px);
 }
 
-.kreativ-font-card a {
+.kreativ-content-card a {
   display: block;
   color: inherit;
   text-decoration: none;
@@ -157,6 +72,7 @@
 
 .kreativ-card-media {
   position: relative;
+  aspect-ratio: 3 / 2;
   overflow: hidden;
   border-radius: 10px;
 }
@@ -164,6 +80,8 @@
 .kreativ-card-media img {
   display: block;
   width: 100%;
+  height: 100%;
+  object-fit: cover;
   transition: transform 0.3s ease;
 }
 
@@ -180,7 +98,7 @@
   padding: 0;
 }
 
-.kf-badge {
+.kreativ-card-category {
   position: absolute;
   top: 0.75rem;
   left: 0.75rem;
@@ -191,37 +109,10 @@
   text-transform: uppercase;
   letter-spacing: 0.05em;
   border-radius: 999px;
+  background: var(--color-accent);
 }
 
-.kf-badge-fonts {
-  background: #4a4aff;
-}
-
-.kf-badge-templates-themes {
-  background: #00a7b5;
-}
-
-.kf-badge-graphics {
-  background: #ff7a59;
-}
-
-.kf-badge-photos {
-  background: #f4b400;
-}
-
-.kf-badge-videos {
-  background: #e53935;
-}
-
-.kf-badge-sounds {
-  background: #8e24aa;
-}
-
-.kf-badge-free {
-  background: #43a047;
-}
-
-.kf-badge-new {
+.kreativ-card-new {
   position: absolute;
   top: 0.75rem;
   right: 0.75rem;
@@ -235,7 +126,7 @@
   border-radius: 999px;
 }
 
-.kreativ-font-card h3 {
+.kreativ-content-card h3 {
   margin-top: 0.85rem;
   margin-bottom: 0;
   font-size: 1rem;
@@ -245,7 +136,7 @@
 .kreativ-card-animate {
   opacity: 0;
   transform: translateY(12px);
-  animation: kfFadeUp 0.6s ease forwards;
+  animation: kreativFadeUp 0.6s ease forwards;
 }
 
 .kreativ-card-animate:nth-child(2) {
@@ -260,19 +151,21 @@
   animation-delay: 0.15s;
 }
 
-@keyframes kfFadeUp {
+@keyframes kreativFadeUp {
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-@media (max-width: 767px) {
-  .kreativ-hero-tool-card {
-    width: 100%;
-    justify-content: center;
-  }
+.kreativ-fallback-thumb {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--color-brand) 12%, var(--color-bg)), color-mix(in srgb, var(--color-accent) 12%, var(--color-bg)));
+}
 
+@media (max-width: 767px) {
   .kreativ-section-title {
     font-size: 1.4rem;
   }

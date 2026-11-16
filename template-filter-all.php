@@ -7,7 +7,7 @@ get_header();
 $featured_categories = kreativ_get_featured_categories( 6 );
 $hero_description    = kreativ_get_site_description();
 ?>
-<main id="primary" class="kreativ-home-page">
+<main id="primary" class="kreativ-home-page" tabindex="-1">
     <?php while ( have_posts() ) : the_post(); ?>
         <div class="kreativ-hero container">
             <h1 class="screen-reader-text"><?php echo esc_html( get_the_title() ); ?></h1>
@@ -22,14 +22,11 @@ $hero_description    = kreativ_get_site_description();
 
 <?php if ( ! empty( $featured_categories ) ) : ?>
     <?php foreach ( $featured_categories as $category ) : ?>
-        <div class="container kreativ-section kreativ-section-<?php echo esc_attr( $category->slug ); ?>">
+        <div class="container kreativ-section">
 
             <div class="kreativ-section-header">
-                <h2 class="kreativ-section-title">
-                    <?php echo wp_kses_post( kreativ_render_icon( $category->slug ) ); ?>
-                    <?php echo esc_html( $category->name ); ?>
-                </h2>
-                <a href="<?php echo esc_url( get_category_link( $category ) ); ?>" class="kf-view-all"><?php esc_html_e( 'View all', 'kreativ-core' ); ?> &rsaquo;</a>
+                <h2 class="kreativ-section-title"><?php echo esc_html( $category->name ); ?></h2>
+                <a href="<?php echo esc_url( get_category_link( $category ) ); ?>" class="kreativ-view-all"><?php esc_html_e( 'View all', 'kreativ-core' ); ?> &rsaquo;</a>
             </div>
 
             <div class="row">
@@ -53,16 +50,16 @@ $hero_description    = kreativ_get_site_description();
                         $is_new = function_exists( 'kreativ_is_new_post' ) ? kreativ_is_new_post( get_the_ID() ) : false;
                         ?>
                         <div class="col-md-3 col-sm-6 kreativ-card-animate">
-                            <div class="kreativ-font-card">
+                            <div class="kreativ-content-card">
                                 <a href="<?php echo esc_url( get_permalink() ); ?>">
                                     <div class="kreativ-card-media">
 
-                                        <span class="kf-badge kf-badge-<?php echo esc_attr( $category->slug ); ?>">
+                                        <span class="kreativ-card-category">
                                             <?php echo esc_html( $category->name ); ?>
                                         </span>
 
                                         <?php if ( $is_new ) : ?>
-                                            <span class="kf-badge-new"><?php esc_html_e( 'New', 'kreativ-core' ); ?></span>
+                                        <span class="kreativ-card-new"><?php esc_html_e( 'New', 'kreativ-core' ); ?></span>
                                         <?php endif; ?>
 
                                         <?php
@@ -113,7 +110,7 @@ $hero_description    = kreativ_get_site_description();
                     $latest_posts->the_post();
                     ?>
                     <div class="col-md-3 col-sm-6 kreativ-card-animate">
-                        <div class="kreativ-font-card">
+                        <div class="kreativ-content-card">
                             <a href="<?php echo esc_url( get_permalink() ); ?>">
                                 <div class="kreativ-card-media">
                                     <?php

@@ -1,13 +1,15 @@
 <?php get_header(); ?>
 
-<main id="primary" class="kreativ-post-index">
+<main id="primary" class="kreativ-post-index" tabindex="-1">
     <header class="kreativ-post-index-header">
         <p class="kreativ-post-index-kicker"><?php esc_html_e( 'Search', 'kreativ-core' ); ?></p>
         <h1>
             <?php
             if ( have_posts() ) {
+                /* translators: %s: search query. */
                 printf( esc_html__( 'Results for "%s"', 'kreativ-core' ), esc_html( get_search_query() ) );
             } else {
+                /* translators: %s: search query. */
                 printf( esc_html__( 'No results for "%s"', 'kreativ-core' ), esc_html( get_search_query() ) );
             }
             ?>

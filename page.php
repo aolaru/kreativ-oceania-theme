@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<main id="primary" class="kreativ-content-shell">
+<main id="primary" class="kreativ-content-shell" tabindex="-1">
     <?php while ( have_posts() ) : the_post(); ?>
         <article id="post-<?php the_ID(); ?>" <?php post_class( 'kreativ-entry kreativ-page' ); ?>>
             <header class="kreativ-entry-header">

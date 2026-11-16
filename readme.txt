@@ -3,7 +3,7 @@ Contributors: andreiolaru
 Requires at least: 6.4
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.16
+Stable tag: 1.0.17
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: blog, portfolio, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
@@ -48,7 +48,26 @@ Yes. Use `Appearance > Customize > Theme Options` and disable `Show theme relate
 
 Use `Appearance > Customize > Theme Options` and select a design variation. Journal is the default editorial style, while Studio and Portfolio offer warmer and more structured alternatives.
 
+== Privacy ==
+
+Kreativ Core does not set cookies or send visitor data to external services. The optional dark mode preference is stored only in the visitor's browser localStorage under the `kreativ-dark` key.
+
+== Upgrade Notice ==
+
+= 1.0.17 =
+
+Adds dedicated archive handling, generic fixed-ratio post-card media, improved landmarks and multi-level navigation, and earlier accessible dark-mode initialization.
+
 == Changelog ==
+
+= 1.0.17 =
+
+* added a dedicated archive template with archive titles, descriptions, and pagination
+* corrected posts-page headings and the main-content landmark structure
+* replaced logo post-image fallbacks with neutral fixed-ratio placeholders
+* added multi-level menu support with accessible mobile submenu toggles
+* removed legacy marketplace code and duplicate editor stylesheet loading
+* improved dark mode accessibility and removed its initial light-mode flash
 
 = 1.0.16 =
 
@@ -121,12 +140,12 @@ Kreativ Core, Copyright 2026 Andrei Olaru, is distributed under the terms of the
 
 == Resources ==
 
-Kreativ Core screenshot and logo fallback assets
+Kreativ Core screenshot asset
 Copyright 2026 Andrei Olaru
 License: GPL-2.0-or-later
 Source: bundled with this theme
 
-K logo SVG and logo fallback PNG
+K logo SVG
 Copyright 2026 Andrei Olaru
 License: GPL-2.0-or-later
 Source: bundled with this theme

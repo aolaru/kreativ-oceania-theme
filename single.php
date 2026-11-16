@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<main id="primary" class="kreativ-content-shell">
+<main id="primary" class="kreativ-content-shell" tabindex="-1">
     <?php while ( have_posts() ) : the_post(); ?>
         <article id="post-<?php the_ID(); ?>" <?php post_class( 'kreativ-entry' ); ?>>
             <header class="kreativ-entry-header">
@@ -28,6 +28,7 @@
                     <p><strong><?php esc_html_e( 'Tags:', 'kreativ-core' ); ?></strong> <?php the_tags( '', ', ', '' ); ?></p>
                 <?php endif; ?>
                 <p>
+                    <?php /* translators: %s: linked post author name. */ ?>
                     <?php printf( wp_kses_post( __( 'Written by %s.', 'kreativ-core' ) ), wp_kses_post( get_the_author_posts_link() ) ); ?>
                     <?php edit_post_link( esc_html__( 'Edit', 'kreativ-core' ), ' ', '' ); ?>
                 </p>

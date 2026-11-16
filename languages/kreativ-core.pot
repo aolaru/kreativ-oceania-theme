@@ -1,18 +1,152 @@
-# Copyright (C) 2026 Andrei Olaru
-# This file is distributed under the same license as the Kreativ Core package.
-#
+# Copyright (C) 2026 Kreativ WP
+# This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Kreativ Core 1.0.16\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-15 21:00+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Project-Id-Version: Kreativ Core 1.0.17\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/kreativ-oceania-theme\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-11-16T07:54:45+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: kreativ-core\n"
+
+#. Theme Name of the theme
+#: style.css
+msgid "Kreativ Core"
+msgstr ""
+
+#. Theme URI of the theme
+#: style.css
+msgid "https://kreativwp.com/themes/kreativ-core/"
+msgstr ""
+
+#. Description of the theme
+#: style.css
+msgid "A lightweight, responsive WordPress theme for editorial sites, blogs, portfolios, and content-driven websites."
+msgstr ""
+
+#. Author of the theme
+#: style.css
+msgid "Kreativ WP"
+msgstr ""
+
+#. Author URI of the theme
+#: style.css
+msgid "https://kreativwp.com/"
+msgstr ""
+
+#: 404.php:5
+msgid "404"
+msgstr ""
+
+#: 404.php:6
+msgid "Nothing found"
+msgstr ""
+
+#: 404.php:7
+msgid "The content you are looking for does not exist or may have been moved."
+msgstr ""
+
+#: 404.php:9
+msgid "Return to the home page"
+msgstr ""
+
+#: archive.php:5
+msgid "Archive"
+msgstr ""
+
+#: archive.php:16
+msgid "Archive pagination"
+msgstr ""
+
+#: archive.php:21
+msgid "No posts found in this archive."
+msgstr ""
+
+#: author.php:10
+msgid "Author"
+msgstr ""
+
+#. translators: %s: author display name.
+#: author.php:13
+#, php-format
+msgid "Posts by %s"
+msgstr ""
+
+#: author.php:26
+msgid "Author posts pagination"
+msgstr ""
+
+#: author.php:31
+msgid "No posts by this author yet."
+msgstr ""
+
+#: category.php:11
+msgid "Category"
+msgstr ""
+
+#: category.php:18
+#: tag.php:18
+msgid "Sort posts"
+msgstr ""
+
+#: category.php:19
+#: tag.php:19
+msgid "Latest"
+msgstr ""
+
+#: category.php:20
+#: tag.php:20
+msgid "Popular"
+msgstr ""
+
+#: category.php:29
+msgid "Category posts pagination"
+msgstr ""
+
+#: category.php:34
+msgid "No posts found in this category."
+msgstr ""
+
+#: comments.php:4
+msgid "This post is password protected. Enter the password to view comments."
+msgstr ""
+
+#: comments.php:13
+msgid "No Comments"
+msgstr ""
+
+#: comments.php:13
+msgid "One Comment"
+msgstr ""
+
+#: comments.php:13
+msgid "% Comments"
+msgstr ""
+
+#: comments.php:14
+msgid "to"
+msgstr ""
+
+#: comments.php:31
+msgid "Comments are closed."
+msgstr ""
+
+#: comments.php:37
+msgid "Leave a comment"
+msgstr ""
+
+#: comments.php:38
+msgid "Submit Comment"
+msgstr ""
+
+#: footer.php:3
+msgid "Footer menu"
+msgstr ""
 
 #: functions.php:5
 msgid "Primary Menu"
@@ -34,173 +168,138 @@ msgstr ""
 msgid "Toggle dark mode"
 msgstr ""
 
-#: functions.php:223
+#: functions.php:130
+msgid "Toggle submenu"
+msgstr ""
+
+#: functions.php:220
 msgid "A lightweight, responsive WordPress site."
 msgstr ""
 
-#: functions.php:229
+#: functions.php:226
 msgid "Latest posts"
 msgstr ""
 
-#: functions.php:270
+#: functions.php:277
 msgid "Featured"
 msgstr ""
 
-#: functions.php:283
+#. translators: 1: publication date, 2: linked post categories.
+#: functions.php:295
 #, php-format
 msgid "Published on %1$s in %2$s."
 msgstr ""
 
-#: links.php:29
-msgid "Bookmarks"
+#. translators: %s: publication date.
+#: functions.php:302
+#: single.php:10
+#, php-format
+msgid "Published on %s."
 msgstr ""
 
-#: functions.php:296
+#: functions.php:315
 msgid "Read article"
 msgstr ""
 
-#: functions.php:306
+#: functions.php:325
 msgid "Previous"
 msgstr ""
 
-#: functions.php:307
+#: functions.php:326
 msgid "Next"
 msgstr ""
 
-#: functions.php:447
+#: functions.php:411
 msgid "Theme Options"
 msgstr ""
 
-#: functions.php:465
+#: functions.php:429
 msgid "Show theme related posts on single posts"
 msgstr ""
 
-#: functions.php:466
+#: functions.php:430
 msgid "Disable this if another plugin or custom system handles related posts."
 msgstr ""
 
-#: functions.php:483
+#: functions.php:447
 msgid "Featured category slugs"
 msgstr ""
 
-#: functions.php:484
-msgid ""
-"Optional comma-separated category slugs for the homepage sections. Leave "
-"empty to use the most active categories automatically."
+#: functions.php:448
+msgid "Optional comma-separated category slugs for the homepage sections. Leave empty to use the most active categories automatically."
 msgstr ""
 
-#: functions.php:501
+#: functions.php:465
 msgid "Footer text"
 msgstr ""
 
-#: functions.php:502
+#: functions.php:466
 msgid "Optional footer note shown below the footer menu."
 msgstr ""
 
-#: functions.php:519
+#: functions.php:483
 msgid "Blog archive heading"
 msgstr ""
 
-#: functions.php:520
-msgid ""
-"Optional heading for the main posts archive. Leave empty to use “Latest "
-"posts”."
+#: functions.php:484
+msgid "Optional heading for the main posts archive. Leave empty to use “Latest posts”."
 msgstr ""
 
-#: functions.php:537
+#: functions.php:501
 msgid "Blog archive introduction"
 msgstr ""
 
-#: functions.php:538
+#: functions.php:502
 msgid "Optional introductory text below the main posts archive heading."
 msgstr ""
 
-#: functions.php:556
+#: functions.php:520
 msgid "Accent color"
 msgstr ""
 
-#: functions.php:574
+#: functions.php:538
 msgid "Archive spacing"
 msgstr ""
 
-#: functions.php:576
+#: functions.php:540
 msgid "Comfortable"
 msgstr ""
 
-#: functions.php:577
+#: functions.php:541
 msgid "Compact"
 msgstr ""
 
-#: functions.php:595
+#: functions.php:559
 msgid "Design variation"
 msgstr ""
 
-#: functions.php:596
+#: functions.php:560
 msgid "Choose the default visual direction for the theme."
 msgstr ""
 
-#: functions.php:598 index.php:5
+#: functions.php:562
+#: index.php:5
 msgid "Journal"
 msgstr ""
 
-#: functions.php:599
+#: functions.php:563
 msgid "Studio"
 msgstr ""
 
-#: functions.php:600
+#: functions.php:564
 msgid "Portfolio"
 msgstr ""
 
-#: category.php:11
-msgid "Category"
+#: header.php:18
+msgid "Skip to content"
 msgstr ""
 
-#: category.php:18 tag.php:18
-msgid "Sort posts"
+#: header.php:41
+msgid "Toggle menu"
 msgstr ""
 
-#: category.php:19 tag.php:19
-msgid "Latest"
-msgstr ""
-
-#: category.php:20 tag.php:20
-msgid "Popular"
-msgstr ""
-
-#: category.php:29
-msgid "Category posts pagination"
-msgstr ""
-
-#: category.php:34
-msgid "No posts found in this category."
-msgstr ""
-
-#: template-filter-all.php:24 template-filter-market.php:21
-msgid "View all"
-msgstr ""
-
-#: template-filter-all.php:57 template-filter-market.php:51
-msgid "New"
-msgstr ""
-
-#: template-filter-all.php:88
-msgid "Latest Posts"
-msgstr ""
-
-#: 404.php:5
-msgid "404"
-msgstr ""
-
-#: 404.php:6
-msgid "Nothing found"
-msgstr ""
-
-#: 404.php:7
-msgid "The content you are looking for does not exist or may have been moved."
-msgstr ""
-
-#: 404.php:9
-msgid "Return to the home page"
+#: header.php:42
+msgid "Menu"
 msgstr ""
 
 #: inc/patterns.php:17
@@ -224,8 +323,7 @@ msgid "Make it yours"
 msgstr ""
 
 #: inc/patterns.php:34
-msgid ""
-"Add a short message that guides visitors to your most important content."
+msgid "Add a short message that guides visitors to your most important content."
 msgstr ""
 
 #: inc/patterns.php:34
@@ -249,9 +347,7 @@ msgid "A considered beginning for your next story"
 msgstr ""
 
 #: inc/patterns.php:44
-msgid ""
-"Use this introduction to set the pace, establish a point of view, and invite "
-"readers into the work."
+msgid "Use this introduction to set the pace, establish a point of view, and invite readers into the work."
 msgstr ""
 
 #: inc/patterns.php:51
@@ -271,9 +367,7 @@ msgid "Build a body of work that rewards a second look"
 msgstr ""
 
 #: inc/patterns.php:54
-msgid ""
-"A flexible feature section for a launch, essay, portfolio project, or "
-"important announcement."
+msgid "A flexible feature section for a launch, essay, portfolio project, or important announcement."
 msgstr ""
 
 #: inc/patterns.php:54
@@ -301,8 +395,7 @@ msgid "The brief"
 msgstr ""
 
 #: inc/patterns.php:64
-msgid ""
-"Describe the problem, audience, and ambition in a few focused sentences."
+msgid "Describe the problem, audience, and ambition in a few focused sentences."
 msgstr ""
 
 #: inc/patterns.php:64
@@ -310,8 +403,7 @@ msgid "The outcome"
 msgstr ""
 
 #: inc/patterns.php:64
-msgid ""
-"Explain what changed and why the result matters for the people using it."
+msgid "Explain what changed and why the result matters for the people using it."
 msgstr ""
 
 #: inc/patterns.php:71
@@ -347,9 +439,7 @@ msgid "A thoughtful note, delivered occasionally"
 msgstr ""
 
 #: inc/patterns.php:84
-msgid ""
-"Use this space for your newsletter provider embed or a simple invitation to "
-"subscribe."
+msgid "Use this space for your newsletter provider embed or a simple invitation to subscribe."
 msgstr ""
 
 #: inc/patterns.php:84
@@ -361,41 +451,85 @@ msgid "Post not found"
 msgstr ""
 
 #: index.php:20
-msgid ""
-"The post you are looking for does not exist or has been moved. Please use "
-"the search form to find what you are looking for."
+msgid "The post you are looking for does not exist or has been moved. Please use the search form to find what you are looking for."
 msgstr ""
 
-#: comments.php:4
-msgid "This post is password protected. Enter the password to view comments."
+#. Template Name of the theme
+msgid "Links"
 msgstr ""
 
-#: comments.php:13
-msgid "No Comments"
+#: links.php:13
+#: page.php:7
+#: template-sitemap.php:13
+#: template-wide.php:16
+msgid "Page"
 msgstr ""
 
-#: comments.php:13
-msgid "One Comment"
+#: links.php:22
+#: page.php:16
+#: single.php:19
+#: template-sitemap.php:22
+#: template-wide.php:26
+msgid "Pages:"
 msgstr ""
 
-#: comments.php:13
-msgid "% Comments"
+#: links.php:30
+msgid "Bookmarks"
 msgstr ""
 
-#: comments.php:14
-msgid "to"
+#: links.php:37
+#: page.php:24
+#: single.php:33
+#: template-sitemap.php:56
+#: template-wide.php:34
+msgid "Edit"
 msgstr ""
 
-#: comments.php:31
-msgid "Comments are closed."
+#: search.php:5
+#: searchform.php:11
+msgid "Search"
 msgstr ""
 
-#: comments.php:37
-msgid "Leave a comment"
+#. translators: %s: search query.
+#: search.php:10
+#, php-format
+msgid "Results for \"%s\""
 msgstr ""
 
-#: comments.php:38
-msgid "Submit Comment"
+#. translators: %s: search query.
+#: search.php:13
+#, php-format
+msgid "No results for \"%s\""
+msgstr ""
+
+#: search.php:25
+msgid "Search results pagination"
+msgstr ""
+
+#: search.php:30
+msgid "Try another keyword or browse the latest posts."
+msgstr ""
+
+#: searchform.php:10
+msgid "Search for:"
+msgstr ""
+
+#: single.php:28
+msgid "Tags:"
+msgstr ""
+
+#. translators: %s: linked post author name.
+#: single.php:32
+#, php-format
+msgid "Written by %s."
+msgstr ""
+
+#: single.php:42
+msgid "You might also like"
+msgstr ""
+
+#: single.php:53
+msgid "Post navigation"
 msgstr ""
 
 #: tag.php:11
@@ -410,111 +544,42 @@ msgstr ""
 msgid "No posts found with this tag."
 msgstr ""
 
-#: search.php:5 searchform.php:11
-msgid "Search"
+#. Template Name of the theme
+msgid "Editorial Home"
 msgstr ""
 
-#: search.php:9
-#, php-format
-msgid "Results for \"%s\""
+#: template-filter-all.php:29
+msgid "View all"
 msgstr ""
 
-#: search.php:11
-#, php-format
-msgid "No results for \"%s\""
+#: template-filter-all.php:62
+msgid "New"
 msgstr ""
 
-#: search.php:23
-msgid "Search results pagination"
+#: template-filter-all.php:93
+msgid "Latest Posts"
 msgstr ""
 
-#: search.php:28
-msgid "Try another keyword or browse the latest posts."
+#. Template Name of the theme
+msgid "Glossary"
 msgstr ""
 
-#: template-wide.php:16 page.php:7
-msgid "Page"
-msgstr ""
-
-#: template-wide.php:26 single.php:19 page.php:16
-msgid "Pages:"
-msgstr ""
-
-#: template-wide.php:34 single.php:32 page.php:24
-msgid "Edit"
-msgstr ""
-
-#: header.php:18
-msgid "Skip to content"
-msgstr ""
-
-#: header.php:78
-msgid "Toggle menu"
-msgstr ""
-
-#: header.php:79
-msgid "Menu"
-msgstr ""
-
-#: footer.php:3
-msgid "Footer menu"
-msgstr ""
-
-#: single.php:10
-#, php-format
-msgid "Published on %s."
-msgstr ""
-
-#: single.php:28
-msgid "Tags:"
-msgstr ""
-
-#: single.php:31
-#, php-format
-msgid "Written by %s."
-msgstr ""
-
-#: single.php:41
-msgid "You might also like"
-msgstr ""
-
-#: single.php:52
-msgid "Post navigation"
-msgstr ""
-
-#: author.php:10
-msgid "Author"
-msgstr ""
-
-#: author.php:11
-#, php-format
-msgid "Posts by %s"
-msgstr ""
-
-#: author.php:23
-msgid "Author posts pagination"
-msgstr ""
-
-#: author.php:28
-msgid "No posts by this author yet."
-msgstr ""
-
-#: searchform.php:10
-msgid "Search for:"
-msgstr ""
-
-#: template-sitemap.php:13
+#: template-sitemap.php:31
 msgid "Articles in alphabetic order"
 msgstr ""
 
-#: template-sitemap.php:20
+#: template-sitemap.php:38
 msgid "Articles by category"
 msgstr ""
 
-#: template-sitemap.php:25
+#: template-sitemap.php:43
 msgid "Articles by month"
 msgstr ""
 
-#: template-sitemap.php:32
+#: template-sitemap.php:50
 msgid "Articles by tags"
+msgstr ""
+
+#. Template Name of the theme
+msgid "Wide page"
 msgstr ""

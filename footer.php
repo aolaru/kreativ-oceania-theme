@@ -8,7 +8,7 @@
                             'container'      => false,
                             'menu_class'     => 'kreativ-footer-links-menu',
                             'fallback_cb'    => false,
-                            'depth'          => 1,
+                            'depth'          => 0,
                         )
                     );
                     ?>
@@ -26,6 +26,5 @@
 			</p>
 		</footer>
         <?php wp_footer(); ?>
-    </section>
 </body>
 </html>

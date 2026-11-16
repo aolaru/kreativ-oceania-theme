@@ -6,7 +6,7 @@ Template Name: Wide page
 get_header();
 ?>
 
-<main id="primary" class="kreativ-content-shell kreativ-wide-page">
+<main id="primary" class="kreativ-content-shell kreativ-wide-page" tabindex="-1">
     <?php
     while ( have_posts() ) :
         the_post();

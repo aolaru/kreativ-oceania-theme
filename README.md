@@ -2,7 +2,7 @@
 
 A lightweight, responsive WordPress theme for editorial sites, blogs, and content-driven websites.
 
-This repository contains the current private production version of the theme, including recent cleanup for stronger accessibility, responsive image handling, and more general-purpose branding so it can be used beyond the original KREATIV site.
+This repository contains the current production version of the theme, including recent cleanup for stronger accessibility, responsive image handling, and general-purpose branding.
 
 ## Highlights
 
@@ -90,7 +90,7 @@ Recent work in this repository included:
 
 - removal of old dead assets and code paths
 - cleanup of built-in related posts behavior
-- refreshed screenshot and logo fallback asset
+- refreshed screenshot and K logo asset
 - accessibility improvements including skip links and visible focus states
 - responsive image performance improvements
 - generalization of branding and homepage logic for broader reuse
@@ -117,5 +117,5 @@ GPL-2.0-or-later. See [license.txt](license.txt).
 
 ## Bundled Resources
 
-- Theme screenshot and logo fallback assets: Copyright 2026 Andrei Olaru, GPL-2.0-or-later.
+- Theme screenshot asset: Copyright 2026 Andrei Olaru, GPL-2.0-or-later.
 - K logo SVG: Copyright 2026 Andrei Olaru, GPL-2.0-or-later.

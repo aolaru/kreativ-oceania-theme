@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<main id="primary" class="kreativ-content-shell">
+<main id="primary" class="kreativ-content-shell" tabindex="-1">
     <section class="kreativ-empty-state" aria-labelledby="not-found-title">
         <p class="kreativ-post-index-kicker"><?php esc_html_e( '404', 'kreativ-core' ); ?></p>
         <h1 id="not-found-title"><?php esc_html_e( 'Nothing found', 'kreativ-core' ); ?></h1>

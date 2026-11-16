@@ -5,10 +5,13 @@ $author = get_queried_object();
 $name   = $author instanceof WP_User ? $author->display_name : get_the_author_meta( 'display_name', get_query_var( 'author' ) );
 ?>
 
-<main id="primary" class="kreativ-post-index">
+<main id="primary" class="kreativ-post-index" tabindex="-1">
     <header class="kreativ-post-index-header">
         <p class="kreativ-post-index-kicker"><?php esc_html_e( 'Author', 'kreativ-core' ); ?></p>
-        <h1><?php printf( esc_html__( 'Posts by %s', 'kreativ-core' ), esc_html( $name ) ); ?></h1>
+        <h1>
+            <?php /* translators: %s: author display name. */ ?>
+            <?php printf( esc_html__( 'Posts by %s', 'kreativ-core' ), esc_html( $name ) ); ?>
+        </h1>
         <?php if ( $author instanceof WP_User && $author->user_description ) : ?>
             <p class="kreativ-post-index-intro"><?php echo esc_html( $author->user_description ); ?></p>
         <?php endif; ?>

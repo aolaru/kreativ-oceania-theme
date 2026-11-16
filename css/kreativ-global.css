@@ -27,23 +27,6 @@
   fill: currentColor;
 }
 
-.kreativ-symbol-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 1.25em;
-  line-height: 1;
-  font-size: 1em;
-  font-weight: 700;
-  vertical-align: middle;
-}
-
-.kreativ-symbol-icon--fonts {
-  font-family: Georgia, "Times New Roman", serif;
-  letter-spacing: -0.08em;
-  font-size: 0.95em;
-}
-
 .kreativ-footer {
   text-align: center;
 }

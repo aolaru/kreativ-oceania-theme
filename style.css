@@ -4,7 +4,7 @@ Theme URI: https://kreativwp.com/themes/kreativ-core/
 Author: Kreativ WP
 Author URI: https://kreativwp.com/
 Description: A lightweight, responsive WordPress theme for editorial sites, blogs, portfolios, and content-driven websites.
-Version: 1.0.16
+Version: 1.0.17
 Requires at least: 6.4
 Tested up to: 7.1
 Requires PHP: 7.4
@@ -32,6 +32,13 @@ Tags: blog, portfolio, custom-logo, custom-menu, featured-images, threaded-comme
 }
 
 /* --- Dark Mode Variables --- */
+html.kreativ-dark-mode,
+html.kreativ-dark-mode body,
+body.dark-mode {
+  background-color: #0e0e10;
+}
+
+html.kreativ-dark-mode body,
 body.dark-mode {
   --color-bg: #0e0e10;
   --color-text: #f5f5f7;
@@ -146,6 +153,35 @@ textarea {
   list-style: none;
 }
 
+.navbar-nav .menu-item-has-children {
+  position: relative;
+}
+
+.navbar-nav .sub-menu {
+  position: absolute;
+  z-index: 1031;
+  top: 100%;
+  left: 0;
+  display: none;
+  min-width: 13rem;
+  padding: 0.45rem;
+  margin: 0;
+  list-style: none;
+  background: var(--color-bg);
+  border: 1px solid color-mix(in srgb, var(--color-text) 18%, transparent);
+  box-shadow: 0 0.7rem 1.5rem color-mix(in srgb, var(--color-text) 12%, transparent);
+}
+
+.navbar-nav .menu-item-has-children:hover > .sub-menu,
+.navbar-nav .menu-item-has-children:focus-within > .sub-menu,
+.navbar-nav .menu-item-has-children.menu-item-open > .sub-menu {
+  display: block;
+}
+
+.kreativ-submenu-toggle {
+  display: none;
+}
+
 .navbar-toggler,
 .offcanvas-show {
   display: none;
@@ -242,6 +278,9 @@ a:hover {
 }
 
 /* --- Dark Mode --- */
+html.kreativ-dark-mode body,
+html.kreativ-dark-mode .kreativ-header,
+html.kreativ-dark-mode .kreativ-footer,
 body.dark-mode,
 body.dark-mode .kreativ-header,
 body.dark-mode .kreativ-footer {
@@ -249,26 +288,32 @@ body.dark-mode .kreativ-footer {
   color: var(--color-text);
 }
 
+html.kreativ-dark-mode a,
 body.dark-mode a {
   color: var(--color-accent);
 }
+html.kreativ-dark-mode a:hover,
 body.dark-mode a:hover {
   color: var(--color-brand);
 }
 
+html.kreativ-dark-mode .btn-primary,
 body.dark-mode .btn-primary {
   background-color: var(--color-accent);
   border-color: var(--color-accent);
 }
+html.kreativ-dark-mode .btn-primary:hover,
 body.dark-mode .btn-primary:hover {
   background-color: var(--color-brand);
   border-color: var(--color-brand);
 }
 
+html.kreativ-dark-mode .kreativ-header,
 body.dark-mode .kreativ-header {
   background: #111;
   border-bottom: 1px solid #222;
 }
+html.kreativ-dark-mode .kreativ-logo a,
 body.dark-mode .kreativ-logo a {
   color: var(--color-accent);
 }
@@ -282,6 +327,7 @@ body.dark-mode .kreativ-logo a {
   border-top: 1px solid rgba(0, 0, 0, 0.05);
   font-size: 0.95rem;
 }
+html.kreativ-dark-mode .kreativ-footer,
 body.dark-mode .kreativ-footer {
   background-color: #111;
   color: #bbb;
@@ -290,9 +336,6 @@ body.dark-mode .kreativ-footer {
 
 .kreativ-header {
   padding-bottom: 0;
-}
-.kreativ-content {
-  padding-top: 1.5rem;
 }
 
 /* Default blog archives use a compact editorial reading layout. */
@@ -351,6 +394,10 @@ body.dark-mode .kreativ-footer {
   grid-column: 1 / -1;
   margin: -0.5rem 0 0;
   color: var(--color-brand);
+}
+
+.sticky {
+  position: relative;
 }
 
 .kreativ-post-card h2 {
@@ -698,6 +745,48 @@ body.dark-mode .kreativ-footer {
     gap: 0.35rem;
   }
 
+  .offcanvas-collapse .menu-item-has-children {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+  }
+
+  .offcanvas-collapse .sub-menu {
+    position: static;
+    display: none;
+    grid-column: 1 / -1;
+    min-width: 0;
+    padding: 0.3rem 0 0.3rem 1rem;
+    margin: 0;
+    border: 0;
+    box-shadow: none;
+  }
+
+  .offcanvas-collapse .menu-item-has-children:hover > .sub-menu,
+  .offcanvas-collapse .menu-item-has-children:focus-within > .sub-menu {
+    display: none;
+  }
+
+  .offcanvas-collapse .menu-item-has-children.menu-item-open > .sub-menu {
+    display: block;
+  }
+
+  .kreativ-submenu-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.4rem;
+    min-height: 2.4rem;
+    color: var(--color-text);
+    background: transparent;
+    border: 1px solid color-mix(in srgb, var(--color-text) 25%, transparent);
+    cursor: pointer;
+  }
+
+  .menu-item-open > .kreativ-submenu-toggle span {
+    transform: rotate(45deg);
+  }
+
   .offcanvas-show {
     display: block;
   }
@@ -763,9 +852,4 @@ body.dark-mode .kreativ-footer {
   border-top: 1px solid rgba(0, 0, 0, 0.05);
   padding-top: 1rem;
   margin-top: 1rem;
-}
-
-.kreativ-font-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }

@@ -15,7 +15,7 @@
 
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
-<a class="kreativ-skip-link" href="#kreativ-main-content"><?php esc_html_e( 'Skip to content', 'kreativ-core' ); ?></a>
+<a class="kreativ-skip-link" href="#primary"><?php esc_html_e( 'Skip to content', 'kreativ-core' ); ?></a>
 
 <header class="kreativ-header">
     <?php if ( get_header_image() ) : ?>
@@ -70,7 +70,7 @@
                         'theme_location' => 'primary',
                         'container' => false,
                         'menu_class' => 'navbar-nav',
-                        'depth' => 1,
+                        'depth' => 0,
                         'fallback_cb' => 'kreativ_page_menu_fallback',
                     ));
                     ?>
@@ -80,5 +80,3 @@
         </nav>
     </div>
 </header>
-
-<section id="kreativ-main-content" class="kreativ-content" tabindex="-1">
