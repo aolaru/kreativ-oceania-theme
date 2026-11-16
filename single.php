@@ -7,7 +7,10 @@
                 <p class="kreativ-post-card-meta"><?php echo wp_kses_post( get_the_category_list( ', ' ) ); ?></p>
                 <h1><?php echo esc_html( get_the_title() ); ?></h1>
                 <p class="kreativ-post-card-meta">
-                    <?php printf( esc_html__( 'Published on %s.', 'kreativ-core' ), esc_html( get_the_date( 'F j, Y' ) ) ); ?>
+                    <?php
+                    /* translators: %s: Publication date. */
+                    printf( esc_html__( 'Published on %s.', 'kreativ-core' ), esc_html( get_the_date( 'F j, Y' ) ) );
+                    ?>
                 </p>
             </header>
 
