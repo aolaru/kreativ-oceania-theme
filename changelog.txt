@@ -1,6 +1,27 @@
 Repository History
 ------------------
 
+version 1.0.22 (November 2026)
+
+- changed the primary header from fixed to sticky positioning and removed the fixed body offset
+- moved custom header images outside the navigation header and widened the mobile navigation breakpoint
+- improved nested menu placement, header title overflow, search submission, and RTL metadata
+
+version 1.0.21 (November 2026)
+- widened the reading measure of the Wide page template
+- refined standard page header spacing for a more deliberate short-page layout
+- reduced the visual weight of the desktop dark-mode control
+
+version 1.0.20 (November 2026)
+- corrected dark-mode homepage colors by replacing fixed light colors with semantic theme variables
+- placed the mobile dark-mode control in the fixed header so it cannot obscure page content
+- added current-page navigation styling, a clear Close menu label for expanded mobile navigation, and native content form and table styles
+
+version 1.0.19 (November 2026)
+- added compact, fixed-ratio media to archive and search cards, including the neutral no-image fallback
+- reduced archive and search title scale and card spacing for dense content lists and long titles
+- labeled page search results as pages instead of showing post publication metadata
+
 version 1.0.18 (November 2026)
 - scoped header navigation styles to avoid interfering with other WordPress navigation markup
 - limited the no-menu fallback to top-level pages so nested page hierarchies cannot expand the fixed header

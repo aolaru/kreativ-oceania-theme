@@ -68,9 +68,9 @@
             <?php endif; ?>
         <?php endif; ?>
 
-        <nav class="kreativ-entry-navigation" aria-label="<?php esc_attr_e( 'Post navigation', 'kreativ-core' ); ?>">
+        <div class="kreativ-entry-navigation">
             <?php the_post_navigation(); ?>
-        </nav>
+        </div>
 
         <?php if ( comments_open() || get_comments_number() ) : ?>
             <?php comments_template(); ?>

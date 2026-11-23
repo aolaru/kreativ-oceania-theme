@@ -18,7 +18,7 @@
         toggle.setAttribute('aria-label', settings.darkModeLabel || '');
         toggle.setAttribute('aria-pressed', root.classList.contains('kreativ-dark-mode') ? 'true' : 'false');
         toggle.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.64 13a9 9 0 0 1-8.64 8.95A9 9 0 0 1 12 3v0a9 9 0 0 1 9.64 10z"/></svg>';
-        document.body.appendChild(toggle);
+        (document.querySelector('.kreativ-site-nav') || document.body).appendChild(toggle);
 
         document.body.classList.toggle('dark-mode', root.classList.contains('kreativ-dark-mode'));
 

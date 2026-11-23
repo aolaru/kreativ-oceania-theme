@@ -2,14 +2,14 @@
   padding: 3rem 1rem;
   margin-bottom: 2.5rem;
   text-align: center;
-  background: linear-gradient(135deg, #eef1ff 0%, #fafbff 100%);
+  background: linear-gradient(135deg, color-mix(in srgb, var(--color-brand) 10%, var(--color-bg)) 0%, color-mix(in srgb, var(--color-accent) 4%, var(--color-bg)) 100%);
   border-radius: 22px;
 }
 
 .kreativ-hero-subtitle {
   max-width: 650px;
   margin: 0 auto 2.2rem;
-  color: #444;
+  color: var(--color-muted);
   font-size: 1.2rem;
   line-height: 1.5;
 }
@@ -17,7 +17,7 @@
 .kreativ-section {
   padding: 1rem 0;
   margin-bottom: 3rem;
-  background: linear-gradient(180deg, #fafbff 0%, #f4f6ff 100%);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--color-text) 3%, var(--color-bg)) 0%, color-mix(in srgb, var(--color-accent) 4%, var(--color-bg)) 100%);
   border-radius: 22px;
 }
 
@@ -38,29 +38,29 @@
 
 .kreativ-view-all {
   padding-right: 4px;
-  color: #4a4aff;
+  color: var(--color-brand);
   font-size: 1.2rem;
   text-decoration: none;
   transition: 0.2s ease;
 }
 
 .kreativ-view-all:hover {
-  color: #2d2def;
+  color: var(--color-accent);
   transform: translateX(3px);
 }
 
 .kreativ-content-card {
   padding: 1rem;
   margin-bottom: 1rem;
-  background: #fff;
-  border: 1px solid #e2e4ea;
+  background: color-mix(in srgb, var(--color-text) 3%, var(--color-bg));
+  border: 1px solid color-mix(in srgb, var(--color-text) 14%, transparent);
   border-radius: 14px;
   transition: 0.25s ease;
 }
 
 .kreativ-content-card:hover {
-  border-color: #4a4aff;
-  box-shadow: 0 5px 22px rgba(0, 0, 0, 0.12);
+  border-color: var(--color-brand);
+  box-shadow: 0 5px 22px color-mix(in srgb, var(--color-text) 16%, transparent);
   transform: translateY(-4px);
 }
 

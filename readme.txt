@@ -3,7 +3,7 @@ Contributors: andreiolaru
 Requires at least: 6.4
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.18
+Stable tag: 1.0.22
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: blog, portfolio, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
@@ -54,6 +54,22 @@ Kreativ Core does not set cookies or send visitor data to external services. The
 
 == Upgrade Notice ==
 
+= 1.0.22 =
+
+Prevents navigation from covering content, improves large-menu behavior, and adds a visible header search submit button.
+
+= 1.0.21 =
+
+Wide pages now use a broader reading measure, standard pages use a tighter header rhythm, and the desktop dark-mode control is less visually intrusive.
+
+= 1.0.20 =
+
+Improves dark-mode homepage contrast, clarifies mobile navigation state, and keeps the appearance control out of the content area on phones.
+
+= 1.0.19 =
+
+Refines archive and search cards with compact typography, fixed-ratio media, and clearer page-result labels.
+
 = 1.0.18 =
 
 Prevents the header fallback navigation from expanding with nested pages and scopes its menu styles to Kreativ Core.
@@ -63,6 +79,30 @@ Prevents the header fallback navigation from expanding with nested pages and sco
 Adds dedicated archive handling, generic fixed-ratio post-card media, improved landmarks and multi-level navigation, and earlier accessible dark-mode initialization.
 
 == Changelog ==
+
+= 1.0.22 =
+
+* changed the primary header to sticky positioning and removed the fixed body offset
+* moved custom header images outside the navigation header and widened the mobile navigation breakpoint
+* improved multi-level menu behavior, header title overflow, search submission, and RTL metadata
+
+= 1.0.21 =
+
+* broadened the content measure for the Wide page template
+* tightened the header spacing on standard pages
+* refined the desktop dark-mode toggle size, spacing, and hover treatment
+
+= 1.0.20 =
+
+* uses theme color tokens for the homepage so dark mode remains readable and visually consistent
+* moves the mobile dark-mode control into the fixed header to avoid obscuring content
+* adds active navigation styling, changes the expanded mobile menu label to Close menu, and styles native content forms and tables
+
+= 1.0.19 =
+
+* added fixed-ratio thumbnail and neutral fallback media to archive and search cards
+* reduced archive and search heading and card density for long titles and varied content
+* labels page results as pages rather than displaying post publication metadata
 
 = 1.0.18 =
 

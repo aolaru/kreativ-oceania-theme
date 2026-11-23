@@ -4,7 +4,7 @@ Theme URI: https://kreativwp.com/themes/kreativ-core/
 Author: Kreativ WP
 Author URI: https://kreativwp.com/
 Description: A lightweight, responsive WordPress theme for editorial sites, blogs, portfolios, and content-driven websites.
-Version: 1.0.18
+Version: 1.0.22
 Requires at least: 6.4
 Tested up to: 7.1
 Requires PHP: 7.4
@@ -52,7 +52,6 @@ body.dark-mode {
 /* --- Base Styles --- */
 body {
   margin: 0;
-  padding-top: 96px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 1.1rem;
   line-height: 1.6;
@@ -99,7 +98,7 @@ textarea {
 
 /* Theme-owned navigation and grid primitives replace the former framework layer. */
 .kreativ-header {
-  position: fixed;
+  position: sticky;
   top: 0;
   right: 0;
   left: 0;
@@ -109,18 +108,19 @@ textarea {
 .kreativ-site-nav {
   display: flex;
   align-items: center;
+  gap: 2rem;
   min-height: 96px;
 }
 
 .kreativ-site-navigation {
   display: grid;
-  grid-template-columns: auto minmax(12rem, 1fr) auto;
+  grid-template-columns: minmax(12rem, 25rem) minmax(0, 1fr);
   align-items: center;
-  width: 100%;
+  flex: 1 1 auto;
+  min-width: 0;
   gap: 2rem;
 }
 
-.kreativ-hdr-left,
 .kreativ-hdr-right {
   display: flex;
   align-items: center;
@@ -129,20 +129,43 @@ textarea {
 
 .kreativ-logo {
   margin: 0;
+  min-width: 0;
 }
 
 .kreativ-search {
-  justify-self: center;
-  width: min(100%, 25rem);
+  width: 100%;
+}
+
+.kreativ-search-form {
+  display: flex;
+  gap: 0.5rem;
 }
 
 .kreativ-search-form input {
-  width: 100%;
+  flex: 1 1 auto;
+  min-width: 0;
   min-height: 2.5rem;
   padding: 0.45rem 0.65rem;
   color: var(--color-text);
   background: var(--color-bg);
   border: 1px solid color-mix(in srgb, var(--color-text) 30%, transparent);
+}
+
+.kreativ-search-submit {
+  flex: 0 0 auto;
+  min-height: 2.5rem;
+  padding: 0.45rem 0.75rem;
+  color: var(--color-bg);
+  background: var(--color-text);
+  border: 1px solid var(--color-text);
+  cursor: pointer;
+}
+
+.kreativ-search-submit:hover,
+.kreativ-search-submit:focus-visible {
+  color: var(--color-bg);
+  background: var(--color-brand);
+  border-color: var(--color-brand);
 }
 
 .kreativ-primary-menu {
@@ -180,6 +203,16 @@ textarea {
   left: auto;
 }
 
+.kreativ-primary-menu .sub-menu .menu-item-has-children > .sub-menu {
+  top: -0.45rem;
+  left: calc(100% + 0.45rem);
+}
+
+.kreativ-primary-menu > .menu-item:last-child > .sub-menu .menu-item-has-children > .sub-menu {
+  right: calc(100% + 0.45rem);
+  left: auto;
+}
+
 .kreativ-primary-menu .menu-item-has-children:hover > .sub-menu,
 .kreativ-primary-menu .menu-item-has-children:focus-within > .sub-menu,
 .kreativ-primary-menu .menu-item-has-children.menu-item-open > .sub-menu {
@@ -190,13 +223,8 @@ textarea {
   display: none;
 }
 
-.kreativ-menu-toggle,
-.kreativ-mobile-brand {
+.kreativ-menu-toggle {
   display: none;
-}
-
-.admin-bar {
-  padding-top: 128px;
 }
 
 /* Three restrained directions for sites with different editorial priorities. */
@@ -354,8 +382,8 @@ body.dark-mode .kreativ-footer {
 }
 
 .kreativ-post-index-header {
-  max-width: 46rem;
-  margin: 0 0 clamp(2.5rem, 5vw, 5rem);
+  max-width: 56rem;
+  margin: 0 0 clamp(2rem, 4vw, 3.5rem);
 }
 
 .kreativ-post-index-intro {
@@ -382,8 +410,12 @@ body.dark-mode .kreativ-footer {
 .kreativ-post-index-header h1 {
   margin: 0;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(3rem, 7vw, 6rem);
-  line-height: 0.9;
+  font-size: clamp(2.75rem, 5vw, 4.75rem);
+  line-height: 0.95;
+}
+
+.search .kreativ-post-index-header h1 {
+  color: var(--color-text);
 }
 
 .kreativ-post-list {
@@ -392,9 +424,9 @@ body.dark-mode .kreativ-footer {
 
 .kreativ-post-card {
   display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(18rem, 1.1fr);
-  gap: clamp(1.5rem, 5vw, 7rem);
-  padding: clamp(2rem, 4vw, 4.5rem) 0;
+  grid-template-columns: minmax(10rem, 13rem) minmax(15rem, 1fr) minmax(15rem, 0.9fr);
+  gap: clamp(1.25rem, 3vw, 3.25rem);
+  padding: clamp(1.5rem, 3vw, 2.5rem) 0;
   border-bottom: 1px solid color-mix(in srgb, var(--color-text) 18%, transparent);
 }
 
@@ -408,11 +440,33 @@ body.dark-mode .kreativ-footer {
   position: relative;
 }
 
+.kreativ-post-card-media {
+  display: block;
+  align-self: center;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--color-text) 7%, transparent);
+}
+
+.kreativ-post-card-media img,
+.kreativ-post-card-media .kreativ-fallback-thumb {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.kreativ-post-card-media .kreativ-fallback-thumb {
+  background:
+    linear-gradient(135deg, transparent 0 48%, color-mix(in srgb, var(--color-brand) 16%, transparent) 48% 52%, transparent 52%),
+    color-mix(in srgb, var(--color-text) 7%, transparent);
+}
+
 .kreativ-post-card h2 {
-  margin: 0 0 1.2rem;
+  margin: 0 0 0.8rem;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(2rem, 3.4vw, 4rem);
-  line-height: 0.98;
+  font-size: clamp(1.8rem, 2.5vw, 2.75rem);
+  line-height: 1;
 }
 
 .kreativ-post-card h2 a {
@@ -433,11 +487,11 @@ body.dark-mode .kreativ-footer {
 }
 
 .kreativ-post-card-summary {
-  max-width: 42rem;
+  max-width: none;
   align-self: center;
   color: var(--color-text);
-  font-size: clamp(1.05rem, 1.4vw, 1.35rem);
-  line-height: 1.6;
+  font-size: clamp(1rem, 1.2vw, 1.18rem);
+  line-height: 1.55;
 }
 
 .kreativ-post-card-summary p {
@@ -515,9 +569,21 @@ body.dark-mode .kreativ-footer {
   width: min(100% - 2.5rem, 1320px);
 }
 
+.kreativ-wide-page .kreativ-entry-header {
+  max-width: 72rem;
+}
+
+.kreativ-wide-page .kreativ-entry-content {
+  max-width: 58rem;
+}
+
 .kreativ-entry-header {
   max-width: 60rem;
   margin: 0 auto clamp(2.5rem, 5vw, 4.5rem);
+}
+
+.kreativ-page .kreativ-entry-header {
+  margin-bottom: clamp(2rem, 3.5vw, 3.25rem);
 }
 
 .kreativ-entry-header h1,
@@ -555,6 +621,99 @@ body.dark-mode .kreativ-footer {
 .kreativ-entry-content img {
   height: auto;
   max-width: 100%;
+}
+
+/* Keep native form and table content readable when supplied by blocks or plugins. */
+.kreativ-entry-content fieldset {
+  padding: 1.5rem;
+  border: 1px solid color-mix(in srgb, var(--color-text) 25%, transparent);
+}
+
+.kreativ-entry-content legend {
+  padding: 0 0.35rem;
+  color: var(--color-text);
+  font-weight: 700;
+}
+
+.kreativ-entry-content label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+}
+
+.kreativ-entry-content input:not([type="checkbox"]):not([type="radio"]),
+.kreativ-entry-content select,
+.kreativ-entry-content textarea {
+  display: block;
+  width: 100%;
+  padding: 0.7rem 0.85rem;
+  color: var(--color-text);
+  background: var(--color-bg);
+  border: 1px solid color-mix(in srgb, var(--color-text) 35%, transparent);
+}
+
+.kreativ-entry-content textarea {
+  min-height: 9rem;
+  resize: vertical;
+}
+
+.kreativ-entry-content input[type="checkbox"],
+.kreativ-entry-content input[type="radio"] {
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.45rem;
+  accent-color: var(--color-brand);
+}
+
+.kreativ-entry-content label:has(input[type="checkbox"]),
+.kreativ-entry-content label:has(input[type="radio"]) {
+  display: flex;
+  align-items: center;
+  font-weight: 400;
+}
+
+.kreativ-entry-content button,
+.kreativ-entry-content input[type="submit"] {
+  padding: 0.7rem 1rem;
+  color: #fff;
+  font-weight: 700;
+  background: var(--color-btn-primary);
+  border: 1px solid var(--color-btn-primary);
+  cursor: pointer;
+}
+
+.kreativ-entry-content button:hover,
+.kreativ-entry-content input[type="submit"]:hover {
+  background: var(--color-btn-hover);
+  border-color: var(--color-btn-hover);
+}
+
+.kreativ-entry-content .wp-block-table {
+  overflow-x: auto;
+}
+
+.kreativ-entry-content table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.kreativ-entry-content th,
+.kreativ-entry-content td {
+  padding: 0.75rem;
+  text-align: left;
+  vertical-align: top;
+  border: 1px solid color-mix(in srgb, var(--color-text) 22%, transparent);
+}
+
+.kreativ-entry-content th {
+  background: color-mix(in srgb, var(--color-text) 6%, var(--color-bg));
+}
+
+.kreativ-entry-content pre {
+  padding: 1rem;
+  overflow-x: auto;
+  color: var(--color-text);
+  background: color-mix(in srgb, var(--color-text) 6%, var(--color-bg));
 }
 
 .kreativ-entry-footer,
@@ -598,6 +757,10 @@ body.dark-mode .kreativ-footer {
 .kreativ-related-posts .kreativ-post-card {
   display: block;
   padding: 1.5rem 0;
+}
+
+.kreativ-related-posts .kreativ-post-card-media {
+  display: none;
 }
 
 .kreativ-related-posts .kreativ-post-card h2 {
@@ -779,25 +942,62 @@ body.dark-mode .kreativ-footer {
   font-size: 0.9rem;
 }
 
+.kreativ-hdr-right .kreativ-primary-menu a:hover,
+.kreativ-hdr-right .kreativ-primary-menu a:focus-visible {
+  color: var(--color-brand);
+  text-decoration: none;
+}
+
+.kreativ-primary-menu .current-menu-item > a,
+.kreativ-primary-menu .current-menu-ancestor > a,
+.kreativ-primary-menu .current_page_item > a,
+.kreativ-primary-menu .current_page_ancestor > a,
+.kreativ-primary-menu a[aria-current="page"] {
+  color: var(--color-brand);
+  font-weight: 700;
+}
+
+.kreativ-primary-menu > .current-menu-item > a,
+.kreativ-primary-menu > .current-menu-ancestor > a,
+.kreativ-primary-menu > .current_page_item > a,
+.kreativ-primary-menu > .current_page_ancestor > a {
+  box-shadow: inset 0 -2px 0 var(--color-brand);
+}
+
 .kreativ-logo a {
   display: inline-flex;
   align-items: center;
   gap: 0.65rem;
+  max-width: 100%;
   white-space: nowrap;
 }
 
 .kreativ-logo-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
   font-size: clamp(1.15rem, 1.7vw, 2rem);
 }
 
-/* Keep the fixed header below WordPress's logged-in admin bar. */
+/* Keep the sticky header below WordPress's logged-in admin bar. */
 .admin-bar .kreativ-header {
   top: 32px;
 }
 
-@media (max-width: 991.98px) {
+@media (max-width: 1199.98px) {
   .kreativ-site-nav {
-    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .kreativ-site-nav > .kreativ-logo {
+    flex: 1 1 auto;
+  }
+
+  .kreativ-logo a {
+    width: 100%;
+  }
+
+  .kreativ-logo-text {
+    min-width: 0;
   }
 
   .kreativ-site-navigation.kreativ-offcanvas {
@@ -817,10 +1017,6 @@ body.dark-mode .kreativ-footer {
   .kreativ-site-navigation.kreativ-offcanvas.open {
     left: 0;
     visibility: visible;
-  }
-
-  .kreativ-offcanvas.open .kreativ-hdr-left {
-    display: none;
   }
 
   .kreativ-offcanvas .kreativ-search {
@@ -876,14 +1072,12 @@ body.dark-mode .kreativ-footer {
     transform: rotate(45deg);
   }
 
-  .kreativ-mobile-brand {
-    display: block;
-  }
-
   .kreativ-menu-toggle {
+    order: 2;
     display: inline-flex;
     align-items: center;
     min-height: 2.5rem;
+    margin-left: 0.5rem;
     padding: 0.45rem 0.7rem;
     color: var(--color-text);
     background: transparent;
@@ -912,10 +1106,6 @@ body.dark-mode .kreativ-footer {
 }
 
 @media (max-width: 782px) {
-  .admin-bar {
-    padding-top: 142px;
-  }
-
   .admin-bar .kreativ-header {
     top: 46px;
   }

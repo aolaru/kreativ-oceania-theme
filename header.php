@@ -17,15 +17,16 @@
 <?php wp_body_open(); ?>
 <a class="kreativ-skip-link" href="#primary"><?php esc_html_e( 'Skip to content', 'kreativ-core' ); ?></a>
 
+<?php if ( get_header_image() ) : ?>
+    <div class="kreativ-custom-header">
+        <?php the_header_image_tag( array( 'class' => 'kreativ-custom-header-image' ) ); ?>
+    </div>
+<?php endif; ?>
+
 <header class="kreativ-header">
-    <?php if ( get_header_image() ) : ?>
-        <div class="kreativ-custom-header">
-            <?php the_header_image_tag( array( 'class' => 'kreativ-custom-header-image' ) ); ?>
-        </div>
-    <?php endif; ?>
     <div class="container">
-        <nav class="kreativ-site-nav">
-            <p class="kreativ-logo kreativ-mobile-brand">
+        <div class="kreativ-site-nav">
+            <p class="kreativ-logo">
                 <a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'description' ) ); ?>">
                     <?php if ( has_custom_logo() ) : ?>
                         <?php echo wp_get_attachment_image( get_theme_mod( 'custom_logo' ), 'full', false, array( 'class' => 'kreativ-logo-icon', 'alt' => $site_title ) ); ?>
@@ -39,27 +40,10 @@
             </p>
 
             <button class="kreativ-menu-toggle" type="button" data-kreativ-menu-toggle aria-controls="site-navigation" aria-expanded="false" aria-label="<?php esc_attr_e( 'Toggle menu', 'kreativ-core' ); ?>">
-                <?php esc_html_e( 'Menu', 'kreativ-core' ); ?>
+                <span data-kreativ-menu-label><?php esc_html_e( 'Menu', 'kreativ-core' ); ?></span>
             </button>
 
-            <div id="site-navigation" class="kreativ-site-navigation kreativ-offcanvas">
-                
-                <div class="kreativ-hdr-left">
-					<p class="kreativ-logo">
-						<a href="<?php echo esc_url( home_url('/') ); ?>" title="<?php echo esc_attr( get_bloginfo( 'description' ) ); ?>">
-                            <?php if ( has_custom_logo() ) : ?>
-                                <?php echo wp_get_attachment_image( get_theme_mod( 'custom_logo' ), 'full', false, array( 'class' => 'kreativ-logo-icon', 'alt' => $site_title ) ); ?>
-                            <?php else : ?>
-							    <img src="<?php echo esc_url( kreativ_get_theme_asset_url( 'img/k-logo.svg' ) ); ?>"
-								 alt="<?php echo esc_attr( $site_title ); ?>"
-								 class="kreativ-logo-icon">
-                            <?php endif; ?>
-							<span class="kreativ-logo-text"><?php echo esc_html( $site_title ); ?></span>
-						</a>
-					</p>
-
-                </div>				
-
+            <nav id="site-navigation" class="kreativ-site-navigation kreativ-offcanvas" aria-label="<?php echo esc_attr__( 'Primary Menu', 'kreativ-core' ); ?>">
                 <div class="kreativ-search">
                     <?php get_search_form(); ?>
                 </div>
@@ -75,8 +59,7 @@
                     ));
                     ?>
                 </div>
-
-            </div>
-        </nav>
+            </nav>
+        </div>
     </div>
 </header>

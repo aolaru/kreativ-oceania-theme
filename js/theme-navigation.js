@@ -3,6 +3,7 @@
 
     document.addEventListener('DOMContentLoaded', function () {
         var toggle = document.querySelector('[data-kreativ-menu-toggle]');
+        var toggleLabel = document.querySelector('[data-kreativ-menu-label]');
         var navigation = document.getElementById('site-navigation');
         var settings = window.kreativCoreSettings || {};
 
@@ -10,9 +11,17 @@
             return;
         }
 
+        function setNavigationState(isOpen) {
+            toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+
+            if (toggleLabel) {
+                toggleLabel.textContent = isOpen ? (settings.closeMenuLabel || 'Close menu') : (settings.menuLabel || 'Menu');
+            }
+        }
+
         function closeNavigation() {
             navigation.classList.remove('open');
-            toggle.setAttribute('aria-expanded', 'false');
+            setNavigationState(false);
         }
 
         function closeSubmenus() {
@@ -49,7 +58,7 @@
 
         toggle.addEventListener('click', function () {
             var isOpen = navigation.classList.toggle('open');
-            toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            setNavigationState(isOpen);
 
             if (isOpen) {
                 var firstMenuLink = navigation.querySelector('.kreativ-primary-menu a');

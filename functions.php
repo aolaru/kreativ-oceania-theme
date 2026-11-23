@@ -128,6 +128,8 @@ function kreativ_enqueue_page_assets() {
         array(
             'darkModeLabel' => __( 'Toggle dark mode', 'kreativ-core' ),
             'submenuLabel'  => __( 'Toggle submenu', 'kreativ-core' ),
+            'menuLabel'     => __( 'Menu', 'kreativ-core' ),
+            'closeMenuLabel'=> __( 'Close menu', 'kreativ-core' ),
         )
     );
 
@@ -271,11 +273,28 @@ function kreativ_get_taxonomy_archive_query( $taxonomy, $term_id, $sort = 'lates
 }
 
 function kreativ_render_post_card() {
+    $post_type = get_post_type();
     ?>
     <article id="post-<?php the_ID(); ?>" <?php post_class( 'kreativ-post-card' ); ?>>
         <?php if ( is_sticky() ) : ?>
             <p class="kreativ-post-card-badge"><?php esc_html_e( 'Featured', 'kreativ-core' ); ?></p>
         <?php endif; ?>
+
+        <div class="kreativ-post-card-media" aria-hidden="true">
+            <?php
+            echo wp_kses(
+                kreativ_get_post_thumbnail_markup(
+                    get_the_ID(),
+                    'medium_large',
+                    array(
+                        'class' => 'kreativ-post-card-image',
+                        'sizes' => '(max-width: 767px) 100vw, (max-width: 1199px) 32vw, 18vw',
+                    )
+                ),
+                kreativ_get_thumbnail_allowed_html()
+            );
+            ?>
+        </div>
 
         <div class="kreativ-post-card-heading">
             <h2>
@@ -289,7 +308,9 @@ function kreativ_render_post_card() {
                 $date       = esc_html( get_the_date( 'F j, Y' ) );
                 $categories = get_the_category_list( ', ' );
 
-                if ( 'post' === get_post_type() && $categories ) {
+                if ( 'page' === $post_type ) {
+                    $post_meta = __( 'Page', 'kreativ-core' );
+                } elseif ( 'post' === $post_type && $categories ) {
                     $post_meta = sprintf(
                         /* translators: 1: publication date, 2: linked post categories. */
                         __( 'Published on %1$s in %2$s.', 'kreativ-core' ),
