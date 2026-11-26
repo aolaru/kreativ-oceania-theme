@@ -4,7 +4,7 @@ Theme URI: https://kreativwp.com/themes/kreativ-core/
 Author: Kreativ WP
 Author URI: https://kreativwp.com/
 Description: A lightweight, responsive WordPress theme for editorial sites, blogs, portfolios, and content-driven websites.
-Version: 1.0.22
+Version: 1.0.23
 Requires at least: 6.4
 Tested up to: 7.1
 Requires PHP: 7.4
@@ -253,6 +253,8 @@ h6 {
   color: var(--color-brand);
   font-weight: 600;
   letter-spacing: -0.01em;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 a {

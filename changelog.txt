@@ -1,6 +1,10 @@
 Repository History
 ------------------
 
+version 1.0.23 (November 2026)
+
+- ensured long page and post titles wrap within the viewport without creating horizontal scrolling
+
 version 1.0.22 (November 2026)
 
 - changed the primary header from fixed to sticky positioning and removed the fixed body offset
